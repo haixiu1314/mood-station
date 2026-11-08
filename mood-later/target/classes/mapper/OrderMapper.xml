@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moodlater.mapper.OrderMapper">
+
+    <resultMap id="OrderResultMap" type="com.moodlater.entity.Order">
+        <id column="id" property="id"/>
+        <result column="order_no" property="orderNo"/>
+        <result column="user_id" property="userId"/>
+        <result column="total_amount" property="totalAmount"/>
+        <result column="status" property="status"/>
+        <result column="address_name" property="addressName"/>
+        <result column="address_phone" property="addressPhone"/>
+        <result column="address_detail" property="addressDetail"/>
+        <result column="create_time" property="createTime"/>
+        <result column="shipped_time" property="shippedTime"/>
+        <result column="refunded_time" property="refundedTime"/>
+        <result column="express_company" property="expressCompany"/>
+        <result column="express_no" property="expressNo"/>
+        <result column="express_courier" property="expressCourier"/>
+        <result column="express_status" property="expressStatus"/>
+        <result column="received_time" property="receivedTime"/>
+        <result column="confirmed_time" property="confirmedTime"/>
+        <result column="sender_name" property="senderName"/>
+        <result column="sender_address" property="senderAddress"/>
+        <result column="sender_phone" property="senderPhone"/>
+    </resultMap>
+
+    <resultMap id="OrderItemResultMap" type="com.moodlater.entity.OrderItem">
+        <id column="id" property="id"/>
+        <result column="order_id" property="orderId"/>
+        <result column="product_id" property="productId"/>
+        <result column="product_name" property="productName"/>
+        <result column="product_image" property="productImage"/>
+        <result column="selected_spec" property="selectedSpec"/>
+        <result column="price" property="price"/>
+        <result column="quantity" property="quantity"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.moodlater.entity.Order" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `order` (order_no, user_id, total_amount, status, address_name, address_phone, address_detail)
+        VALUES (#{orderNo}, #{userId}, #{totalAmount}, #{status}, #{addressName}, #{addressPhone}, #{addressDetail})
+    </insert>
+
+    <insert id="insertItem" parameterType="com.moodlater.entity.OrderItem" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO order_item (order_id, product_id, product_name, product_image, selected_spec, price, quantity)
+        VALUES (#{orderId}, #{productId}, #{productName}, #{productImage}, #{selectedSpec}, #{price}, #{quantity})
+    </insert>
+
+    <select id="selectById" resultMap="OrderResultMap">
+        SELECT id, order_no, user_id, total_amount, status, address_name, address_phone, address_detail, create_time, shipped_time, refunded_time, express_company, express_no, express_courier, express_status, received_time, confirmed_time, sender_name, sender_address, sender_phone
+        FROM `order`
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectByOrderNo" resultMap="OrderResultMap">
+        SELECT id, order_no, user_id, total_amount, status, address_name, address_phone, address_detail, create_time, shipped_time, refunded_time, express_company, express_no, express_courier, express_status, received_time, confirmed_time, sender_name, sender_address, sender_phone
+        FROM `order`
+        WHERE order_no = #{orderNo}
+    </select>
+
+    <select id="selectByUserId" resultMap="OrderResultMap">
+        SELECT id, order_no, user_id, total_amount, status, address_name, address_phone, address_detail, create_time, shipped_time, refunded_time, express_company, express_no, express_courier, express_status, received_time, confirmed_time, sender_name, sender_address, sender_phone
+        FROM `order`
+        WHERE user_id = #{userId}
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="selectByUserIdAndStatus" resultMap="OrderResultMap">
+        SELECT id, order_no, user_id, total_amount, status, address_name, address_phone, address_detail, create_time, shipped_time, refunded_time, express_company, express_no, express_courier, express_status, received_time, confirmed_time, sender_name, sender_address, sender_phone
+        FROM `order`
+        WHERE user_id = #{userId} AND status = #{status}
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="selectItemsByOrderId" resultMap="OrderItemResultMap">
+        SELECT id, order_id, product_id, product_name, product_image, selected_spec, price, quantity, create_time
+        FROM order_item
+        WHERE order_id = #{orderId}
+    </select>
+
+    <update id="updateStatus">
+        UPDATE `order` SET status = #{status} WHERE id = #{id}
+    </update>
+
+    <update id="updateShippedTime">
+        UPDATE `order` SET shipped_time = NOW() WHERE id = #{id}
+    </update>
+
+    <update id="updateRefundedTime">
+        UPDATE `order` SET refunded_time = NOW() WHERE id = #{id}
+    </update>
+
+    <update id="cancelOrder">
+        UPDATE `order` SET status = 'cancelled' WHERE id = #{id}
+    </update>
+
+    <update id="shipOrderWithExpress">
+        UPDATE `order` SET status = 'shipped', shipped_time = NOW(),
+               express_company = #{expressCompany}, express_no = #{expressNo},
+               express_courier = #{expressCourier}, express_status = 'delivering'
+        WHERE id = #{id}
+    </update>
+
+    <update id="confirmReceived">
+        UPDATE `order` SET status = 'completed', received_time = NOW(),
+               confirmed_time = NOW(), express_status = 'signed'
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateExpressStatus">
+        UPDATE `order` SET express_status = #{expressStatus},
+               received_time = CASE WHEN #{expressStatus} = 'signed' THEN NOW() ELSE received_time END
+        WHERE id = #{id}
+    </update>
+
+</mapper>

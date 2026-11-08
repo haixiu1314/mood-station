@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moodlater.mapper.NotificationMapper">
+
+    <insert id="insert" parameterType="com.moodlater.entity.Notification" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO notification (user_id, category, type, title, content, related_id, is_read)
+        VALUES (#{userId}, #{category}, #{type}, #{title}, #{content}, #{relatedId}, 0)
+    </insert>
+
+</mapper>

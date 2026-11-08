@@ -1,0 +1,108 @@
+// 颜色系统
+:root {
+  // 主色 - 暖陶土色
+  --color-primary: #C67A5C;
+  --color-primary-light: #D4956F;
+  --color-primary-dark: #A8624A;
+  
+  // 背景色
+  --bg-base: #FDF8F0;
+  --bg-card: #FFFFFF;
+  --bg-sidebar: #FAF7F2;
+  --bg-input: #FFFFFF;
+  
+  // 边框色
+  --border-base: #F0E4D8;
+  --border-light: #F5EDE3;
+  --border-input: #E6DDD0;
+  
+  // 文字色
+  --text-primary: #2C241B;
+  --text-regular: #5C4F42;
+  --text-secondary: #8B7A6B;
+  --text-placeholder: #B8A99A;
+  
+  // 功能色
+  --color-success: #6F8F72;
+  --color-warning: #D9A13B;
+  --color-danger: #D95B5B;
+  --color-info: #8B7A6B;
+  
+  // 状态色
+  --color-pending: #D9A13B;
+  --color-shipped: #6F8F72;
+  --color-refunded: #D95B5B;
+  --color-normal: #6F8F72;
+  --color-banned: #D95B5B;
+  
+  // 尺寸
+  --radius-base: 6px;
+  --radius-small: 4px;
+  --btn-height: 36px;
+  --input-height: 38px;
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 72px;
+  --header-height: 60px;
+  --table-cell-height: 52px;
+  
+  // 字体
+  --font-family: "PingFang SC", "Noto Sans CJK SC", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: "Georgia", "Noto Serif SC", serif;
+}
+
+// 全局重置
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font-family);
+  font-size: 14px;
+  color: var(--text-primary);
+  background-color: var(--bg-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  height: 100%;
+}
+
+// 滚动条样式
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-base);
+  border-radius: var(--radius-small);
+  
+  &:hover {
+    background: var(--text-placeholder);
+  }
+}
+
+// 链接样式
+a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  
+  &:hover {
+    color: var(--color-primary-dark);
+  }
+}
+
+// 通用工具类
+.text-success { color: var(--color-success); }
+.text-warning { color: var(--color-warning); }
+.text-danger { color: var(--color-danger); }
+.text-secondary { color: var(--text-secondary); }

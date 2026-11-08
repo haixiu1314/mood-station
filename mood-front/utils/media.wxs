@@ -1,0 +1,95 @@
+// Rendering-only aliases for the existing local demo images. Public CDN URLs stay unchanged.
+var localImages = {
+  "/uploads/2aa597a9-5769-4898-99ec-7225366995f3.png": "/images/content/76793c2231841d14.jpg",
+  "/uploads/c2f12237-66be-43d2-9431-19e3477b8e44.png": "/images/content/90b8caf1c6e0f8f1.jpg",
+  "/uploads/product/10e91115-5b27-4be2-a595-bd1b02e85335.png": "/images/content/db01342831c8e8a4.jpg",
+  "/uploads/product/1cd1623c-1e21-43ca-b9e3-f289b88edeae.png": "/images/content/723d57fb137ff2f0.jpg",
+  "/uploads/product/1fc99dd2-c8a5-485b-b101-badbd0ceed8b.png": "/images/content/65e896db4e988a05.jpg",
+  "/uploads/product/23304078-2ec4-476f-b904-25d6216e242a.png": "/images/content/7bbeaf13919ffa02.jpg",
+  "/uploads/product/2893c6b0-8069-49a7-b12a-b0097924bf85.png": "/images/content/dbc0aa7c6f32c235.jpg",
+  "/uploads/product/2d7745e6-4331-4f0b-b3fa-979be728eb26.png": "/images/content/723d57fb137ff2f0.jpg",
+  "/uploads/product/3591652c-eca1-4200-90fb-7a2f4f7a4a4e.png": "/images/content/39413b08bda02e66.jpg",
+  "/uploads/product/371e4575-72b4-4999-a21d-756db69eb625.png": "/images/content/7abf40c0aa9a8895.jpg",
+  "/uploads/product/37481001-c1ff-4456-b1ca-de5e4ae245a8.png": "/images/content/dbc0aa7c6f32c235.jpg",
+  "/uploads/product/3e68e21d-1b35-41d3-9eb6-08b4ca53faca.png": "/images/content/6367fa5ca8d3a434.jpg",
+  "/uploads/product/41e9ccea-64e3-4f39-ad74-3b55c689fb2c.png": "/images/content/d3b851a0a31e7dc9.jpg",
+  "/uploads/product/453536f0-1d36-499e-bc27-5938837c42c8.png": "/images/content/e00817ae9b6f962e.jpg",
+  "/uploads/product/606d00d0-0b21-4d5e-9f17-4c37c191014f.png": "/images/content/9d6e72b75813fedf.jpg",
+  "/uploads/product/634bf731-40d4-4527-85a8-c828c07259fe.png": "/images/content/9f32ecb8680be626.jpg",
+  "/uploads/product/646a7d5f-70e7-44bc-915a-720e9e0834c8.png": "/images/content/8d8650c1d9d5bd75.jpg",
+  "/uploads/product/6554af94-3099-42de-8196-1664f24f79c1.png": "/images/content/104b5329bd36f073.jpg",
+  "/uploads/product/6acfc3d0-6c7f-4d6c-bb9d-eb1d96aaa960.png": "/images/content/7bbeaf13919ffa02.jpg",
+  "/uploads/product/6dcbb04a-c410-49de-a5a0-42235ed89035.png": "/images/content/9d6e72b75813fedf.jpg",
+  "/uploads/product/73b2df9f-ca22-4338-b0e0-e0cd2d4ffe89.png": "/images/content/7abf40c0aa9a8895.jpg",
+  "/uploads/product/73bc9631-eb05-4ce3-a456-a736543612ec.png": "/images/content/cd9b97f7521d689d.jpg",
+  "/uploads/product/8236de50-02c2-45ab-aea7-e0f0251086b8.png": "/images/content/657a3d1a973b15b6.jpg",
+  "/uploads/product/863f75b5-a321-4ab4-b04f-113885a85fef.png": "/images/content/723d57fb137ff2f0.jpg",
+  "/uploads/product/b218a761-7c40-4f6b-89e5-884267b300ff.png": "/images/content/d3b851a0a31e7dc9.jpg",
+  "/uploads/product/b95f5870-c3d0-4fa7-8298-4e3a5b1df6d8.png": "/images/content/d31bebe63ab92c9c.jpg",
+  "/uploads/product/bc151cc8-bbad-4ff7-aa62-daf2d1e75143.png": "/images/content/d31bebe63ab92c9c.jpg",
+  "/uploads/product/bc24633d-4c0b-4751-a426-458a696fe9dd.png": "/images/content/cd9b97f7521d689d.jpg",
+  "/uploads/product/c0f60eca-2c04-4db4-9426-c878eececa6d.png": "/images/content/646e17bb7f66b93a.jpg",
+  "/uploads/product/c230fe58-cb83-44b5-b158-ef1668f687fd.png": "/images/content/657a3d1a973b15b6.jpg",
+  "/uploads/product/dd016317-20ae-4151-bc0b-8ac60e965fd3.png": "/images/content/e62dd36e47024a1b.jpg",
+  "/uploads/product/de9457b5-43d0-4d95-aae2-67b607504a4e.png": "/images/content/b1a92aa59ff3d333.jpg",
+  "/uploads/product/e1fb04f7-64b6-4db4-82c6-fec3b0b16941.png": "/images/content/104b5329bd36f073.jpg",
+  "/uploads/product/e4000fe4-6cd4-4611-8daf-cc8b8082f5d6.png": "/images/content/9f32ecb8680be626.jpg",
+  "/uploads/product/e49cb949-4fda-4fa4-9fec-bf81f5d3a2f6.png": "/images/content/eb84fca90459de55.jpg",
+  "/uploads/product/e6b64781-beee-4f62-990e-ca58c00addfb.png": "/images/content/65e896db4e988a05.jpg",
+  "/uploads/product/ebcead64-f69b-40dc-b03f-3c40a3cd6e15.png": "/images/content/723d57fb137ff2f0.jpg",
+  "/uploads/product/eda426c5-a368-4f8d-a4f2-02a27a8d315f.png": "/images/content/0c981638fadd0de6.jpg",
+  "/uploads/product/f53249f6-53c8-4e9f-9334-d445498120dc.png": "/images/content/0c981638fadd0de6.jpg"
+};
+function src(value) {
+  if (!value || typeof value !== 'string') return '';
+  var path = value;
+  if (value.indexOf('http://localhost:') === 0 || value.indexOf('https://localhost:') === 0 || value.indexOf('http://127.0.0.1:') === 0 || value.indexOf('https://127.0.0.1:') === 0) {
+    var start = value.indexOf('/uploads/');
+    if (start < 0) return value;
+    path = value.slice(start);
+  } else if (value.indexOf('/uploads/') !== 0) {
+    return value;
+  }
+  path = path.split('?')[0].split('#')[0];
+  return localImages[path] || value;
+}
+var localAvatars = {
+  "/uploads/0ab2dbad-0ad1-4508-985a-e9c2953a69d6.png": "/images/avatars/16bc4ce1d20071b2.jpg",
+  "/uploads/0e56bc99-f776-4caa-82fe-6a975799c234.jpg": "/images/avatars/740977a271cdbd43.jpg",
+  "/uploads/12cb2c3f-9f49-4a81-97d6-02b4364a139b.jpg": "/images/avatars/08f52ca1f7b5b8d2.jpg",
+  "/uploads/4b4fd7c6-9279-4d9a-ac89-a73f7da59de1.jpg": "/images/avatars/740977a271cdbd43.jpg",
+  "/uploads/6535de9e-d0f9-4afd-8ee4-3e7eb6fc2eb9.jpeg": "/images/avatars/95683b27870dcde7.jpg",
+  "/uploads/774c69c0-c4ca-4f8d-91f3-df6146453610.webp": "/images/avatars/e3656ce900e58348.jpg",
+  "/uploads/87a371be-4c75-4575-88fb-0ce2cdebb1dd.jpg": "/images/avatars/1d1654208cc61f7a.jpg",
+  "/uploads/8cd4aa3e-8218-4d48-943b-5a429d155ea7.jpg": "/images/avatars/1cf0a2333bdc2c4c.jpg",
+  "/uploads/901cb557-bc49-4078-9a07-61fe6cbc818d.png": "/images/avatars/ed34a16b8046c930.jpg",
+  "/uploads/93aa14d2-4fd8-46e1-ae26-bf7d87839b93.jpg": "/images/avatars/5d251036ee51ec35.jpg",
+  "/uploads/94bca868-f185-4ba3-bca7-577609ecc349.jpg": "/images/avatars/8012d5d2ffbea2a4.jpg",
+  "/uploads/9908abe9-bd73-4c06-a534-c9577e788058.jpeg": "/images/avatars/95683b27870dcde7.jpg",
+  "/uploads/9922082b-5253-4154-93ac-f938ff96802b.jpg": "/images/avatars/5d251036ee51ec35.jpg",
+  "/uploads/adf37c1d-c507-4dd1-a90d-b7b164c9385b.jpg": "/images/avatars/5d251036ee51ec35.jpg",
+  "/uploads/b68ff7b0-74be-412a-842d-e57c081f851e.png": "/images/avatars/16bc4ce1d20071b2.jpg",
+  "/uploads/b7cb2a4a-9a2d-46c8-9e3c-d816cca15b82.jpg": "/images/avatars/1d1654208cc61f7a.jpg",
+  "/uploads/bb26bb8a-9e6a-4c41-9412-3a6a8f1b86a6.jpg": "/images/avatars/1d1654208cc61f7a.jpg",
+  "/uploads/dbde234e-8c2c-495c-ba9c-5b37168764b6.webp": "/images/avatars/1d1654208cc61f7a.jpg",
+  "/uploads/dd7eacf7-74e1-4676-b27f-54c758649fa9.png": "/images/avatars/0425628104ea61a9.jpg",
+  "/uploads/eafe531c-778d-4f1e-856a-4fd370e337ba.png": "/images/avatars/a611166f0e0952e2.jpg",
+  "/uploads/eecdab6f-3a23-42ef-b121-db1e94892d90.jpg": "/images/avatars/08f52ca1f7b5b8d2.jpg",
+  "/uploads/fed8d4e6-82d2-41b8-a949-db0cedd969d8.png": "/images/avatars/16bc4ce1d20071b2.jpg",
+  "/uploads/common/5dd652ef-27c0-4c4b-8416-de5968daf6dd.jpg": "/images/avatars/08f52ca1f7b5b8d2.jpg"
+};
+function avatar(value, alternate) {
+  value = value || alternate;
+  if (!value || typeof value !== 'string' || value === 'null' || value === 'undefined') return '/images/healing/avatar.png';
+  var path = value;
+  if (value.indexOf('http://localhost:') === 0 || value.indexOf('https://localhost:') === 0 || value.indexOf('http://127.0.0.1:') === 0 || value.indexOf('https://127.0.0.1:') === 0) {
+    var start = value.indexOf('/uploads/');
+    if (start < 0) return src(value);
+    path = value.slice(start);
+  } else if (value.indexOf('/uploads/') !== 0) {
+    return src(value);
+  }
+  path = path.split('?')[0].split('#')[0];
+  return localAvatars[path] || src(value);
+}
+module.exports = { src: src, avatar: avatar };

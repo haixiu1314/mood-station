@@ -1,0 +1,142 @@
+@import "../../styles/healing.wxss";
+.container {
+  padding: 32rpx;
+  padding-bottom: 120rpx;
+  background-color: var(--mood-paper);
+}
+
+/* 情绪选择器 */
+.emotion-selector {
+  margin-bottom: 32rpx;
+}
+
+.label {
+  font-size: 28rpx;
+  color: var(--mood-ink);
+  margin-bottom: 16rpx;
+  display: block;
+  font-weight: 600;
+}
+
+.picker {
+  padding: 24rpx;
+  background-color: var(--mood-surface);
+  border-radius: 32rpx;
+  
+}
+
+.emotion-tag {
+  display: inline-block;
+  padding: 12rpx 32rpx;
+  border-radius: 48rpx;
+  font-size: 28rpx;
+  text-align: center;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.emotion-tag:active {
+  transform: scale(0.96);
+}
+
+/* 表单组 */
+.form-group {
+  margin-bottom: 32rpx;
+  position: relative;
+}
+
+.input {
+  background-color: var(--mood-surface);
+  border-radius: 32rpx;
+  padding: 0 32rpx;
+  font-size: 28rpx;
+  height: 96rpx;
+  box-sizing: border-box;
+  
+}
+
+.char-count {
+  display: block;
+  text-align: right;
+  font-size: 24rpx;
+  color: var(--mood-faint);
+  margin-top: 8rpx;
+}
+
+.char-count.limit {
+  color: var(--mood-rose);
+}
+
+.textarea {
+  background-color: var(--mood-surface);
+  border-radius: 32rpx;
+  padding: 24rpx 32rpx;
+  font-size: 28rpx;
+  min-height: 400rpx;
+  width: 100%;
+  box-sizing: border-box;
+  
+}
+
+.form-group switch {
+  margin-right: 16rpx;
+}
+
+.switch-label {
+  font-size: 28rpx;
+  color: #718096;
+  vertical-align: middle;
+}
+
+/* 操作按钮 */
+.actions {
+  margin-top: 48rpx;
+}
+
+.btn-save {
+  background: var(--mood-sage-soft);
+  color: var(--mood-sage-ink);
+  border-radius: 48rpx;
+  padding: 24rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 24rpx;
+  
+  transition: transform 0.2s ease;
+}
+
+.btn-save:active {
+  transform: scale(0.96);
+}
+
+.btn-delete {
+  background: var(--mood-sage-soft);
+  color: var(--mood-surface);
+  border-radius: 48rpx;
+  padding: 24rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  
+  transition: transform 0.2s ease;
+}
+
+.btn-delete:active {
+  transform: scale(0.96);
+}
+
+
+
+/* Page composition and touch geometry. */
+
+.container { padding: 28rpx 32rpx calc(56rpx + env(safe-area-inset-bottom)); min-height: 100vh; }
+.form-group { margin-bottom: 32rpx; }
+.form-group .label { display: block; margin-bottom: 14rpx; }
+.textarea { min-height: 360rpx; padding: 28rpx; height: 420rpx; }
+.emotion-selector { padding: 24rpx; background: #FFFFFF; border-radius: 28rpx; margin-bottom: 28rpx; display: flex; justify-content: space-between; align-items: center; gap: 20rpx; }
+.emotion-selector .label { margin-bottom: 0; }
+.emotion-selector .picker { padding: 12rpx; min-height: 64rpx; background: transparent; display: flex; align-items: center; }
+.actions { gap: 20rpx; }
+.switch-label { color: var(--mood-muted); line-height: 1.8; }
+.actions { display: flex; flex-direction: column; align-items: stretch; }
+.actions button { width: 100%; margin: 0; }
+

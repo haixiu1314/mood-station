@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moodlater.mapper.AdminLogMapper">
+
+    <insert id="insertLog" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO admin_log (admin_id, action, target_type, target_id, detail)
+        VALUES (#{adminId}, #{action}, #{targetType}, #{targetId}, #{detail})
+    </insert>
+
+    <select id="selectLogs" resultType="com.moodlater.entity.AdminLog">
+        SELECT id, admin_id, action, target_type, target_id, detail, create_time
+        FROM admin_log
+        <where>
+            <if test="adminId != null">
+                AND admin_id = #{adminId}
+            </if>
+        </where>
+        ORDER BY create_time DESC
+    </select>
+
+</mapper>

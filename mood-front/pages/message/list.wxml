@@ -1,0 +1,52 @@
+<wxs module="media" src="../../utils/media.wxs" />
+<view class="container mood-page mood-message-list">
+  <view class="screen-heading"><text class="screen-title">我的留言</text><text class="screen-subtitle">一句问候，也能让今天暖一点。</text></view>
+  <!-- Tab 切换 -->
+  <view class="tabs">
+    <view class="tab-item {{activeTab === 'received' ? 'active' : ''}}" bindtap="onTabChange" data-tab="received" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <text>收到的留言</text>
+    </view>
+    <view class="tab-item {{activeTab === 'sent' ? 'active' : ''}}" bindtap="onTabChange" data-tab="sent" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <text>发出的留言</text>
+    </view>
+  </view>
+
+  <!-- 收到的留言 -->
+  <view class="content-section" wx:if="{{activeTab === 'received'}}">
+    <view class="message-list" wx:if="{{receivedMessages.length > 0}}">
+      <view class="message-item" wx:for="{{receivedMessages}}" wx:key="id">
+        <view class="message-header">
+          <image class="avatar" src="{{media.avatar(item.fromAvatar)}}" mode="aspectFill"></image>
+          <view class="message-info">
+            <text class="nickname">{{item.fromNickname}}</text>
+            <text class="time">{{item.createTime}}</text>
+          </view>
+          <view class="unread-dot" wx:if="{{!item.isRead}}"></view>
+        </view>
+        <text class="message-content">{{item.content}}</text>
+      </view>
+    </view>
+    <view class="empty-state" wx:else>
+      <text>暂无收到的留言</text>
+    </view>
+  </view>
+
+  <!-- 发出的留言 -->
+  <view class="content-section" wx:if="{{activeTab === 'sent'}}">
+    <view class="message-list" wx:if="{{sentMessages.length > 0}}">
+      <view class="message-item" wx:for="{{sentMessages}}" wx:key="id">
+        <view class="message-header">
+          <image class="avatar" src="{{media.avatar(item.fromAvatar)}}" mode="aspectFill"></image>
+          <view class="message-info">
+            <text class="nickname">我</text>
+            <text class="time">{{item.createTime}}</text>
+          </view>
+        </view>
+        <text class="message-content">{{item.content}}</text>
+      </view>
+    </view>
+    <view class="empty-state" wx:else>
+      <text>暂无发出的留言</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,20 @@
+<view wx:if="{{visible}}" class="ai-cat-float {{expanded ? 'expanded' : ''}} {{isDragging ? 'dragging' : ''}}" style="top: {{ballTop}}; right: {{ballRight}};">
+
+  <!-- 小球本体 -->
+  <view class="ai-cat-ball" 
+        bindtouchstart="onTouchStart" 
+        bindtouchmove="onTouchMove" 
+        bindtouchend="onTouchEnd"
+        catchtap="onBallTap" aria-role="button" aria-label="打开情绪小喵">
+    <image class="ai-cat-icon" src="/images/猫猫.png" mode="aspectFit"></image>
+    <view wx:if="{{!expanded}}" class="ai-cat-hint">情绪小喵</view>
+  </view>
+  <!-- 展开内容 -->
+  <view wx:if="{{expanded}}" class="ai-cat-expanded-content">
+    <view class="ai-cat-close" catchtap="onCloseTap" hover-class="pressed" aria-label="收起情绪小喵">×</view>
+    <text class="ai-cat-expanded-text">向小喵诉说你的情绪吧</text>
+    <view class="ai-cat-enter-btn" catchtap="onEnterTap" hover-class="pressed">
+      <text>开始对话</text>
+    </view>
+  </view>
+</view>

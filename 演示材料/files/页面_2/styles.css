@@ -1,0 +1,60 @@
+﻿body {
+  margin:0px;
+  background-image:none;
+  position:relative;
+  left:-124px;
+  width:1026px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:left;
+}
+.form_sketch {
+  border-color:transparent;
+  background-color:transparent;
+}
+#base {
+  position:absolute;
+  z-index:0;
+}
+#u32_div {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:1026px;
+  height:159px;
+  background:-webkit-linear-gradient(270deg, rgba(128, 255, 255, 1) 49%, rgba(202, 249, 130, 1) 99%);
+  background:-moz-linear-gradient(180deg, rgba(128, 255, 255, 1) 49%, rgba(202, 249, 130, 1) 99%);
+  background:linear-gradient(180deg, rgba(128, 255, 255, 1) 49%, rgba(202, 249, 130, 1) 99%);
+  box-sizing:border-box;
+  border-width:1px;
+  border-style:solid;
+  border-color:rgba(121, 121, 121, 1);
+  border-radius:50px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-size:48px;
+}
+#u32 {
+  border-width:0px;
+  position:absolute;
+  left:124px;
+  top:64px;
+  width:1026px;
+  height:159px;
+  display:flex;
+  font-size:48px;
+}
+#u32 .text {
+  position:absolute;
+  align-self:center;
+  padding:2px 2px 2px 2px;
+  box-sizing:border-box;
+  width:100%;
+}
+#u32_text {
+  border-width:0px;
+  word-wrap:break-word;
+  text-transform:none;
+}

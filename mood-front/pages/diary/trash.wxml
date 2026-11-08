@@ -1,0 +1,46 @@
+<view class="container mood-page mood-diary-trash">
+  <view class="screen-heading"><text class="screen-title">日记回收站</text><text class="screen-subtitle">还想留下的心情，可以在这里找回来。</text></view>
+  <view class="trash-tip" wx:if="{{trashList.length > 0}}">
+    <text class="tip-text">回收站最多存储10份日记，有效期30天，过期自动清除</text>
+  </view>
+
+  <view class="trash-list" wx:if="{{trashList.length > 0}}">
+    <view class="trash-card" wx:for="{{trashList}}" wx:key="id">
+      <view class="trash-header">
+        <view class="emotion-tag emotion-{{item.emotion}}" style="background-color: {{emotionMap[item.emotion].bg}}; color: {{emotionMap[item.emotion].color}}">
+          {{emotionMap[item.emotion].label}}
+        </view>
+        <text class="trash-time">{{item.originalCreateTime}}</text>
+      </view>
+      <view class="trash-title" wx:if="{{item.title}}">{{item.title}}</view>
+      <view class="trash-content">{{item.content}}</view>
+      <view class="trash-footer">
+        <text class="expire-text">过期时间：{{item.expireTime}}</text>
+        <view class="more-btn" catchtap="onShowMore" data-id="{{item.id}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+          <text class="more-icon">···</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <image class="empty-icon" src="/images/healing/trash.png" mode="aspectFit"></image>
+    <text class="empty-text">回收站为空</text>
+  </view>
+
+  <!-- 操作弹窗 -->
+  <view class="action-modal" wx:if="{{showActionModal}}" bindtap="onHideActionModal">
+    <view class="action-content" catchtap="">
+      <view class="action-item restore" bindtap="onRestore" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+        <text>恢复日记</text>
+      </view>
+      <view class="divider"></view>
+      <view class="action-item delete" bindtap="onPermanentDelete" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+        <text>彻底删除</text>
+      </view>
+      <view class="action-cancel" bindtap="onHideActionModal" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+        <text>取消</text>
+      </view>
+    </view>
+  </view>
+</view>

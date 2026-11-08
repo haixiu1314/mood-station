@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moodlater.mapper.NotificationMapper">
+
+    <resultMap id="BaseResultMap" type="com.moodlater.entity.Notification">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="category" property="category"/>
+        <result column="type" property="type"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="related_id" property="relatedId"/>
+        <result column="is_read" property="isRead"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.moodlater.entity.Notification" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO notification (user_id, category, type, title, content, related_id, is_read)
+        VALUES (#{userId}, #{category}, #{type}, #{title}, #{content}, #{relatedId}, 0)
+    </insert>
+
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        SELECT id, user_id, category, type, title, content, related_id, is_read, create_time
+        FROM notification
+        WHERE user_id = #{userId}
+        <if test="category != null and category != ''">
+            AND category = #{category}
+        </if>
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="countUnread" resultType="int">
+        SELECT COUNT(*) FROM notification
+        WHERE user_id = #{userId} AND is_read = 0
+    </select>
+
+    <select id="countUnreadByCategory" resultType="int">
+        SELECT COUNT(*) FROM notification
+        WHERE user_id = #{userId} AND category = #{category} AND is_read = 0
+    </select>
+
+    <update id="markAsRead">
+        UPDATE notification SET is_read = 1
+        WHERE id = #{id} AND user_id = #{userId}
+    </update>
+
+    <update id="markAllAsRead">
+        UPDATE notification SET is_read = 1
+        WHERE user_id = #{userId} AND is_read = 0
+    </update>
+
+    <update id="markAllAsReadByCategory">
+        UPDATE notification SET is_read = 1
+        WHERE user_id = #{userId} AND category = #{category} AND is_read = 0
+    </update>
+
+</mapper>

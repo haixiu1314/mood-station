@@ -1,0 +1,80 @@
+<wxs module="media" src="../../utils/media.wxs" />
+<view class="chat-container mood-page mood-ai-cat-index">
+  <!-- 顶部信息栏 -->
+  <view class="chat-header">
+    <view class="ai-info">
+      <image class="ai-avatar" src="/images/猫猫.png" mode="aspectFit"></image>
+      <view class="ai-meta">
+        <text class="ai-name">情绪小喵</text>
+        <text class="ai-desc">你的专属情绪陪伴助手</text>
+      </view>
+    </view>
+    <view class="count-info">
+      <text class="count-text">{{todayCount}}/{{dailyLimit}}</text>
+    </view>
+  </view>
+
+  <!-- 聊天内容区域 -->
+  <scroll-view class="chat-messages" scroll-y scroll-into-view="{{scrollToId}}" scroll-with-animation>
+    <!-- 欢迎消息 -->
+    <view class="message-row welcome-row">
+      <image class="message-avatar" src="/images/猫猫.png" mode="aspectFit"></image>
+      <view class="message-bubble ai-bubble">
+        <text class="message-text">嗨，你好呀~ 我是情绪小喵
+
+向小喵诉说你的情绪吧，我会认真倾听，陪伴你度过每一个时刻。</text>
+      </view>
+    </view>
+
+    <!-- 聊天消息列表 -->
+    <view wx:for="{{messages}}" wx:key="index" class="message-row {{item.role === 'user' ? 'user-row' : 'ai-row'}}" id="msg-{{index}}">
+      <!-- AI 消息 -->
+      <block wx:if="{{item.role === 'assistant'}}">
+        <image class="message-avatar" src="/images/猫猫.png" mode="aspectFit"></image>
+        <view class="message-bubble ai-bubble">
+          <text class="message-text">{{item.content}}</text>
+        </view>
+      </block>
+      <!-- 用户消息 -->
+      <block wx:else>
+        <view class="message-bubble user-bubble">
+          <text class="message-text">{{item.content}}</text>
+        </view>
+        <view class="message-avatar user-avatar">
+          <image wx:if="{{userAvatar}}" class="user-avatar-img" src="{{media.avatar(userAvatar)}}" mode="aspectFill"></image>
+          <text wx:else class="user-avatar-text">我</text>
+        </view>
+      </block>
+    </view>
+
+    <!-- 正在输入指示器 -->
+    <view wx:if="{{isLoading}}" class="message-row ai-row">
+      <image class="message-avatar" src="/images/猫猫.png" mode="aspectFit"></image>
+      <view class="message-bubble ai-bubble typing-bubble">
+        <view class="typing-indicator">
+          <view class="typing-dot"></view>
+          <view class="typing-dot"></view>
+          <view class="typing-dot"></view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 底部输入区域 -->
+  <view class="chat-input-area">
+    <view class="input-wrapper">
+      <input class="chat-input"
+             value="{{inputValue}}"
+             placeholder="说说你的心情..."
+             placeholder-class="input-placeholder"
+             bindinput="onInputChange"
+             bindconfirm="sendMessage"
+             confirm-type="send"
+             maxlength="1000"
+             disabled="{{isLoading}}"  placeholder-style="color: #68756A;" />
+      <view class="send-btn {{inputValue.trim() ? 'active' : ''}} {{isLoading ? 'disabled' : ''}}" bindtap="sendMessage" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+        <image class="send-icon" src="/images/healing/send.png" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+</view>

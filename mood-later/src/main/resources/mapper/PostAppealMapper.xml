@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moodlater.mapper.PostAppealMapper">
+
+    <resultMap id="BaseResultMap" type="com.moodlater.entity.PostAppeal">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="post_id" property="postId"/>
+        <result column="post_title" property="postTitle"/>
+        <result column="post_content" property="postContent"/>
+        <result column="reason" property="reason"/>
+        <result column="status" property="status"/>
+        <result column="appeal_time" property="appealTime"/>
+        <result column="review_time" property="reviewTime"/>
+        <result column="reviewer_id" property="reviewerId"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.moodlater.entity.PostAppeal" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO post_appeal (user_id, post_id, post_title, post_content, reason, status, appeal_time)
+        VALUES (#{userId}, #{postId}, #{postTitle}, #{postContent}, #{reason}, 0, NOW())
+    </insert>
+
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        SELECT id, user_id, post_id, post_title, post_content, reason, status, appeal_time, review_time, reviewer_id
+        FROM post_appeal
+        WHERE user_id = #{userId}
+        ORDER BY appeal_time DESC
+    </select>
+
+    <select id="selectAllPending" resultMap="BaseResultMap">
+        SELECT id, user_id, post_id, post_title, post_content, reason, status, appeal_time, review_time, reviewer_id
+        FROM post_appeal
+        WHERE status = 0
+        ORDER BY appeal_time ASC
+    </select>
+
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT id, user_id, post_id, post_title, post_content, reason, status, appeal_time, review_time, reviewer_id
+        FROM post_appeal
+        WHERE id = #{id}
+    </select>
+
+    <update id="updateStatus">
+        UPDATE post_appeal
+        SET status = #{status}, review_time = NOW(), reviewer_id = #{reviewerId}
+        WHERE id = #{id}
+    </update>
+
+    <select id="countPending" resultType="int">
+        SELECT COUNT(*) FROM post_appeal WHERE status = 0
+    </select>
+
+</mapper>

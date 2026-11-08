@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moodlater.mapper.AdminPostMapper">
+
+    <select id="selectAllPosts" resultType="com.moodlater.entity.Post">
+        SELECT p.id, p.user_id, p.title, p.emotion, p.emotion_label, p.content, p.images, p.like_count, p.comment_count,
+               p.source, p.source_diary_id, p.is_deleted, p.create_time, p.update_time,
+               u.nickname as authorNickname, u.avatar_url as authorAvatar
+        FROM post p
+        LEFT JOIN user u ON p.user_id = u.id
+        WHERE p.is_deleted = 0
+        ORDER BY p.create_time DESC
+    </select>
+
+    <select id="selectPostById" resultType="com.moodlater.entity.Post">
+        SELECT p.id, p.user_id, p.title, p.emotion, p.emotion_label, p.content, p.images, p.like_count, p.comment_count,
+               p.source, p.source_diary_id, p.is_deleted, p.create_time, p.update_time,
+               u.nickname as authorNickname, u.avatar_url as authorAvatar
+        FROM post p
+        LEFT JOIN user u ON p.user_id = u.id
+        WHERE p.id = #{id}
+    </select>
+
+    <update id="softDeletePost">
+        UPDATE post SET is_deleted = 1, update_time = NOW() WHERE id = #{id}
+    </update>
+
+    <update id="batchSoftDeletePosts">
+        UPDATE post SET is_deleted = 1, update_time = NOW() WHERE id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <select id="selectAllComments" resultType="com.moodlater.entity.Comment">
+        SELECT c.id, c.post_id, c.user_id, c.content, c.create_time,
+               u.nickname as userNickname, u.avatar_url as userAvatar
+        FROM comment c
+        LEFT JOIN user u ON c.user_id = u.id
+        ORDER BY c.create_time DESC
+    </select>
+
+    <select id="selectCommentById" resultType="com.moodlater.entity.Comment">
+        SELECT c.id, c.post_id, c.user_id, c.content, c.create_time,
+               u.nickname as userNickname, u.avatar_url as userAvatar
+        FROM comment c
+        LEFT JOIN user u ON c.user_id = u.id
+        WHERE c.id = #{id}
+    </select>
+
+    <delete id="deleteComment">
+        DELETE FROM comment WHERE id = #{id}
+    </delete>
+
+    <delete id="batchDeleteComments">
+        DELETE FROM comment WHERE id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 申诉管理 -->
+    <resultMap id="AppealResultMap" type="com.moodlater.entity.PostAppeal">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="post_id" property="postId"/>
+        <result column="post_title" property="postTitle"/>
+        <result column="post_content" property="postContent"/>
+        <result column="reason" property="reason"/>
+        <result column="status" property="status"/>
+        <result column="appeal_time" property="appealTime"/>
+        <result column="review_time" property="reviewTime"/>
+        <result column="reviewer_id" property="reviewerId"/>
+    </resultMap>
+
+    <select id="selectAllPendingAppeals" resultMap="AppealResultMap">
+        SELECT a.id, a.user_id, a.post_id, a.post_title, a.post_content, a.reason, a.status, a.appeal_time, a.review_time, a.reviewer_id,
+               u.nickname as userNickname, u.avatar_url as userAvatar
+        FROM post_appeal a
+        LEFT JOIN user u ON a.user_id = u.id
+        WHERE a.status = 0
+        ORDER BY a.appeal_time ASC
+    </select>
+
+    <select id="selectAppealById" resultMap="AppealResultMap">
+        SELECT a.id, a.user_id, a.post_id, a.post_title, a.post_content, a.reason, a.status, a.appeal_time, a.review_time, a.reviewer_id,
+               u.nickname as userNickname, u.avatar_url as userAvatar
+        FROM post_appeal a
+        LEFT JOIN user u ON a.user_id = u.id
+        WHERE a.id = #{id}
+    </select>
+
+    <update id="updateAppealStatus">
+        UPDATE post_appeal
+        SET status = #{status}, review_time = NOW(), reviewer_id = #{reviewerId}
+        WHERE id = #{id}
+    </update>
+
+    <select id="countPendingAppeals" resultType="int">
+        SELECT COUNT(*) FROM post_appeal WHERE status = 0
+    </select>
+
+    <!-- 回收站 -->
+    <resultMap id="TrashResultMap" type="com.moodlater.entity.PostTrash">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="post_id" property="postId"/>
+        <result column="title" property="title"/>
+        <result column="emotion" property="emotion"/>
+        <result column="emotion_label" property="emotionLabel"/>
+        <result column="content" property="content"/>
+        <result column="images" property="images"/>
+        <result column="like_count" property="likeCount"/>
+        <result column="comment_count" property="commentCount"/>
+        <result column="deleted_by" property="deletedBy"/>
+        <result column="deleted_by_name" property="deletedByName"/>
+        <result column="original_create_time" property="originalCreateTime"/>
+        <result column="deleted_time" property="deletedTime"/>
+        <result column="expire_time" property="expireTime"/>
+        <result column="appeal_status" property="appealStatus"/>
+    </resultMap>
+
+    <insert id="insertTrash" parameterType="com.moodlater.entity.PostTrash" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO post_trash (user_id, post_id, title, emotion, emotion_label, content, images, like_count, comment_count, deleted_by, deleted_by_name, original_create_time, deleted_time, expire_time)
+        VALUES (#{userId}, #{postId}, #{title}, #{emotion}, #{emotionLabel}, #{content}, #{images}, #{likeCount}, #{commentCount}, #{deletedBy}, #{deletedByName}, #{originalCreateTime}, NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY))
+    </insert>
+
+    <select id="selectTrashByPostId" resultMap="TrashResultMap">
+        SELECT id, user_id, post_id, title, emotion, emotion_label, content, images, like_count, comment_count,
+               deleted_by, deleted_by_name, original_create_time, deleted_time, expire_time, appeal_status
+        FROM post_trash
+        WHERE post_id = #{postId}
+    </select>
+
+    <delete id="deleteTrashByPostId">
+        DELETE FROM post_trash WHERE post_id = #{postId}
+    </delete>
+
+    <update id="updateTrashAppealStatus">
+        UPDATE post_trash SET appeal_status = #{appealStatus} WHERE post_id = #{postId}
+    </update>
+
+    <update id="restorePost">
+        UPDATE post SET is_deleted = 0, update_time = NOW() WHERE id = #{id}
+    </update>
+
+</mapper>

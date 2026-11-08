@@ -1,0 +1,54 @@
+<view class="container mood-page mood-post-trash">
+  <view class="page-header">
+    <text class="page-title">帖子回收站</text>
+    <text class="page-desc">最多存储10份，有效期30天</text>
+  </view>
+
+  <view class="trash-list" wx:if="{{trashList.length > 0}}">
+    <view class="trash-card" wx:for="{{trashList}}" wx:key="id">
+      <view class="trash-header">
+        <view class="emotion-tag emotion-{{item.emotion}}" style="background-color: {{emotionMap[item.emotion].bg}}; color: {{emotionMap[item.emotion].color}}">
+          {{emotionMap[item.emotion].label}}
+        </view>
+        <text class="trash-time">{{item.originalCreateTime}}</text>
+      </view>
+      <view class="trash-title" wx:if="{{item.title}}">{{item.title}}</view>
+      <view class="trash-content">{{item.content}}</view>
+      <view class="trash-footer">
+        <view class="trash-info">
+          <text class="deleted-by" wx:if="{{item.deletedBy === 'admin'}}">系统管理员删除</text>
+          <text class="appeal-pending" wx:if="{{item.appealStatus === 0}}">申诉审核中</text>
+          <text class="appeal-rejected" wx:if="{{item.appealStatus === 2}}">申诉审核不通过</text>
+          <text class="expire-text">过期：{{item.expireTime}}</text>
+        </view>
+        <view class="more-btn" catchtap="onShowMore" data-id="{{item.id}}" data-deleted-by="{{item.deletedBy}}" data-post-id="{{item.postId}}" data-appeal-status="{{item.appealStatus}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+          <text class="more-icon">···</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <image class="empty-icon" src="/images/healing/trash.png" mode="aspectFit"></image>
+    <text class="empty-text">回收站为空</text>
+  </view>
+
+  <!-- 操作弹窗 -->
+  <view class="action-mask" wx:if="{{showAction}}" bindtap="onHideAction"></view>
+  <view class="action-popup {{showAction ? 'show' : ''}}">
+    <!-- 用户自己删除的：可以恢复或彻底删除 -->
+    <view class="action-item" wx:if="{{currentDeletedBy !== 'admin'}}" bindtap="onRestore" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <text>恢复帖子</text>
+    </view>
+    <view class="action-item danger" bindtap="onPermanentDelete" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <text>彻底删除</text>
+    </view>
+    <!-- 管理员删除的：申诉审核不通过或审核中时，只能彻底删除 -->
+    <view class="action-item appeal" wx:if="{{currentDeletedBy === 'admin' && currentAppealStatus !== 2 && currentAppealStatus !== 0}}" bindtap="onAppeal" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <text>申诉</text>
+    </view>
+    <view class="action-cancel" bindtap="onHideAction" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <text>取消</text>
+    </view>
+  </view>
+</view>

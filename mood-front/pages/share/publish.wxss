@@ -1,0 +1,196 @@
+@import "../../styles/healing.wxss";
+.container {
+  padding: 0;
+  padding-bottom: 160rpx;
+}
+
+.nav {
+  background-color: var(--mood-surface);
+  padding: 80rpx 32rpx 32rpx 32rpx;
+  text-align: center;
+  border-bottom: 2rpx solid #F7FAF9;
+}
+
+.nav-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--mood-ink);
+}
+
+.form {
+  padding: 32rpx;
+}
+
+/* 情绪选择 */
+.emotion-selector {
+  margin-bottom: 24rpx;
+}
+
+.emotion-selector .label {
+  display: block;
+  font-size: 28rpx;
+  color: var(--mood-ink);
+  margin-bottom: 16rpx;
+  font-weight: 500;
+}
+
+.emotion-selector .picker {
+  display: inline-block;
+}
+
+.emotion-tag {
+  display: inline-block;
+  padding: 12rpx 24rpx;
+  border-radius: 32rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+/* 表单组 */
+.form-group {
+  margin-bottom: 24rpx;
+  position: relative;
+}
+
+.form-group .label {
+  display: block;
+  font-size: 28rpx;
+  color: var(--mood-ink);
+  margin-bottom: 16rpx;
+  font-weight: 500;
+}
+
+.form-group .input {
+  background-color: var(--mood-surface);
+  border-radius: 16rpx;
+  padding: 0 24rpx;
+  font-size: 30rpx;
+  width: 100%;
+  height: 96rpx;
+  box-sizing: border-box;
+}
+
+.char-count {
+  display: block;
+  text-align: right;
+  font-size: 24rpx;
+  color: #A0AEC0;
+  margin-top: 8rpx;
+}
+
+.char-count.limit {
+  color: #FF6B6B;
+}
+
+.textarea {
+  background-color: var(--mood-surface);
+  border-radius: 16rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  min-height: 300rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.image-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-top: 24rpx;
+}
+
+.image-item {
+  position: relative;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 8rpx;
+  right: 8rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--mood-surface);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+}
+
+.add-image {
+  width: 200rpx;
+  height: 200rpx;
+  border: 4rpx dashed #ECEAE6;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-icon {
+  font-size: 64rpx;
+  color: #ECEAE6;
+}
+
+.actions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  padding: 24rpx 32rpx;
+  background-color: var(--mood-surface);
+  
+  gap: 24rpx;
+}
+
+.btn-cancel {
+  flex: 1;
+  background-color: #F7FAF9;
+  color: #718096;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+}
+
+.btn-publish {
+  flex: 1;
+  background-color: #C8E6D9;
+  color: #4A7C59;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+}
+
+
+
+/* Page composition and touch geometry. */
+
+.container { padding: 28rpx 32rpx calc(56rpx + env(safe-area-inset-bottom)); min-height: 100vh; }
+.form-group { margin-bottom: 32rpx; }
+.form-group .label { display: block; margin-bottom: 14rpx; }
+.textarea { min-height: 360rpx; padding: 28rpx; height: 420rpx; }
+.emotion-selector { padding: 24rpx; background: #FFFFFF; border-radius: 28rpx; margin-bottom: 28rpx; display: flex; justify-content: space-between; align-items: center; gap: 20rpx; }
+.emotion-selector .label { margin-bottom: 0; }
+.emotion-selector .picker { padding: 12rpx; min-height: 64rpx; background: transparent; display: flex; align-items: center; }
+.actions { gap: 20rpx; }
+.switch-label { color: var(--mood-muted); line-height: 1.8; }
+
+.nav { display: none; }
+.form { padding: 0; }
+.image-section { gap: 16rpx; }
+.image-item, .add-image { width: calc((100vw - 96rpx) / 3); height: calc((100vw - 96rpx) / 3); border-radius: 20rpx; }
+.add-image { border: 2rpx dashed var(--mood-control); background: var(--mood-well); }
+.add-icon { color: var(--mood-muted); }
+.remove-btn { width: 56rpx; height: 56rpx; }
+.actions { padding-bottom: calc(20rpx + env(safe-area-inset-bottom)); border-top: 1rpx solid var(--mood-line); }
+.container { padding-bottom: calc(180rpx + env(safe-area-inset-bottom)); }
+

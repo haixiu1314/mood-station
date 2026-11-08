@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS `music` (
+  `id` BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '主键ID',
+  `name` VARCHAR(100) NOT NULL COMMENT '歌曲名',
+  `singer` VARCHAR(50) NOT NULL COMMENT '歌手',
+  `type` VARCHAR(20) NOT NULL COMMENT '音乐类型：pure（纯音乐）、pop（流行音乐）',
+  `file_url` VARCHAR(500) NOT NULL COMMENT '音乐文件URL',
+  `is_active` TINYINT DEFAULT 1 COMMENT '是否启用：0-禁用 1-启用',
+  `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  INDEX `idx_type` (`type`),
+  INDEX `idx_singer` (`singer`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐库表';

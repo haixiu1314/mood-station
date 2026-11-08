@@ -1,0 +1,35 @@
+<view class="container mood-page mood-diary-edit">
+  <view class="screen-heading"><text class="screen-title">写下此刻</text><text class="screen-subtitle">不用整理好心情，想到什么就写什么。</text></view>
+  <view class="emotion-selector">
+    <text class="label">选择情绪</text>
+    <picker bindchange="onEmotionChange" value="{{emotionIndex}}" range="{{emotions}}" range-key="label">
+      <view class="picker">
+        <view class="emotion-tag emotion-{{emotions[emotionIndex].value}}" style="background-color: {{emotions[emotionIndex].bg}}; color: {{emotions[emotionIndex].color}}">
+          {{emotions[emotionIndex].label}}
+        </view>
+      </view>
+    </picker>
+  </view>
+
+  <view class="form-group">
+    <text class="label">标题</text>
+    <input class="input" placeholder="给日记取个标题吧（必填，不超过18字）" value="{{title}}" bindinput="onTitleInput" maxlength="18"  placeholder-style="color: #68756A;" />
+    <text class="char-count {{title.length >= 18 ? 'limit' : ''}}">{{title.length}}/18</text>
+  </view>
+
+  <view class="form-group">
+    <text class="label">日记内容</text>
+    <textarea class="textarea" placeholder="写下你的开心与不愉快吧~" value="{{content}}" bindinput="onContentInput" maxlength="5000"  placeholder-style="color: #68756A;" />
+    <text class="char-count {{content.length >= 5000 ? 'limit' : ''}}">{{content.length}}/5000</text>
+  </view>
+
+  <view class="form-group">
+    <switch checked="{{isPublic === 1}}" bindchange="onPublicChange" color="#476B55" />
+    <text class="switch-label">公开日记（其他人可见）</text>
+  </view>
+
+  <view class="actions">
+    <button class="btn-save" bindtap="onSave" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">保存</button>
+    <button class="btn-delete" wx:if="{{id}}" bindtap="onDelete" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">删除</button>
+  </view>
+</view>

@@ -1,0 +1,303 @@
+@import "../../styles/healing.wxss";
+.container {
+  padding: 0;
+  padding-bottom: 160rpx;
+  background-color: var(--mood-paper);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* 顶部横幅 */
+.banner {
+  margin: 24rpx 32rpx 0;
+  border-radius: 20rpx;
+  background: var(--mood-sage-soft);
+  padding: 24rpx;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  
+  box-sizing: border-box;
+}
+
+.banner-text {
+  font-size: 28rpx;
+  color: var(--mood-sage-ink);
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+/* 帖子列表 */
+.post-list {
+  padding: 24rpx 32rpx 0;
+}
+
+.post-item {
+  margin-bottom: 24rpx;
+  background-color: var(--mood-surface);
+  border-radius: 20rpx;
+  padding: 28rpx;
+  
+  transition: transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  animation: none;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.post-item:active {
+  transform: scale(0.98);
+  
+}
+
+/* 帖子顶部彩虹色条 */
+.post-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4rpx;
+  background: var(--mood-sage-soft);
+  border-radius: 2rpx;
+  pointer-events: none;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+  position: relative;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  border: 3rpx solid var(--mood-surface);
+  
+  flex-shrink: 0;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.nickname {
+  font-size: 28rpx;
+  color: var(--mood-ink);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.time {
+  font-size: 24rpx;
+  color: var(--mood-faint);
+  margin-top: 8rpx;
+}
+
+.emotion-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 6rpx 16rpx;
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.emotion-badge-icon {
+  margin-right: 4rpx;
+  font-size: 24rpx;
+}
+
+/* 帖子内容 */
+.post-content {
+  margin: 16rpx 0;
+}
+
+.post-content .title {
+  display: block;
+  font-size: 30rpx;
+  color: var(--mood-ink);
+  font-weight: 600;
+  margin-bottom: 12rpx;
+  line-height: 1.4;
+}
+
+.post-content .text {
+  font-size: 28rpx;
+  color: var(--mood-ink);
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  max-height: 144rpx;
+  word-break: break-all;
+}
+
+/* 帖子图片 */
+.post-images {
+  margin-top: 16rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.post-images .image.single {
+  width: 100%;
+  max-height: 400rpx;
+  border-radius: 16rpx;
+}
+
+.post-images .image.grid {
+  width: calc((100% - 8rpx) / 3);
+  height: 200rpx;
+  border-radius: 12rpx;
+  float: left;
+  margin-right: 8rpx;
+  margin-bottom: 8rpx;
+}
+
+.post-images .image.grid:nth-child(3n) {
+  margin-right: 0;
+}
+
+.post-images::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* 操作栏 */
+.post-actions {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid var(--mood-line);
+}
+
+.action-item {
+  display: flex;
+  align-items: center;
+  margin-right: 48rpx;
+  transition: transform 0.2s ease;
+}
+
+.action-item:active {
+  transform: scale(0.96);
+}
+
+.action-icon {
+  font-size: 32rpx;
+  margin-right: 8rpx;
+  color: var(--mood-faint);
+}
+
+.action-icon.liked {
+  color: var(--mood-rose);
+  animation: likeAnimation 0.3s ease;
+}
+
+.action-count {
+  font-size: 24rpx;
+  color: var(--mood-muted);
+  margin-left: 8rpx;
+}
+
+@keyframes likeAnimation {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.4); }
+  60% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 0;
+}
+
+.empty-state text {
+  font-size: 26rpx;
+  color: var(--mood-faint);
+}
+
+/* 发布按钮 */
+.publish-btn {
+  position: fixed;
+  right: 40rpx;
+  bottom: 160rpx;
+  width: 100rpx;
+  height: 100rpx;
+  background: var(--mood-sage-soft);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  z-index: 100;
+  transition: transform 0.2s ease;
+  animation: none;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8rpx); }
+}
+
+.publish-btn:active {
+  transform: scale(0.92);
+  
+  animation: none;
+}
+
+.plus {
+  font-size: 48rpx;
+  color: var(--mood-surface);
+  font-weight: 300;
+  line-height: 1;
+}
+
+
+
+/* Page composition and touch geometry. */
+
+.container { padding: 24rpx 32rpx 180rpx; }
+.banner { height: auto; min-height: 0; padding: 12rpx 0 32rpx; background: transparent; margin: 0; border-radius: 0; display: block; }
+.banner::before, .banner::after, .post-item::before { display: none; }
+.post-item { padding: 30rpx; border-radius: 32rpx; margin-bottom: 24rpx; }
+.post-header { gap: 14rpx; margin-bottom: 24rpx; }
+.avatar { width: 80rpx; height: 80rpx; border: 0; margin-right: 8rpx; }
+.nickname { font-size: 28rpx; font-weight: 600; }
+.user-info { min-width: 0; }
+.emotion-badge { position: static; margin-left: auto; }
+.post-content .title { font-size: 32rpx; line-height: 1.6; margin-bottom: 12rpx; }
+.post-content .text { font-size: 28rpx; line-height: 1.85; color: var(--mood-muted); }
+.post-actions { border-top: 1rpx solid var(--mood-line); margin-top: 24rpx; padding: 14rpx 0 0; }
+.action-item { min-width: 88rpx; min-height: 72rpx; }
+.post-images .image.single { height: 380rpx; max-height: none; }
+.publish-btn { width: 100rpx; height: 100rpx; right: 32rpx; bottom: calc(32rpx + env(safe-area-inset-bottom)); background: var(--mood-sage); border-radius: 50%; box-shadow: 0 8rpx 24rpx rgba(41,60,51,.16); }
+.plus { color: #FFFFFF; font-size: 52rpx; font-weight: 400; }
+.banner { text-align: left; }
+

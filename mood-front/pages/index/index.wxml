@@ -1,0 +1,41 @@
+<wxs module="media" src="../../utils/media.wxs" />
+<view class="page-container mood-page mood-index-index">
+  <view class="welcome-banner">
+    <view class="welcome-left">
+      <text class="welcome-name">Hi，{{nickname}}</text>
+      <text class="welcome-subtitle">今天，也留一点温柔给自己。</text>
+    </view>
+    <image class="welcome-mark" src="/images/healing/brand-cat.png" mode="aspectFit"></image>
+  </view>
+  <swiper class="banner-swiper" indicator-dots autoplay circular interval="6000" duration="500" indicator-active-color="#476B55" indicator-color="rgba(71,107,85,0.22)">
+    <swiper-item wx:for="{{banners}}" wx:key="id">
+      <image class="banner-image" src="{{media.src(item.imageUrl || item.image || '/images/轮播图1.png')}}" mode="aspectFill" bindtap="onBannerTap" data-url="{{item.linkUrl}}" hover-class="mood-pressed"></image>
+    </swiper-item>
+  </swiper>
+  <view class="tip-card {{quoteFlipped ? 'flipped' : ''}}" bindtap="onQuoteTap" aria-role="button" aria-label="翻开今日锦囊">
+    <view class="tip-front">
+      <image class="tip-icon" src="/images/healing/leaf.png" mode="aspectFit"></image>
+      <view class="tip-text-group"><text class="tip-title">给今天的一点温柔</text><text class="tip-hint">今日锦囊 · 轻轻点开</text></view>
+      <image class="tip-arrow" src="/images/healing/chevron.png" mode="aspectFit"></image>
+    </view>
+    <view class="tip-back"><view class="stars-container" aria-hidden="true"><view class="star star-1"></view><view class="star star-2"></view><view class="star star-3"></view><view class="star star-4"></view><view class="star star-5"></view></view><text class="tip-back-label">今日锦囊</text><text class="tip-back-text">{{quote}}</text></view>
+  </view>
+  <view class="diary-section-title">
+    <view><text class="title-text">我的心情手记</text><text class="section-caption">那些微小的感受，也值得记录。</text></view>
+    <view class="write-diary-btn" bindtap="onWriteDiary" hover-class="mood-pressed"><image class="write-icon" src="/images/healing/plus-white.png" mode="aspectFit"></image><text class="write-btn-text">写日记</text></view>
+  </view>
+  <scroll-view class="diary-scroll" scroll-y enhanced show-scrollbar="{{true}}"><view class="diary-list">
+    <view class="diary-card" wx:for="{{diaryList}}" wx:key="id" bindtap="onDiaryTap" data-id="{{item.id}}" hover-class="mood-pressed">
+      <view class="diary-card-top">
+        <view class="emotion-tag emotion-{{item.emotion}}"><image class="emotion-icon" src="/images/healing/mood-{{item.emotion}}.png" mode="aspectFit"></image><text>{{emotionMap[item.emotion].label}}</text></view>
+        <text class="diary-time">{{item.createTime}}</text>
+      </view>
+      <text class="diary-title" wx:if="{{item.title}}">{{item.title}}</text>
+      <text class="diary-content">{{item.content}}</text>
+    </view>
+    <view class="empty-state" wx:if="{{diaryList.length === 0}}"><image src="/images/healing/journal.png" mode="aspectFit"></image><text class="empty-text">这里还空着，等你写下第一份心情。</text></view>
+  </view>
+  </scroll-view>
+  <view class="input-card" bindtap="onWriteDiary" hover-class="mood-pressed"><image class="pen-icon" src="/images/healing/edit.png" mode="aspectFit"></image><view><text class="input-main-text">此刻的你，是什么心情？</text><text class="input-sub-text">不必写得漂亮，真实就很好。</text></view><image class="input-arrow" src="/images/healing/chevron.png" mode="aspectFit"></image></view>
+</view>
+<ai-cat-float visible="{{true}}"></ai-cat-float>

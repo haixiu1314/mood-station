@@ -1,0 +1,32 @@
+<view class="container mood-page mood-address-list">
+  <view class="screen-heading"><text class="screen-title">收货地址</text><text class="screen-subtitle">给你的小美好，一个准确的目的地。</text></view>
+  <view class="address-list">
+    <view class="address-item card" wx:for="{{addresses}}" wx:key="id" bindtap="onSelectAddress" data-item="{{item}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <view class="address-header">
+        <text class="name">{{item.name}}</text>
+        <text class="phone">{{item.phone}}</text>
+        <text class="default-tag" wx:if="{{item.isDefault === 1}}">默认</text>
+      </view>
+      <text class="address-detail">{{item.province}}{{item.city}}{{item.district}}{{item.detail}}</text>
+      <view class="address-actions">
+        <view class="action-btn" bindtap="onEditAddress" data-item="{{item}}" catchtap="onEditAddress" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+          <text>编辑</text>
+        </view>
+        <view class="action-btn delete" bindtap="onDeleteAddress" data-item="{{item}}" catchtap="onDeleteAddress" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+          <text>删除</text>
+        </view>
+        <view class="action-btn set-default" wx:if="{{item.isDefault !== 1}}" bindtap="onSetDefault" data-item="{{item}}" catchtap="onSetDefault" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+          <text>设为默认</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{addresses.length === 0}}">
+    <text>暂无收货地址</text>
+  </view>
+
+  <view class="add-btn" bindtap="onAddAddress" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+    <text>新增收货地址</text>
+  </view>
+</view>

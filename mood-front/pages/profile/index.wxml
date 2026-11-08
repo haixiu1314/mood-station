@@ -1,0 +1,133 @@
+<wxs module="media" src="../../utils/media.wxs" />
+<view class="container mood-page mood-profile-index">
+  <view class="header" wx:if="{{isLoggedIn}}">
+    <view class="user-card">
+      <image class="avatar" src="{{media.avatar(userInfo.avatarUrl, userInfo.avatar)}}" mode="aspectFill"></image>
+      <view class="user-info">
+        <text class="nickname">{{userInfo.nickname || '微信用户'}}</text>
+        <view class="balance">
+          <text class="balance-label">我的余额：</text>
+          <image class="coin-img" src="/images/healing/coin.png" mode="aspectFit"></image>
+          <text class="balance-text">{{balance}} 心动币</text>
+          <view class="help-btn" bindtap="onShowCoinHelp" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+            <text class="help-icon">?</text>
+          </view>
+        </view>
+      </view>
+      <view class="notification-btn" bindtap="onNotification" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+        <image class="notification-icon" src="/images/healing/bell.png" mode="aspectFit"></image>
+        <view class="notification-badge" wx:if="{{unreadCount > 0}}">{{unreadCount > 99 ? '99+' : unreadCount}}</view>
+      </view>
+      <view class="music-btn" bindtap="onMusicToggle" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+        <image class="music-icon {{isPlaying ? 'playing' : ''}}" src="/images/healing/music.png" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="header" wx:else>
+    <view class="login-card" bindtap="onLogin" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <image class="avatar" src="/images/healing/avatar.png" mode="aspectFill"></image>
+      <text class="login-text">点击登录</text>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <view class="menu-item" bindtap="onMyDiary" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <image class="menu-icon" src="/images/healing/journal.png" mode="aspectFit"></image>
+      <text class="menu-text">我的日记</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="onMyPosts" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <image class="menu-icon" src="/images/healing/compose.png" mode="aspectFit"></image>
+      <text class="menu-text">我的帖子</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="onMyMessages" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <image class="menu-icon" src="/images/healing/message.png" mode="aspectFit"></image>
+      <text class="menu-text">我的留言</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="onMyOrders" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <image class="menu-icon" src="/images/healing/package.png" mode="aspectFit"></image>
+      <text class="menu-text">我的订单</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="onMyAddress" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <image class="menu-icon" src="/images/healing/location.png" mode="aspectFit"></image>
+      <text class="menu-text">我的收货地址</text>
+      <text class="arrow">›</text>
+    </view>
+  </view>
+
+  <view class="menu-section" wx:if="{{isLoggedIn}}">
+    <view class="menu-item" bindtap="onEditProfile" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <image class="menu-icon" src="/images/healing/edit.png" mode="aspectFit"></image>
+      <text class="menu-text">编辑资料</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="onLogout" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <image class="menu-icon" src="/images/healing/logout.png" mode="aspectFit"></image>
+      <text class="menu-text">退出登录</text>
+      <text class="arrow">›</text>
+    </view>
+  </view>
+
+  <view class="coin-help-modal" wx:if="{{showCoinHelp}}" bindtap="onHideCoinHelp">
+    <view class="coin-help-content" catchtap="">
+      <view class="modal-header">
+        <text class="modal-title">心动币说明</text>
+        <text class="modal-close" bindtap="onHideCoinHelp">×</text>
+      </view>
+      <view class="modal-body">
+        <view class="help-item">
+          <text class="help-question">什么是心动币？</text>
+          <text class="help-answer">心动币是情绪小站的虚拟货币，可用于购买情绪周边商品。</text>
+        </view>
+        <view class="help-item">
+          <text class="help-question">怎么获得心动币？</text>
+          <text class="help-answer">1. 注册即送200心动币\n2. 每日登录奖励2个心动币\n3. 每日首次发布日记奖励2个心动币\n4. 每日首次发布帖子奖励2个心动币\n5. 每日首次转发日记奖励1个心动币\n6. 每日首次点赞他人帖子奖励1个心动币\n7. 每日首次评论他人帖子奖励1个心动币\n（以上每日奖励仅限首次，次日重置）\n8. 订单确认收货奖励5个心动币（无次数限制，每完成一单均可获得）</text>
+        </view>
+        <view class="help-item">
+          <text class="help-question">心动币可以充值吗？</text>
+          <text class="help-answer">目前心动币仅通过平台活动获得，暂不支持充值。</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="music-menu-modal" wx:if="{{showMusicMenu}}" bindtap="onHideMusicMenu">
+    <view class="music-menu-content" catchtap="">
+      <view class="music-menu-title">选择音乐类型</view>
+      <view class="music-menu-list">
+        <view class="music-menu-item" bindtap="onSelectPureMusic" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+          <text class="music-menu-text">纯音乐</text>
+          <text class="music-menu-arrow">›</text>
+        </view>
+        <view class="music-menu-item" bindtap="onTogglePopMusic" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+          <text class="music-menu-text">流行音乐</text>
+          <text class="music-menu-arrow">{{showPopSingers ? '‹' : '›'}}</text>
+        </view>
+        <view class="music-singer-list" wx:if="{{showPopSingers}}">
+          <view class="music-singer-item" wx:for="{{singers}}" wx:key="index" bindtap="onSelectSinger" data-singer="{{item}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+            <text class="music-singer-text">{{item}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="music-player-bar" wx:if="{{isPlaying && currentMusic}}">
+    <view class="music-player-info">
+      <text class="music-player-name">{{currentMusic.name}}</text>
+      <text class="music-player-singer">{{currentMusic.singer}}</text>
+    </view>
+    <view class="music-player-controls">
+      <view class="music-player-btn" bindtap="onStopMusic" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+        <text class="music-player-icon">⏹</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 情绪小喵悬浮球组件 -->
+<ai-cat-float visible="{{true}}"></ai-cat-float>

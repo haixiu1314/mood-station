@@ -1,0 +1,51 @@
+<wxs module="media" src="../../utils/media.wxs" />
+<view class="container mood-page mood-share-publish">
+  <view class="screen-heading"><text class="screen-title">让心情被听见</text><text class="screen-subtitle">在这里，开心和低落都可以分享。</text></view>
+  <view class="nav">
+    <text class="nav-title">{{source === 'diary' ? '从日记转发' : '发布帖子'}}</text>
+  </view>
+
+  <view class="form">
+    <!-- 情绪选择 -->
+    <view class="emotion-selector">
+      <text class="label">选择情绪</text>
+      <picker bindchange="onEmotionChange" value="{{emotionIndex}}" range="{{emotions}}" range-key="label">
+        <view class="picker">
+          <view class="emotion-tag emotion-{{emotions[emotionIndex].value}}" style="background-color: {{emotions[emotionIndex].bg}}; color: {{emotions[emotionIndex].color}}">
+            {{emotions[emotionIndex].label}}
+          </view>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 标题输入 -->
+    <view class="form-group">
+      <text class="label">标题</text>
+      <input class="input" placeholder="请输入标题（必填，不超过18字）" value="{{title}}" bindinput="onTitleInput" maxlength="18"  placeholder-style="color: #68756A;" />
+      <text class="char-count {{title.length >= 18 ? 'limit' : ''}}">{{title.length}}/18</text>
+    </view>
+
+    <!-- 内容输入 -->
+    <view class="form-group">
+      <text class="label">内容</text>
+      <textarea class="textarea" placeholder="分享你此刻的心情..." value="{{content}}" bindinput="onContentInput" maxlength="5000"  placeholder-style="color: #68756A;" />
+      <text class="char-count {{content.length >= 5000 ? 'limit' : ''}}">{{content.length}}/5000</text>
+    </view>
+
+    <!-- 图片选择 -->
+    <view class="image-section">
+      <view class="image-item" wx:for="{{images}}" wx:key="*this">
+        <image class="image" src="{{media.src(item)}}" mode="aspectFill"></image>
+        <view class="remove-btn" bindtap="onRemoveImage" data-index="{{index}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">×</view>
+      </view>
+      <view class="add-image" bindtap="onChooseImage" wx:if="{{images.length < 9}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+        <text class="add-icon">+</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="actions">
+    <button class="btn-cancel" bindtap="onCancel" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">取消</button>
+    <button class="btn-publish" bindtap="onPublish" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">发布</button>
+  </view>
+</view>

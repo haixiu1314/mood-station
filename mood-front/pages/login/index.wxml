@@ -1,0 +1,40 @@
+<wxs module="media" src="../../utils/media.wxs" />
+<view class="container mood-page mood-login-index">
+  <view class="logo-section">
+    <text class="app-name">情绪小站</text>
+    <text class="app-desc">让心情被看见</text>
+  </view>
+
+  <view class="form-wrapper">
+    <image class="cat-img" src="/images/橘猫.png" mode="aspectFit"></image>
+    <view class="form-section card">
+    <text class="form-title">账号登录</text>
+
+    <view class="form-group">
+      <text class="label">账号</text>
+      <input class="input" placeholder="请输入账号" value="{{username}}" bindinput="onUsernameInput" maxlength="8"  placeholder-style="color: #68756A;" />
+    </view>
+
+    <view class="form-group">
+      <text class="label">密码</text>
+      <view class="password-input-wrapper">
+        <input class="input password-input" placeholder="请输入密码" value="{{password}}" bindinput="onPasswordInput" password="{{!showPassword}}" maxlength="8"  placeholder-style="color: #68756A;" />
+        <image class="eye-icon" bindtap="onTogglePassword" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90" src="{{media.src(showPassword ? '/images/healing/eye.png' : '/images/healing/eye-off.png')}}" mode="aspectFit" aria-label="显示或隐藏密码"></image>
+      </view>
+    </view>
+
+    <button class="btn-login" bindtap="onLogin" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">登录</button>
+
+    <view class="divider">
+      <text>或</text>
+    </view>
+
+    <button class="btn-quick" bindtap="onQuickLogin" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">快速登录（微信用户）</button>
+
+    <view class="go-register">
+      <text>还没有账号？</text>
+      <text class="register-link" bindtap="onGoToRegister" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">去注册</text>
+    </view>
+    </view>
+  </view>
+</view>

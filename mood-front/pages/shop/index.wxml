@@ -1,0 +1,33 @@
+<wxs module="media" src="../../utils/media.wxs" />
+<view class="container mood-page mood-shop-index">
+  <view class="banner"><text class="screen-title">心情小物</text><text class="screen-subtitle">把日常的小美好，带到身边。</text></view>
+
+  <view class="product-grid">
+    <view class="product-item {{item.stock === 0 ? 'sold-out-item' : ''}}" wx:for="{{products}}" wx:key="id" bindtap="onProductTap" data-id="{{item.id}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <image class="product-image" src="{{media.src(item.coverImage)}}" mode="aspectFill"></image>
+      <view class="product-info">
+        <text class="product-name">{{item.name}}</text>
+        <view class="product-bottom">
+          <view class="product-price">
+            <image class="coin-icon" src="/images/healing/coin.png" mode="aspectFit"></image>
+            <text class="price">{{item.price}}</text>
+          </view>
+          <view class="tags" wx:if="{{item.tags}}">
+            <text class="tag" wx:for="{{item.tags.split(',')}}" wx:key="*this" wx:for-item="tag">{{tag}}</text>
+          </view>
+        </view>
+        <view class="sold-out" wx:if="{{item.stock === 0}}">
+          <text>已售罄</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="cart-float" bindtap="onCartTap" wx:if="{{cartCount > 0}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+    <image class="cart-img" src="/images/healing/cart.png" mode="aspectFit"></image>
+    <view class="cart-badge">{{cartCount}}</view>
+  </view>
+</view>
+
+<!-- 情绪小喵悬浮球组件 -->
+<ai-cat-float visible="{{true}}"></ai-cat-float>

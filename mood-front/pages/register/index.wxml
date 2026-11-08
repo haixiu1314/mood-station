@@ -1,0 +1,59 @@
+<wxs module="media" src="../../utils/media.wxs" />
+<view class="container mood-page mood-register-index">
+  <view class="logo-section">
+    <text class="app-name">情绪小站</text>
+    <text class="app-desc">创建你的专属账号</text>
+  </view>
+
+  <view class="form-section card">
+    <text class="form-title">注册账号</text>
+
+    <view class="form-group">
+      <text class="label required">账号</text>
+      <input class="input" placeholder="请输入账号（必填，不超过8位）" value="{{username}}" bindinput="onUsernameInput" maxlength="8"  placeholder-style="color: #68756A;" />
+    </view>
+
+    <view class="form-group">
+      <text class="label required">密码</text>
+      <input class="input" placeholder="请输入密码（必填，不超过8位）" value="{{password}}" bindinput="onPasswordInput" type="password" maxlength="8"  placeholder-style="color: #68756A;" />
+    </view>
+
+    <view class="form-group">
+      <text class="label required">昵称</text>
+      <input class="input" placeholder="请输入你的昵称（必填）" value="{{nickname}}" bindinput="onNicknameInput" maxlength="16"  placeholder-style="color: #68756A;" />
+    </view>
+
+    <view class="form-group">
+      <text class="label">头像URL</text>
+      <input class="input" placeholder="输入图片链接（可选）" value="{{avatarUrl}}" bindinput="onAvatarInput"  placeholder-style="color: #68756A;" />
+      <view class="choose-btn" bindtap="onChooseAvatar" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+        <text>从相册选择</text>
+      </view>
+    </view>
+
+    <view class="avatar-preview" wx:if="{{avatarUrl}}">
+      <image class="avatar-img" src="{{media.avatar(avatarUrl)}}" mode="aspectFill"></image>
+    </view>
+
+    <view class="form-group">
+      <text class="label">手机号</text>
+      <input class="input" placeholder="请输入手机号（可选）" value="{{phone}}" bindinput="onPhoneInput" type="number" maxlength="11"  placeholder-style="color: #68756A;" />
+    </view>
+
+    <view class="form-group">
+      <text class="label">性别</text>
+      <picker bindchange="onGenderChange" value="{{genderIndex}}" range="{{genderOptions}}" range-key="label">
+        <view class="picker">
+          <text>{{genderOptions[genderIndex].label}}</text>
+        </view>
+      </picker>
+    </view>
+
+    <button class="btn-register" bindtap="onRegister" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">注册</button>
+
+    <view class="go-login">
+      <text>已有账号？</text>
+      <text class="login-link" bindtap="onGoToLogin" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">去登录</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "ai-cat-float": "/components/ai-cat-float/ai-cat-float"
+  }
+}

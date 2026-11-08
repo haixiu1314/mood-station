@@ -1,0 +1,78 @@
+<wxs module="media" src="../../utils/media.wxs" />
+<view class="container mood-page mood-share-detail">
+  <view class="post-header">
+    <image class="avatar" src="{{media.avatar(post.author.avatar, post.author.avatarUrl)}}" mode="aspectFill"></image>
+    <view class="user-info">
+      <text class="nickname">{{post.author.nickname}}</text>
+      <text class="time">{{post.createTime}}</text>
+    </view>
+    <view class="emotion-badge emotion-{{post.emotion}}" wx:if="{{post.emotionLabel}}" style="background-color: {{post.emotion === 'happy' ? '#FFF3CD' : post.emotion === 'sad' ? '#E8F0FE' : post.emotion === 'angry' ? '#FFF0F0' : post.emotion === 'calm' ? '#DCEDC1' : '#F3E5F5'}}; color: {{post.emotion === 'happy' ? '#D4A017' : post.emotion === 'sad' ? '#6B8DD6' : post.emotion === 'angry' ? '#FF8B94' : post.emotion === 'calm' ? '#2E7D32' : '#9C27B0'}}">
+      <image class="emotion-badge-icon" src="/images/healing/mood-{{post.emotion}}.png" mode="aspectFit"></image>
+      {{post.emotionLabel}}
+    </view>
+  </view>
+
+  <view class="post-content">
+    <text class="title" wx:if="{{post.title}}">{{post.title}}</text>
+    <text class="text" selectable="{{true}}">{{post.content}}</text>
+  </view>
+
+  <view class="post-images" wx:if="{{post.images && post.images.length > 0}}">
+    <image 
+      wx:for="{{post.images}}" 
+      wx:for-item="img" 
+      wx:key="*this"
+      class="image {{post.images.length === 1 ? 'single' : 'grid'}}" 
+      src="{{media.src(img)}}" 
+      mode="aspectFill"
+      bindtap="onPreviewImage"
+      data-current="{{img}}"
+      data-images="{{post.images}}"
+     hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90"></image>
+  </view>
+
+  <view class="post-actions">
+    <view class="action-item" bindtap="onLikeTap" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <image class="action-icon {{post.isLiked ? 'liked' : ''}}" src="{{media.src(post.isLiked ? '/images/healing/heart-filled.png' : '/images/healing/heart.png')}}" mode="aspectFit"></image>
+      <text class="action-count">{{post.likeCount}}</text>
+    </view>
+    <view class="action-item">
+      <image class="action-icon" src="/images/healing/message.png" mode="aspectFit"></image>
+      <text class="action-count">{{post.commentCount}}</text>
+    </view>
+  </view>
+
+  <view class="comment-section">
+    <text class="section-title">评论</text>
+    <view class="comment-item" wx:for="{{comments}}" wx:key="id">
+      <image class="comment-avatar" src="{{media.avatar(item.user.avatar, item.user.avatarUrl)}}" mode="aspectFill"></image>
+      <view class="comment-content">
+        <text class="comment-nickname">{{item.user.nickname}}</text>
+        <text class="comment-text">{{item.content}}</text>
+        <text class="comment-time">{{item.createTime}}</text>
+      </view>
+    </view>
+    <view class="empty-comment" wx:if="{{comments.length === 0}}">
+      <text>暂无评论</text>
+    </view>
+  </view>
+
+  <view class="comment-trigger" bindtap="onShowCommentInput" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+    <view class="comment-trigger-btn">
+      <text class="comment-trigger-icon"></text>
+      <text class="comment-trigger-text">写下你的评论</text>
+    </view>
+  </view>
+
+  <!-- 评论输入弹窗 -->
+  <view class="comment-popup-mask" wx:if="{{showCommentInput}}" bindtap="onHideCommentInput"></view>
+  <view class="comment-popup {{showCommentInput ? 'show' : ''}}">
+    <view class="comment-popup-content">
+      <textarea class="comment-popup-textarea" placeholder="写下你的评论" value="{{commentContent}}" bindinput="onCommentInput" maxlength="300" focus="{{showCommentInput}}" auto-height  placeholder-style="color: #68756A;" />
+      <view class="comment-popup-footer">
+        <text class="comment-popup-count {{commentContent.length >= 300 ? 'limit' : ''}}">{{commentContent.length}}/300</text>
+        <button class="btn-comment-popup-submit" bindtap="onSubmitComment">发送</button>
+      </view>
+    </view>
+  </view>
+</view>

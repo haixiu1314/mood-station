@@ -1,0 +1,12 @@
+<view class="container mood-page mood-post-appeal">
+  <view class="screen-heading"><text class="screen-title">为分享说句话</text><text class="screen-subtitle">写下你的说明，我们会认真查看。</text></view>
+  <view class="form-section">
+    <text class="section-title">申诉原因</text>
+    <textarea class="appeal-input" placeholder="请输入申诉原因（必填）" value="{{reason}}" maxlength="500" bindinput="onReasonInput"  placeholder-style="color: #68756A;" />
+    <text class="char-count">{{reason.length}}/500</text>
+  </view>
+
+  <view class="submit-btn" bindtap="onSubmit" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+    <text>提交申诉</text>
+  </view>
+</view>

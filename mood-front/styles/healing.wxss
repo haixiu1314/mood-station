@@ -1,0 +1,65 @@
+/* Shared phone geometry: 750rpx - 2 x 32rpx = 686rpx content. */
+.mood-page { background: var(--mood-paper); color: var(--mood-ink); padding-bottom: calc(56rpx + env(safe-area-inset-bottom)); }
+.mood-page .screen-heading { margin: 4rpx 0 32rpx; }
+.screen-title { display: block; font-size: 42rpx; line-height: 1.35; font-weight: 600; color: var(--mood-ink); letter-spacing: -1rpx; }
+.screen-subtitle { display: block; margin-top: 12rpx; font-size: 25rpx; line-height: 1.75; color: var(--mood-muted); }
+.detail-kicker { display: block; font-size: 24rpx; color: var(--mood-muted); margin-bottom: 20rpx; }
+.reading-note { display: block; margin: 28rpx 0; text-align: center; font-size: 24rpx; line-height: 1.8; color: var(--mood-muted); }
+.mood-page .section-title { padding-left: 0; font-size: 30rpx; letter-spacing: 0; }
+.mood-page .section-title::before { display: none; }
+.mood-page .card { border-radius: var(--mood-radius); box-shadow: none; }
+.mood-page .input, .mood-page .textarea, .mood-page .appeal-input, .mood-page .form-textarea, .mood-page .message-input, .mood-page .pwd-input {
+  color: var(--mood-ink); background: var(--mood-well); border: 2rpx solid transparent; border-radius: 20rpx; line-height: 1.8; width: 100%;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+.mood-page input.input { min-height: 96rpx; height: 96rpx; padding: 0 24rpx; }
+.mood-page .input:focus, .mood-page .textarea:focus, .mood-page .form-textarea:focus, .mood-page .appeal-input:focus, .mood-page .message-input:focus, .mood-page .pwd-input:focus { background: var(--mood-surface); border-color: var(--mood-sage); }
+.mood-page .label, .mood-page .form-label { color: var(--mood-ink); font-size: 28rpx; font-weight: 500; }
+.mood-page .char-count { color: var(--mood-faint); font-size: 24rpx; margin-top: 12rpx; }
+.mood-page .char-count.limit { color: var(--mood-rose); }
+.mood-page .picker { min-height: 88rpx; border-radius: 20rpx; color: var(--mood-ink); background: var(--mood-well); }
+.mood-page .emotion-tag, .mood-page .emotion-badge { flex-shrink: 0; white-space: nowrap; border-radius: 999rpx; font-size: 24rpx; font-weight: 500; padding: 8rpx 18rpx; line-height: 1.5; }
+.mood-page .emotion-icon, .mood-page .emotion-badge-icon { width: 32rpx; height: 32rpx; margin-right: 8rpx; vertical-align: middle; flex-shrink: 0; }
+.mood-page .emotion-happy { color: var(--mood-honey) !important; background: var(--mood-honey-soft) !important; }
+.mood-page .emotion-sad { color: var(--mood-blue) !important; background: var(--mood-blue-soft) !important; }
+.mood-page .emotion-angry { color: var(--mood-rose) !important; background: var(--mood-rose-soft) !important; }
+.mood-page .emotion-calm { color: var(--mood-sage-ink) !important; background: var(--mood-sage-soft) !important; }
+.mood-page .emotion-anxious { color: #745B45 !important; background: #EFE9E1 !important; }
+.mood-page .action-icon { width: 38rpx; height: 38rpx; margin-right: 6rpx; }
+.mood-page .time, .mood-page .diary-time, .mood-page .post-time, .mood-page .message-time, .mood-page .comment-time, .mood-page .trash-time { color: var(--mood-faint); font-size: 24rpx; }
+.mood-page .price, .mood-page .amount, .mood-page .quantity, .mood-page .balance-text { font-variant-numeric: tabular-nums; }
+.mood-page .btn-save, .mood-page .btn-publish, .mood-page .btn-login, .mood-page .btn-register, .mood-page .save-btn,
+.mood-page .submit-btn, .mood-page .btn-buy, .mood-page .btn-submit, .mood-page .btn-checkout,
+.mood-page .btn-confirm, .mood-page .btn-send, .mood-page .btn-comment-popup-submit {
+  background: var(--mood-sage); color: #FFFFFF; border: 0; border-radius: 999rpx; box-shadow: none; text-shadow: none;
+  min-height: 88rpx; font-size: 28rpx; font-weight: 600;
+}
+.mood-page .btn-cancel, .mood-page .btn-cart, .mood-page .btn-quick, .mood-page .btn-edit, .mood-page .btn-share {
+  background: var(--mood-sage-soft); color: var(--mood-sage-ink); border: 0 !important; border-radius: 999rpx; box-shadow: none; min-height: 88rpx;
+}
+.mood-page .btn-delete, .mood-page .btn-refund { color: var(--mood-rose); background: var(--mood-rose-soft); border: 0; box-shadow: none; border-radius: 999rpx; }
+.mood-page .delete-btn { color: var(--mood-rose); background: var(--mood-rose-soft); box-shadow: none; }
+.mood-page .bottom-bar { height: auto; min-height: 124rpx; padding: 18rpx 32rpx; padding-bottom: calc(18rpx + env(safe-area-inset-bottom)); box-shadow: none; border-top: 1rpx solid var(--mood-line); background: var(--mood-surface); }
+.mood-page button, .mood-page .tap-effect, .mood-page .action-item, .mood-page .menu-item, .mood-page .spec-tag {
+  transition: transform 160ms var(--mood-ease), opacity 160ms ease, background-color 160ms ease;
+}
+.mood-page .mood-pressed { transform: scale(.98); opacity: .82; }
+.mood-page button:active { transform: scale(.98); }
+.mood-page .empty-state, .mood-page .empty-comment { color: var(--mood-muted); }
+.mood-page .empty-icon { width: 96rpx; height: 96rpx; margin-bottom: 24rpx; }
+.mood-page .modal-mask, .mood-page .coin-help-modal, .mood-page .music-menu-modal, .mood-page .comment-popup-mask, .mood-page .action-mask, .mood-page .action-modal { background: rgba(25,43,33,.36); backdrop-filter: none; }
+.mood-page .modal-content, .mood-page .coin-help-content, .mood-page .music-menu-content, .mood-page .action-content { animation: mood-sheet 220ms var(--mood-ease); }
+.mood-page .comment-popup-content { padding-bottom: calc(28rpx + env(safe-area-inset-bottom)); }
+.mood-page .action-popup, .mood-page .comment-popup { transition: bottom 220ms var(--mood-ease); }
+@media (prefers-reduced-motion: reduce) {
+  .mood-page button, .mood-page .action-item, .mood-page .spec-tag, .mood-page .comment-popup, .mood-page .action-popup { transition: none; }
+  .mood-page .modal-content, .mood-page .coin-help-content, .mood-page .music-menu-content, .mood-page .action-content, .mood-page .action-icon, .mood-page .music-icon { animation: none; }
+  .mood-page .mood-pressed, .mood-page button:active { transform: none; opacity: .8; }
+}
+
+.mood-page .filter-icon, .mood-page .search-icon { width: 32rpx; height: 32rpx; margin-right: 12rpx; }
+.mood-page .action-icon.liked { animation: mood-like 180ms ease-out; }
+@keyframes mood-like { 0% { transform: scale(.9); } 70% { transform: scale(1.08); } 100% { transform: scale(1); } }
+.mood-page .comment-popup { bottom: 0; transform: translateY(110%); opacity: 0; visibility: hidden; pointer-events: none; transition: transform 220ms var(--mood-ease), opacity 180ms ease; }
+.mood-page .comment-popup.show { transform: translateY(0); opacity: 1; visibility: visible; pointer-events: auto; }
+@media (prefers-reduced-motion: reduce) { .mood-page .action-icon.liked { animation: none; } .mood-page .comment-popup { transition: none; } }

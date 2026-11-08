@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moodlater.mapper.DailyRewardMapper">
+
+    <resultMap id="BaseResultMap" type="com.moodlater.entity.DailyReward">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="reward_type" property="rewardType"/>
+        <result column="reward_date" property="rewardDate"/>
+        <result column="amount" property="amount"/>
+    </resultMap>
+
+    <select id="selectByUserAndType" resultMap="BaseResultMap">
+        SELECT id, user_id, reward_type, reward_date, amount
+        FROM daily_reward
+        WHERE user_id = #{userId} AND reward_type = #{rewardType} AND reward_date = #{rewardDate}
+    </select>
+
+    <insert id="insert" parameterType="com.moodlater.entity.DailyReward" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO daily_reward (user_id, reward_type, reward_date, amount)
+        VALUES (#{userId}, #{rewardType}, #{rewardDate}, #{amount})
+    </insert>
+
+</mapper>

@@ -1,0 +1,37 @@
+<view class="container mood-page mood-address-edit">
+  <view class="screen-heading"><text class="screen-title">收好这份地址</text><text class="screen-subtitle">认真填写，让心意少走一点弯路。</text></view>
+  <view class="form-group">
+    <text class="label">收货人</text>
+    <input class="input" placeholder="请输入收货人姓名" value="{{name}}" bindinput="onNameInput"  placeholder-style="color: #68756A;" />
+  </view>
+
+  <view class="form-group">
+    <text class="label">手机号码</text>
+    <input class="input" placeholder="请输入手机号码" value="{{phone}}" bindinput="onPhoneInput" type="number" maxlength="11"  placeholder-style="color: #68756A;" />
+  </view>
+
+  <view class="form-group">
+    <text class="label">所在地区</text>
+    <picker mode="region" bindchange="onRegionChange" value="{{region}}">
+      <view class="picker">
+        <text wx:if="{{region.length > 0}}">{{region[0]}} {{region[1]}} {{region[2]}}</text>
+        <text wx:else class="placeholder">请选择省/市/区</text>
+      </view>
+    </picker>
+  </view>
+
+  <view class="form-group">
+    <text class="label">详细地址</text>
+    <textarea class="textarea" placeholder="请输入详细地址（街道、门牌号等）" value="{{detail}}" bindinput="onDetailInput" maxlength="200"  placeholder-style="color: #68756A;" />
+  </view>
+
+  <view class="form-group switch-group">
+    <switch checked="{{isDefault}}" bindchange="onDefaultChange" color="#C8E6D9" />
+    <text class="switch-label">设为默认地址</text>
+  </view>
+
+  <view class="actions">
+    <button class="btn-save" bindtap="onSave" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">保存地址</button>
+    <button class="btn-cancel" bindtap="onCancel" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">取消</button>
+  </view>
+</view>

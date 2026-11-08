@@ -1,0 +1,25 @@
+<view class="container mood-page mood-diary-detail" wx:if="{{diary}}">
+  <text class="detail-kicker">心情手记 · 留给自己的片刻</text>
+  <view class="header">
+    <view class="emotion-tag emotion-{{diary.emotion}}" style="background-color: {{emotionMap[diary.emotion].bg}}; color: {{emotionMap[diary.emotion].color}}">
+      <image class="emotion-icon" src="/images/healing/mood-{{diary.emotion}}.png" mode="aspectFit"></image>
+      {{emotionMap[diary.emotion].label}}
+    </view>
+    <text class="time">{{diary.createTime}}</text>
+  </view>
+
+  <view class="title" wx:if="{{diary.title}}">
+    <text>{{diary.title}}</text>
+  </view>
+
+  <view class="content">
+    <text selectable="{{true}}">{{diary.content}}</text>
+  </view>
+
+  <text class="reading-note">每一种心情，都值得被温柔对待。</text>
+  <view class="actions">
+    <button class="btn-edit" bindtap="onEdit" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">编辑</button>
+    <button class="btn-share" bindtap="onShare" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">转发到分享</button>
+    <button class="btn-delete" bindtap="onDelete" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">删除</button>
+  </view>
+</view>

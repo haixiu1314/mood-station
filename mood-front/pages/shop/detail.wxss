@@ -1,0 +1,292 @@
+@import "../../styles/healing.wxss";
+.container {
+  padding: 0;
+  padding-bottom: 160rpx;
+  background-color: var(--mood-paper);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* 商品轮播图 */
+.swiper {
+  height: 750rpx;
+  background-color: var(--mood-well);
+  border-radius: 0 0 24rpx 24rpx;
+  overflow: hidden;
+}
+
+.swiper-image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 商品信息区 */
+.info-section {
+  margin: 24rpx 32rpx;
+  padding: 32rpx;
+  background-color: var(--mood-surface);
+  border-radius: 20rpx;
+  
+  box-sizing: border-box;
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+
+.price-left {
+  display: flex;
+  align-items: center;
+}
+
+.stock-info {
+  font-size: 24rpx;
+  color: var(--mood-faint);
+}
+
+.coin-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 12rpx;
+  flex-shrink: 0;
+}
+
+.price {
+  font-size: 44rpx;
+  color: var(--mood-sage);
+  font-weight: 700;
+}
+
+.name {
+  font-size: 36rpx;
+  color: var(--mood-ink);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 16rpx;
+  line-height: 1.4;
+}
+
+.desc {
+  font-size: 28rpx;
+  color: var(--mood-muted);
+  line-height: 1.8;
+  display: block;
+}
+
+/* 规格选择区 */
+.spec-section {
+  margin: 0 32rpx 24rpx;
+  padding: 32rpx;
+  background-color: var(--mood-surface);
+  border-radius: 20rpx;
+  
+  box-sizing: border-box;
+}
+
+.spec-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.spec-tag {
+  padding: 16rpx 32rpx;
+  border-radius: 40rpx;
+  background-color: var(--mood-well);
+  border: 2rpx solid var(--mood-line);
+  font-size: 26rpx;
+  color: var(--mood-muted);
+  transition: transform 0.2s ease;
+}
+
+.spec-tag:active {
+  transform: scale(0.95);
+}
+
+.spec-tag.active {
+  background: var(--mood-sage-soft);
+  border-color: var(--mood-sage-soft);
+  color: var(--mood-sage-ink);
+  font-weight: 600;
+  
+}
+
+/* 商品详情区 */
+.detail-section {
+  margin: 0 32rpx 24rpx;
+  padding: 32rpx;
+  background-color: var(--mood-surface);
+  border-radius: 20rpx;
+  
+  box-sizing: border-box;
+}
+
+.section-title {
+  font-size: 32rpx;
+  color: var(--mood-ink);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 24rpx;
+  position: relative;
+  padding-left: 20rpx;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6rpx;
+  height: 32rpx;
+  background: var(--mood-sage-soft);
+  border-radius: 3rpx;
+}
+
+.detail-content {
+  font-size: 28rpx;
+  color: var(--mood-muted);
+  line-height: 1.8;
+  display: block;
+}
+
+/* 数量选择区 */
+.quantity-section {
+  margin: 0 32rpx 24rpx;
+  padding: 32rpx;
+  background-color: var(--mood-surface);
+  border-radius: 20rpx;
+  
+  box-sizing: border-box;
+}
+
+.quantity-section .quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.quantity-section .btn {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  background-color: var(--mood-well);
+  border: 2rpx solid var(--mood-sage-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: var(--mood-sage);
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.quantity-section .btn:active {
+  transform: scale(0.9);
+  background-color: var(--mood-sage-soft);
+}
+
+.quantity-section .quantity {
+  min-width: 60rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: var(--mood-ink);
+  font-weight: 600;
+}
+
+/* 底部操作栏 */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  padding: 20rpx 32rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background-color: var(--mood-surface);
+  
+  z-index: 100;
+  height: 120rpx;
+  box-sizing: border-box;
+}
+
+.btn-cart {
+  width: 40%;
+  height: 80rpx;
+  border-radius: 40rpx;
+  background: var(--mood-surface);
+  color: var(--mood-sage);
+  border: 2rpx solid var(--mood-sage-soft);
+  font-size: 28rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  line-height: 80rpx;
+  padding: 0;
+  margin: 0;
+}
+
+.btn-cart::after {
+  border: none;
+}
+
+.btn-cart:active {
+  transform: scale(0.96);
+  opacity: 0.9;
+}
+
+.btn-buy {
+  width: 55%;
+  height: 80rpx;
+  border-radius: 40rpx;
+  background: var(--mood-sage-soft);
+  color: var(--mood-surface);
+  font-size: 28rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  
+  transition: transform 0.2s ease;
+  line-height: 80rpx;
+  padding: 0;
+  margin: 0;
+}
+
+.btn-buy::after {
+  border: none;
+}
+
+.btn-buy:active {
+  transform: scale(0.96);
+  opacity: 0.9;
+  
+}
+
+
+
+/* Page composition and touch geometry. */
+
+.container { padding: 0 0 calc(190rpx + env(safe-area-inset-bottom)); }
+.swiper { height: 640rpx; border-radius: 0 0 36rpx 36rpx; background: var(--mood-well); }
+.info-section { margin: 28rpx 32rpx; padding: 32rpx; border-radius: 32rpx; }
+.price-row { gap: 20rpx; flex-wrap: wrap; margin-bottom: 20rpx; }
+.name { font-size: 38rpx; font-weight: 600; line-height: 1.6; }
+.price { color: var(--mood-sage-ink); font-size: 44rpx; }
+.desc, .detail-content { font-size: 28rpx; line-height: 1.9; white-space: pre-wrap; }
+.spec-section, .detail-section, .quantity-section { padding: 32rpx; border-radius: 32rpx; }
+.spec-tag { min-height: 88rpx; display: flex; align-items: center; padding: 20rpx 28rpx; border-radius: 20rpx; border: 2rpx solid transparent; background: var(--mood-well); color: var(--mood-ink); }
+.spec-tag.active { background: var(--mood-sage-soft); border-color: var(--mood-sage); color: var(--mood-sage-ink); }
+.quantity-section .btn { width: 88rpx; height: 88rpx; border: 0; border-radius: 24rpx; background: var(--mood-well); }
+.btn-cart { width: auto; flex: 1; }
+.btn-buy { width: auto; flex: 1.25; }
+.bottom-bar { gap: 20rpx; }
+

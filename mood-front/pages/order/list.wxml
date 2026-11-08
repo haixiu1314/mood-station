@@ -1,0 +1,66 @@
+<wxs module="media" src="../../utils/media.wxs" />
+<view class="container mood-page mood-order-list">
+  <view class="screen-heading"><text class="screen-title">我的订单</text><text class="screen-subtitle">每一份小美好，都在这里留下足迹。</text></view>
+  <view class="tabs">
+    <view class="tab {{activeTab === item.value ? 'active' : ''}}" 
+          wx:for="{{tabs}}" 
+          wx:key="value" 
+          bindtap="onTabChange" 
+          data-tab="{{item.value}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <text>{{item.label}}</text>
+    </view>
+  </view>
+
+  <view class="order-list">
+    <view class="order-item card" wx:for="{{orders}}" wx:key="id" bindtap="onOrderTap" data-id="{{item.id}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <view class="order-header">
+        <text class="order-no">订单号: {{item.orderNo}}</text>
+        <text class="status">{{item.statusText}}</text>
+      </view>
+
+      <view class="order-products">
+        <view class="product-item" wx:for="{{item.items}}" wx:key="id">
+          <image class="product-image" src="{{media.src(item.productImage)}}" mode="aspectFill"></image>
+          <view class="product-info">
+            <text class="product-name">{{item.productName}}</text>
+            <text class="product-spec" wx:if="{{item.selectedSpec}}">{{item.selectedSpec}}</text>
+            <view class="product-detail">
+              <text class="quantity">x{{item.quantity}}</text>
+              <view class="price">
+                <image class="coin-icon" src="/images/healing/coin.png" mode="aspectFit"></image>
+                <text>{{item.price}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="order-footer">
+        <text class="total">
+          合计: 
+          <text class="amount">{{item.totalAmount}}</text>
+        </text>
+        <text class="time">{{item.createTime}}</text>
+      </view>
+
+      <!-- 快递信息 -->
+      <view class="express-info" wx:if="{{item.expressCompany}}" catchtap="onShowExpress" data-item="{{item}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+        <text class="express-label">快递信息</text>
+        <text class="express-status">{{item.expressStatus === 'delivering' ? '派送中' : item.expressStatus === 'signed' ? '已签收' : ''}}</text>
+        <text class="express-detail">{{item.expressCompany}} {{item.expressNo}}<text wx:if="{{item.senderName}}"> 发货人: {{item.senderName}}</text></text>
+      </view>
+
+      <!-- 退款审核状态（仅列表显示） -->
+      <view class="refund-status-wrap" wx:if="{{item.refundStatus === 0}}">
+        <text class="refund-status">退款审核中...</text>
+      </view>
+      <view class="refund-status-wrap" wx:if="{{item.refundStatus === 2}}">
+        <text class="refund-status rejected">退款审核不通过</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{orders.length === 0}}">
+    <text>暂无订单</text>
+  </view>
+</view>

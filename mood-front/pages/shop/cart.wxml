@@ -1,0 +1,50 @@
+<wxs module="media" src="../../utils/media.wxs" />
+<view class="container mood-page mood-shop-cart">
+  <view class="screen-heading"><text class="screen-title">心意购物车</text><text class="screen-subtitle">把喜欢的小美好，慢慢带回家。</text></view>
+  <view class="cart-list" wx:if="{{cartItems.length > 0}}">
+    <view class="cart-item card" wx:for="{{cartItems}}" wx:key="id">
+      <view class="item-select" bindtap="onItemSelect" data-id="{{item.id}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+        <text class="checkbox {{item.selected ? 'checked' : ''}}">{{item.selected ? '✓' : ''}}</text>
+      </view>
+      <image class="item-image" src="{{media.src(item.productImage)}}" mode="aspectFill"></image>
+      <view class="item-info">
+        <text class="item-name">{{item.productName}}</text>
+        <text class="item-spec" wx:if="{{item.selectedSpec}}">{{item.selectedSpec}}</text>
+        <view class="item-price-row">
+          <view class="price">
+            <image class="coin-icon" src="/images/healing/coin.png" mode="aspectFit"></image>
+            <text>{{item.price}}</text>
+          </view>
+          <view class="quantity-control">
+            <view class="btn" bindtap="onQuantityChange" data-id="{{item.id}}" data-action="minus" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">-</view>
+            <text class="quantity">{{item.quantity}}</text>
+            <view class="btn" bindtap="onQuantityChange" data-id="{{item.id}}" data-action="plus" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">+</view>
+          </view>
+        </view>
+      </view>
+      <view class="item-remove" bindtap="onRemove" data-id="{{item.productId}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">×</view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <text>购物车是空的~</text>
+  </view>
+
+  <view class="bottom-bar" wx:if="{{cartItems.length > 0}}">
+    <view class="action-left">
+      <view class="btn-clear" bindtap="onClearCart" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+        <text>清空</text>
+      </view>
+    </view>
+    <view class="action-right">
+      <view class="total-info">
+        <text class="total-label">合计:</text>
+        <view class="total-amount">
+          <image class="coin-icon" src="/images/healing/coin.png" mode="aspectFit"></image>
+          <text class="amount">{{totalAmount}}</text>
+        </view>
+      </view>
+      <button class="btn-checkout" bindtap="onCheckout" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">结算</button>
+    </view>
+  </view>
+</view>

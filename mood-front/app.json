@@ -1,0 +1,73 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/share/index",
+    "pages/shop/index",
+    "pages/profile/index",
+    "pages/login/index",
+    "pages/register/index",
+    "pages/diary/edit",
+    "pages/diary/detail",
+    "pages/diary/list",
+    "pages/diary/trash",
+    "pages/post/list",
+    "pages/post/trash",
+    "pages/post/appeal",
+    "pages/share/publish",
+    "pages/share/forward",
+    "pages/share/detail",
+    "pages/shop/detail",
+    "pages/shop/cart",
+    "pages/order/confirm",
+    "pages/order/list",
+    "pages/order/detail",
+    "pages/address/list",
+    "pages/address/edit",
+    "pages/profile/edit",
+    "pages/notification/list",
+    "pages/user/profile",
+    "pages/message/list",
+    "pages/ai-cat/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F7F8F2",
+    "navigationBarTitleText": "情绪小站",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F7F8F2"
+  },
+  "tabBar": {
+    "color": "#68756A",
+    "selectedColor": "#476B55",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/healing/tab-home.png",
+        "selectedIconPath": "images/healing/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/share/index",
+        "text": "情绪分享",
+        "iconPath": "images/healing/tab-community.png",
+        "selectedIconPath": "images/healing/tab-community-active.png"
+      },
+      {
+        "pagePath": "pages/shop/index",
+        "text": "情绪周边",
+        "iconPath": "images/healing/tab-gift.png",
+        "selectedIconPath": "images/healing/tab-gift-active.png"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的",
+        "iconPath": "images/healing/tab-user.png",
+        "selectedIconPath": "images/healing/tab-user-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

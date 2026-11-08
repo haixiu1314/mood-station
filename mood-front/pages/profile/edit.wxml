@@ -1,0 +1,100 @@
+<wxs module="media" src="../../utils/media.wxs" />
+<view class="container mood-page mood-profile-edit">
+  <view class="screen-heading"><text class="screen-title">关于我</text><text class="screen-subtitle">慢慢认识自己，也让别人更懂你一点。</text></view>
+  <view class="avatar-section card" bindtap="onChooseAvatar" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+    <view class="avatar-left">
+      <image class="avatar" src="{{media.avatar(formData.avatarUrl)}}" mode="aspectFill"></image>
+    </view>
+    <view class="avatar-right">
+      <text class="label">头像</text>
+      <text class="tip">点击更换（2M以内）</text>
+    </view>
+    <text class="arrow">›</text>
+  </view>
+
+  <view class="form-section card">
+    <view class="form-item">
+      <text class="form-label">昵称</text>
+      <input class="form-input" value="{{formData.nickname}}" placeholder="请输入昵称" maxlength="16" bindinput="onInput" data-field="nickname"  placeholder-style="color: #68756A;" />
+    </view>
+    <view class="divider"></view>
+    <view class="form-item">
+      <text class="form-label">性别</text>
+      <picker mode="selector" range="{{genderOptions}}" value="{{genderIndex}}" bindchange="onGenderChange">
+        <view class="picker-value">
+          <text class="{{formData.gender !== undefined ? '' : 'placeholder'}}">{{genderOptions[genderIndex]}}</text>
+          <text class="arrow">›</text>
+        </view>
+      </picker>
+    </view>
+    <view class="divider"></view>
+    <view class="form-item">
+      <text class="form-label">生日</text>
+      <picker mode="date" value="{{formData.birthday}}" bindchange="onBirthdayChange">
+        <view class="picker-value">
+          <text class="{{formData.birthday ? '' : 'placeholder'}}">{{formData.birthday || '请选择生日'}}</text>
+          <text class="arrow">›</text>
+        </view>
+      </picker>
+    </view>
+    <view class="divider"></view>
+    <view class="form-item vertical">
+      <text class="form-label">个性签名</text>
+      <textarea class="form-textarea" value="{{formData.bio}}" placeholder="介绍一下自己吧~" maxlength="200" bindinput="onInput" data-field="bio"  placeholder-style="color: #68756A;" />
+      <text class="char-count">{{bioLength}}/200</text>
+    </view>
+  </view>
+
+  <view class="form-section card">
+    <view class="form-item">
+      <text class="form-label">手机号</text>
+      <input class="form-input" type="number" value="{{formData.phone}}" placeholder="请输入手机号" maxlength="11" bindinput="onInput" data-field="phone"  placeholder-style="color: #68756A;" />
+    </view>
+  </view>
+
+  <view class="form-section card">
+    <view class="form-item" bindtap="onChangePassword" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <text class="form-label">修改密码</text>
+      <text class="arrow">›</text>
+    </view>
+  </view>
+
+  <view class="form-section card">
+    <view class="form-item" bindtap="onPrivacySetting" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <text class="form-label">隐私设置</text>
+      <text class="arrow">›</text>
+    </view>
+  </view>
+
+  <view class="save-btn-wrap">
+    <button class="save-btn" bindtap="onSave" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">保存修改</button>
+  </view>
+
+  <!-- 修改密码弹窗 -->
+  <view class="modal-mask" wx:if="{{showPasswordModal}}" bindtap="onClosePasswordModal">
+    <view class="modal-content" catchtap="">
+      <view class="modal-header">
+        <text class="modal-title">修改密码</text>
+        <text class="modal-close" bindtap="onClosePasswordModal">×</text>
+      </view>
+      <view class="modal-body">
+        <view class="pwd-item">
+          <text class="pwd-label">原密码</text>
+          <input class="pwd-input" type="password" value="{{oldPassword}}" placeholder="请输入原密码" maxlength="8" bindinput="onPwdInput" data-field="oldPassword" catchtap="stopPropagation"  placeholder-style="color: #68756A;" />
+        </view>
+        <view class="pwd-item">
+          <text class="pwd-label">新密码</text>
+          <input class="pwd-input" type="password" value="{{newPassword}}" placeholder="请输入新密码（最多8位）" maxlength="8" bindinput="onPwdInput" data-field="newPassword" catchtap="stopPropagation"  placeholder-style="color: #68756A;" />
+        </view>
+        <view class="pwd-item">
+          <text class="pwd-label">确认密码</text>
+          <input class="pwd-input" type="password" value="{{confirmPassword}}" placeholder="请再次输入新密码" maxlength="8" bindinput="onPwdInput" data-field="confirmPassword" catchtap="stopPropagation"  placeholder-style="color: #68756A;" />
+        </view>
+      </view>
+      <view class="modal-footer">
+        <button class="modal-btn cancel" bindtap="onClosePasswordModal">取消</button>
+        <button class="modal-btn confirm" bindtap="onConfirmPassword">确认修改</button>
+      </view>
+    </view>
+  </view>
+</view>

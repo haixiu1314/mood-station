@@ -1,0 +1,61 @@
+<wxs module="media" src="../../utils/media.wxs" />
+<view class="container mood-page mood-share-index">
+  <view class="banner"><text class="screen-title">情绪分享</text><text class="screen-subtitle">在彼此的故事里，找到一点共鸣。</text></view>
+
+  <view class="post-list">
+    <view class="post-item card" wx:for="{{posts}}" wx:key="id" bindtap="onPostTap" data-id="{{item.id}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <view class="post-header">
+        <image class="avatar" src="{{media.avatar(item.author.avatar, item.author.avatarUrl)}}" mode="aspectFill" catchtap="onAvatarTap" data-userid="{{item.author.id}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90"></image>
+        <view class="user-info">
+          <text class="nickname">{{item.author.nickname}}</text>
+          <text class="time">{{item.createTime}}</text>
+        </view>
+        <view class="emotion-badge emotion-{{item.emotion}}" wx:if="{{item.emotionLabel}}" style="background-color: {{item.emotion === 'happy' ? '#FFF3CD' : item.emotion === 'sad' ? '#E8F0FE' : item.emotion === 'angry' ? '#FFF0F0' : item.emotion === 'calm' ? '#DCEDC1' : '#F3E5F5'}}; color: {{item.emotion === 'happy' ? '#D4A017' : item.emotion === 'sad' ? '#6B8DD6' : item.emotion === 'angry' ? '#FF8B94' : item.emotion === 'calm' ? '#2E7D32' : '#9C27B0'}}">
+          <image class="emotion-badge-icon" src="/images/healing/mood-{{item.emotion}}.png" mode="aspectFit"></image>
+          {{item.emotionLabel}}
+        </view>
+      </view>
+
+      <view class="post-content">
+        <text class="title" wx:if="{{item.title}}">{{item.title}}</text>
+        <text class="text">{{item.content}}</text>
+      </view>
+
+      <view class="post-images" wx:if="{{item.images && item.images.length > 0}}">
+        <image 
+          wx:for="{{item.images}}" 
+          wx:for-item="img" 
+          wx:key="*this"
+          class="image {{item.images.length === 1 ? 'single' : 'grid'}}" 
+          src="{{media.src(img)}}" 
+          mode="aspectFill"
+          bindtap="onPreviewImage"
+          data-current="{{img}}"
+          data-images="{{item.images}}"
+         hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90"></image>
+      </view>
+
+      <view class="post-actions">
+        <view class="action-item" catchtap="onLikeTap" data-id="{{item.id}}" data-index="{{index}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+          <image class="action-icon {{item.isLiked ? 'liked' : ''}}" src="{{media.src(item.isLiked ? '/images/healing/heart-filled.png' : '/images/healing/heart.png')}}" mode="aspectFit"></image>
+          <text class="action-count">{{item.likeCount}}</text>
+        </view>
+        <view class="action-item">
+          <image class="action-icon" src="/images/healing/message.png" mode="aspectFit"></image>
+          <text class="action-count">{{item.commentCount}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{posts.length === 0 && !loading}}">
+    <text>还没有帖子，快来分享你的情绪吧~</text>
+  </view>
+
+  <view class="publish-btn" bindtap="onPublishTap" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+    <text class="plus">+</text>
+  </view>
+</view>
+
+<!-- 情绪小喵悬浮球组件 -->
+<ai-cat-float visible="{{true}}"></ai-cat-float>

@@ -1,0 +1,31 @@
+<view class="container mood-page mood-notification-list">
+  <view class="screen-heading"><text class="screen-title">收到的回应</text><text class="screen-subtitle">那些温柔的回响，都值得被看见。</text></view>
+  <view class="tab-bar">
+    <view class="tab-item {{activeTab === 'system' ? 'active' : ''}}" bindtap="onSwitchTab" data-tab="system" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <text class="tab-text">系统通知</text>
+      <view class="tab-badge" wx:if="{{systemUnread > 0}}">{{systemUnread > 99 ? '99+' : systemUnread}}</view>
+    </view>
+    <view class="tab-item {{activeTab === 'message' ? 'active' : ''}}" bindtap="onSwitchTab" data-tab="message" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <text class="tab-text">消息通知</text>
+      <view class="tab-badge" wx:if="{{messageUnread > 0}}">{{messageUnread > 99 ? '99+' : messageUnread}}</view>
+    </view>
+  </view>
+
+  <view class="notification-list" wx:if="{{notifications.length > 0}}">
+    <view class="notification-item" wx:for="{{notifications}}" wx:key="id" bindtap="onRead" data-id="{{item.id}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <view class="notification-dot" wx:if="{{item.isRead === 0}}"></view>
+      <view class="notification-content">
+        <view class="notification-header">
+          <text class="notification-title">{{item.title}}</text>
+          <text class="notification-time">{{item.createTime}}</text>
+        </view>
+        <text class="notification-text">{{item.content}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <image class="empty-icon" src="/images/healing/bell.png" mode="aspectFit"></image>
+    <text class="empty-text">暂无通知消息</text>
+  </view>
+</view>

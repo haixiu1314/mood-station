@@ -1,0 +1,406 @@
+// Element Plus 自定义主题 - 温暖治愈风格
+
+// 覆盖 Element Plus CSS 变量
+:root {
+  // 主色
+  --el-color-primary: #C67A5C;
+  --el-color-primary-light-3: #D4956F;
+  --el-color-primary-light-5: #DEA885;
+  --el-color-primary-light-7: #E8BB9B;
+  --el-color-primary-light-8: #EDC8A8;
+  --el-color-primary-light-9: #F2D5B5;
+  --el-color-primary-dark-2: #A8624A;
+  
+  // 成功色
+  --el-color-success: #6F8F72;
+  --el-color-success-light-3: #8BA88E;
+  --el-color-success-light-5: #A7C1AA;
+  --el-color-success-light-7: #C3DAC6;
+  --el-color-success-light-8: #D0E3D3;
+  --el-color-success-light-9: #DDECE0;
+  --el-color-success-dark-2: #5A755D;
+  
+  // 警告色
+  --el-color-warning: #D9A13B;
+  --el-color-warning-light-3: #E2B55E;
+  --el-color-warning-light-5: #EBC981;
+  --el-color-warning-light-7: #F4DDA4;
+  --el-color-warning-light-8: #F7E5B7;
+  --el-color-warning-light-9: #FAEDCA;
+  --el-color-warning-dark-2: #B88730;
+  
+  // 危险色
+  --el-color-danger: #D95B5B;
+  --el-color-danger-light-3: #E27A7A;
+  --el-color-danger-light-5: #EB9999;
+  --el-color-danger-light-7: #F4B8B8;
+  --el-color-danger-light-8: #F7C7C7;
+  --el-color-danger-light-9: #FAD6D6;
+  --el-color-danger-dark-2: #B84A4A;
+  
+  // 信息色
+  --el-color-info: #8B7A6B;
+  --el-color-info-light-3: #A89A8C;
+  --el-color-info-light-5: #C5BABD;
+  --el-color-info-light-7: #E2DACE;
+  --el-color-info-light-8: #E9E3DA;
+  --el-color-info-light-9: #F0ECE6;
+  --el-color-info-dark-2: #706256;
+  
+  // 背景色
+  --el-bg-color: #FFFFFF;
+  --el-bg-color-page: #FDF8F0;
+  --el-bg-color-overlay: #FFFFFF;
+  
+  // 文字色
+  --el-text-color-primary: #2C241B;
+  --el-text-color-regular: #5C4F42;
+  --el-text-color-secondary: #8B7A6B;
+  --el-text-color-placeholder: #B8A99A;
+  --el-text-color-disabled: #C8BDB2;
+  
+  // 边框色
+  --el-border-color: #F0E4D8;
+  --el-border-color-light: #F5EDE3;
+  --el-border-color-lighter: #FAF7F2;
+  --el-border-color-extra-light: #FDF8F0;
+  --el-border-color-dark: #E6DDD0;
+  --el-border-color-darker: #D4C7B8;
+  
+  // 填充色
+  --el-fill-color: #F5EDE3;
+  --el-fill-color-light: #FAF7F2;
+  --el-fill-color-lighter: #FDF8F0;
+  --el-fill-color-extra-light: #FDF8F0;
+  --el-fill-color-dark: #EDE4D8;
+  --el-fill-color-darker: #E6DDD0;
+  --el-fill-color-blank: #FFFFFF;
+  
+  // 圆角
+  --el-border-radius-base: 6px;
+  --el-border-radius-small: 4px;
+  --el-border-radius-round: 6px;
+  
+  // 字体
+  --el-font-family: "PingFang SC", "Noto Sans CJK SC", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+// 按钮样式覆盖
+.el-button {
+  border-radius: 6px;
+  height: 36px;
+  padding: 0 20px;
+  font-weight: 400;
+  
+  &--primary {
+    background-color: #C67A5C;
+    border-color: #C67A5C;
+    
+    &:hover, &:focus {
+      background-color: #D4956F;
+      border-color: #D4956F;
+    }
+    
+    &:active {
+      background-color: #A8624A;
+      border-color: #A8624A;
+    }
+  }
+  
+  &--success {
+    background-color: #6F8F72;
+    border-color: #6F8F72;
+    
+    &:hover, &:focus {
+      background-color: #8BA88E;
+      border-color: #8BA88E;
+    }
+  }
+  
+  &--warning {
+    background-color: #D9A13B;
+    border-color: #D9A13B;
+    
+    &:hover, &:focus {
+      background-color: #E2B55E;
+      border-color: #E2B55E;
+    }
+  }
+  
+  &--danger {
+    background-color: #D95B5B;
+    border-color: #D95B5B;
+    
+    &:hover, &:focus {
+      background-color: #E27A7A;
+      border-color: #E27A7A;
+    }
+  }
+  
+  &--default {
+    &:hover, &:focus {
+      color: #C67A5C;
+      border-color: #C67A5C;
+      background-color: #FAF7F2;
+    }
+  }
+  
+  &--text {
+    height: auto;
+    padding: 0;
+    
+    &:hover, &:focus {
+      color: #C67A5C;
+    }
+  }
+}
+
+// 输入框样式覆盖
+.el-input__wrapper {
+  border-radius: 6px;
+  box-shadow: none;
+  border: 1px solid #E6DDD0;
+  height: 38px;
+  
+  &.is-focus {
+    border-color: #C67A5C;
+  }
+  
+  &:hover {
+    border-color: #C67A5C;
+  }
+}
+
+.el-textarea__inner {
+  border-radius: 6px;
+  border: 1px solid #E6DDD0;
+  
+  &:focus {
+    border-color: #C67A5C;
+  }
+}
+
+// 选择器样式覆盖
+.el-select__wrapper {
+  border-radius: 6px;
+  box-shadow: none;
+  border: 1px solid #E6DDD0;
+  height: 38px;
+  
+  &.is-focused {
+    border-color: #C67A5C;
+  }
+}
+
+// 表格样式覆盖
+.el-table {
+  --el-table-border-color: #F0E4D8;
+  --el-table-header-bg-color: #FAF7F2;
+  
+  th.el-table__cell {
+    font-weight: 500;
+    color: #5C4F42;
+  }
+  
+  .el-table__row {
+    height: 52px;
+  }
+  
+  td.el-table__cell {
+    color: #2C241B;
+  }
+}
+
+// 对话框样式覆盖
+.el-dialog {
+  border-radius: 6px;
+  
+  &__header {
+    border-bottom: 1px solid #F0E4D8;
+    padding: 20px;
+  }
+  
+  &__title {
+    font-family: "Georgia", "Noto Serif SC", serif;
+    font-weight: 500;
+    color: #2C241B;
+  }
+  
+  &__body {
+    padding: 20px;
+  }
+  
+  &__footer {
+    border-top: 1px solid #F0E4D8;
+    padding: 16px 20px;
+  }
+}
+
+// 标签样式覆盖
+.el-tag {
+  border-radius: 4px;
+  border: none;
+  
+  &--success {
+    background-color: #E8F0E8;
+    color: #6F8F72;
+  }
+  
+  &--warning {
+    background-color: #FDE8D0;
+    color: #D9A13B;
+  }
+  
+  &--danger {
+    background-color: #FDE8E8;
+    color: #D95B5B;
+  }
+  
+  &--info {
+    background-color: #F0E4D8;
+    color: #8B7A6B;
+  }
+}
+
+// 分页样式覆盖
+.el-pagination {
+  .el-pager li {
+    border-radius: 4px;
+    
+    &.is-active {
+      background-color: #C67A5C;
+      color: #fff;
+    }
+    
+    &:hover {
+      color: #C67A5C;
+    }
+  }
+  
+  button:hover:not([disabled]) {
+    color: #C67A5C;
+  }
+}
+
+// 消息提示样式覆盖
+.el-message {
+  border-radius: 6px;
+  border: 1px solid #F0E4D8;
+  
+  &--success {
+    background-color: #E8F0E8;
+    border-color: #6F8F72;
+    
+    .el-message__content {
+      color: #6F8F72;
+    }
+  }
+  
+  &--warning {
+    background-color: #FDE8D0;
+    border-color: #D9A13B;
+    
+    .el-message__content {
+      color: #D9A13B;
+    }
+  }
+  
+  &--error {
+    background-color: #FDE8E8;
+    border-color: #D95B5B;
+    
+    .el-message__content {
+      color: #D95B5B;
+    }
+  }
+}
+
+// 确认框样式覆盖
+.el-message-box {
+  border-radius: 6px;
+  border: 1px solid #F0E4D8;
+  
+  &__header {
+    border-bottom: 1px solid #F0E4D8;
+  }
+  
+  &__title {
+    font-family: "Georgia", "Noto Serif SC", serif;
+    font-weight: 500;
+  }
+  
+  &__content {
+    color: #5C4F42;
+  }
+}
+
+// 下拉菜单样式覆盖
+.el-dropdown-menu {
+  border-radius: 6px;
+  border: 1px solid #F0E4D8;
+  
+  .el-dropdown-menu__item {
+    &:hover {
+      background-color: #FAF7F2;
+      color: #C67A5C;
+    }
+  }
+}
+
+// 选项卡样式覆盖
+.el-tabs {
+  &__item {
+    color: #8B7A6B;
+    
+    &.is-active {
+      color: #C67A5C;
+    }
+    
+    &:hover {
+      color: #C67A5C;
+    }
+  }
+  
+  &__active-bar {
+    background-color: #C67A5C;
+  }
+}
+
+// 加载样式覆盖
+.el-loading-mask {
+  background-color: rgba(253, 248, 240, 0.8);
+}
+
+// 头像样式覆盖
+.el-avatar {
+  background-color: #F0E4D8;
+  color: #8B7A6B;
+}
+
+// 图片样式覆盖
+.el-image {
+  border-radius: 4px;
+  background-color: #FAF7F2;
+}
+
+// 描述列表样式覆盖
+.el-descriptions {
+  &__label {
+    color: #8B7A6B;
+    background-color: #FAF7F2;
+  }
+  
+  &__content {
+    color: #2C241B;
+  }
+}
+
+// 表单样式覆盖
+.el-form-item__label {
+  color: #5C4F42;
+  font-weight: 400;
+}
+
+.el-form-item__error {
+  color: #D95B5B;
+}

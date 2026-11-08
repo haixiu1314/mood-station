@@ -1,0 +1,215 @@
+@import "../../styles/healing.wxss";
+.container {
+  padding: 24rpx 32rpx;
+  padding-bottom: 120rpx;
+  background-color: var(--mood-paper);
+  min-height: 100vh;
+}
+
+.trash-tip {
+  background-color: var(--mood-honey-soft);
+  border-radius: 24rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.tip-text {
+  font-size: 24rpx;
+  color: var(--mood-honey);
+  font-weight: 500;
+}
+
+.trash-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.trash-card {
+  background-color: var(--mood-surface);
+  border-radius: 32rpx;
+  padding: 32rpx;
+  
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.trash-card:active {
+  transform: scale(0.98);
+}
+
+.trash-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+.emotion-tag {
+  display: inline-block;
+  padding: 8rpx 20rpx;
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.emotion-tag.happy {
+  background-color: var(--mood-honey-soft);
+  color: var(--mood-honey);
+}
+
+.emotion-tag.sad {
+  background-color: var(--mood-blue-soft);
+  color: var(--mood-blue);
+}
+
+.emotion-tag.angry {
+  background-color: var(--mood-rose-soft);
+  color: var(--mood-rose);
+}
+
+.emotion-tag.calm {
+  background-color: var(--mood-sage-soft);
+  color: var(--mood-sage-ink);
+}
+
+.trash-time {
+  font-size: 24rpx;
+  color: var(--mood-faint);
+}
+
+.trash-title {
+  font-size: 32rpx;
+  color: var(--mood-ink);
+  font-weight: 700;
+  margin-bottom: 12rpx;
+}
+
+.trash-content {
+  font-size: 28rpx;
+  color: #718096;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.trash-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 2rpx solid #F7FAF9;
+}
+
+.expire-text {
+  font-size: 24rpx;
+  color: var(--mood-faint);
+}
+
+.more-btn {
+  padding: 8rpx 16rpx;
+}
+
+.more-icon {
+  font-size: 32rpx;
+  color: var(--mood-faint);
+  font-weight: bold;
+}
+
+/* 操作弹窗 */
+.action-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.action-content {
+  width: 100%;
+  background-color: var(--mood-surface);
+  border-radius: 32rpx 32rpx 0 0;
+  overflow: hidden;
+}
+
+.action-item {
+  padding: 32rpx;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.action-item.restore {
+  color: #4A7C59;
+}
+
+.action-item.delete {
+  color: var(--mood-rose);
+}
+
+.divider {
+  height: 2rpx;
+  background-color: #F7FAF9;
+}
+
+.action-cancel {
+  padding: 24rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: var(--mood-faint);
+  border-top: 2rpx solid #F7FAF9;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 200rpx;
+}
+
+.empty-icon {
+  width: 120rpx;
+  height: 120rpx;
+  margin-bottom: 24rpx;
+  color: #E8F5E9;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: var(--mood-faint);
+  font-weight: 500;
+}
+
+
+
+/* Page composition and touch geometry. */
+
+.container { min-height: 100vh; }
+.header-bar { gap: 16rpx; margin-bottom: 24rpx; }
+.search-bar { min-height: 88rpx; background: #FFFFFF; border: 0; border-radius: 999rpx; }
+.search-input { color: var(--mood-ink); min-width: 0; }
+.trash-btn { width: 88rpx; height: 88rpx; border-radius: 50%; background: var(--mood-well); }
+.filter-btn { min-height: 80rpx; border: 0; border-radius: 999rpx; background: var(--mood-well); }
+.filter-btn.active { background: var(--mood-sage-soft); color: var(--mood-sage-ink); }
+.diary-card, .post-card, .trash-card { padding: 28rpx; border-radius: 32rpx; margin-bottom: 24rpx; }
+.diary-card::before, .post-card::before { display: none; }
+.diary-header, .post-header, .trash-header { gap: 12rpx; flex-wrap: wrap; }
+.diary-title, .post-title, .trash-title { color: var(--mood-ink); font-size: 30rpx; font-weight: 600; line-height: 1.7; }
+.diary-content, .post-content, .trash-content { color: var(--mood-muted); font-size: 28rpx; line-height: 1.85; }
+.diary-footer, .post-footer, .trash-footer { border-top-width: 1rpx; }
+.delete-btn, .more-btn { min-height: 72rpx; min-width: 88rpx; display: flex; align-items: center; justify-content: center; }
+.trash-tip { border-radius: 24rpx; background: var(--mood-honey-soft); color: var(--mood-honey); padding: 24rpx; }
+.tip-text, .expire-text { color: var(--mood-honey); font-size: 24rpx; }
+.action-content, .action-popup { border-radius: 36rpx 36rpx 0 0; padding-bottom: calc(20rpx + env(safe-area-inset-bottom)); }
+.action-item { min-height: 100rpx; }
+

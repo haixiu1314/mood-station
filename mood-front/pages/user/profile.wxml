@@ -1,0 +1,81 @@
+<wxs module="media" src="../../utils/media.wxs" />
+<view class="container mood-page mood-user-profile">
+  <!-- 用户信息卡片 -->
+  <view class="user-card">
+    <image class="avatar" src="{{media.avatar(userInfo.avatarUrl, userInfo.avatar)}}" mode="aspectFill"></image>
+    <view class="user-info">
+      <text class="nickname">{{userInfo.nickname}}</text>
+      <text class="bio" wx:if="{{userInfo.bio}}">{{userInfo.bio}}</text>
+      <text class="bio empty" wx:else>还没有留下签名，先从一声问候开始吧。</text>
+    </view>
+  </view>
+
+  <!-- Tab 切换 -->
+  <view class="tabs">
+    <view class="tab-item {{activeTab === 'diary' ? 'active' : ''}}" bindtap="onTabChange" data-tab="diary" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <text>日记</text>
+    </view>
+    <view class="tab-item {{activeTab === 'message' ? 'active' : ''}}" bindtap="onTabChange" data-tab="message" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <text>留言板</text>
+    </view>
+  </view>
+
+  <!-- 日记列表 -->
+  <view class="content-section" wx:if="{{activeTab === 'diary'}}">
+    <view class="diary-list" wx:if="{{diaries.length > 0}}">
+      <view class="diary-item" wx:for="{{diaries}}" wx:key="id">
+        <view class="diary-header">
+          <view class="emotion-badge {{item.emotion}} emotion-{{item.emotion}}">
+            <image class="emotion-icon" src="/images/healing/mood-{{item.emotion}}.png" mode="aspectFit"></image>
+            <text>{{item.emotionLabel}}</text>
+          </view>
+          <text class="time">{{item.createTime}}</text>
+        </view>
+        <text class="title" wx:if="{{item.title}}">{{item.title}}</text>
+        <text class="content">{{item.content}}</text>
+      </view>
+    </view>
+    <view class="empty-state" wx:else>
+      <text>暂无公开日记</text>
+    </view>
+  </view>
+
+  <!-- 留言板 -->
+  <view class="content-section" wx:if="{{activeTab === 'message'}}">
+    <!-- 留言输入框 -->
+    <view class="message-input-area">
+      <textarea 
+        class="message-input" 
+        placeholder="写下你想说的话..." 
+        value="{{messageContent}}"
+        bindinput="onMessageInput"
+        maxlength="200"
+       placeholder-style="color: #68756A;"></textarea>
+      <view class="message-actions">
+        <button class="btn-hug" bindtap="onSendHug" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+          <image class="btn-icon" src="/images/healing/hug.png" mode="aspectFit"></image>
+          <text>抱抱</text>
+        </button>
+        <button class="btn-send" bindtap="onSendMessage" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+          <image class="btn-icon" src="/images/healing/message.png" mode="aspectFit"></image>
+          <text>留言</text>
+        </button>
+      </view>
+    </view>
+
+    <!-- 留言列表 -->
+    <view class="message-list" wx:if="{{messages.length > 0}}">
+      <view class="message-item" wx:for="{{messages}}" wx:key="id">
+        <view class="message-header">
+          <image class="message-avatar" src="{{media.avatar(item.fromAvatar)}}" mode="aspectFill"></image>
+          <text class="message-nickname">{{item.fromNickname}}</text>
+          <text class="message-time">{{item.createTime}}</text>
+        </view>
+        <text class="message-content">{{item.content}}</text>
+      </view>
+    </view>
+    <view class="empty-state" wx:else>
+      <text>暂无留言，快来抢沙发吧~</text>
+    </view>
+  </view>
+</view>

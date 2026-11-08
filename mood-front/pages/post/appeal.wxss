@@ -1,0 +1,92 @@
+@import "../../styles/healing.wxss";
+.container {
+  padding: 24rpx 32rpx;
+  background-color: var(--mood-paper);
+  min-height: 100vh;
+}
+
+.form-section {
+  background-color: var(--mood-surface);
+  border-radius: 32rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  
+}
+
+.section-title {
+  font-size: 30rpx;
+  color: var(--mood-ink);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 16rpx;
+  position: relative;
+  padding-left: 20rpx;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8rpx;
+  height: 28rpx;
+  background: var(--mood-sage-soft);
+  border-radius: 4rpx;
+}
+
+.appeal-input {
+  width: 100%;
+  min-height: 300rpx;
+  font-size: 28rpx;
+  color: var(--mood-ink);
+  line-height: 1.6;
+  background-color: #F7FAF9;
+  border-radius: 24rpx;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+
+.char-count {
+  font-size: 24rpx;
+  color: var(--mood-faint);
+  text-align: right;
+  display: block;
+  margin-top: 8rpx;
+}
+
+.submit-btn {
+  background: var(--mood-sage-soft);
+  color: var(--mood-sage-ink);
+  text-align: center;
+  padding: 28rpx;
+  border-radius: 48rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  
+  transition: transform 0.2s ease;
+}
+
+.submit-btn:active {
+  transform: scale(0.96);
+}
+
+
+
+/* Page composition and touch geometry. */
+
+.container { padding: 28rpx 32rpx calc(56rpx + env(safe-area-inset-bottom)); min-height: 100vh; }
+.form-group { margin-bottom: 32rpx; }
+.form-group .label { display: block; margin-bottom: 14rpx; }
+.textarea { min-height: 360rpx; padding: 28rpx; height: 420rpx; }
+.emotion-selector { padding: 24rpx; background: #FFFFFF; border-radius: 28rpx; margin-bottom: 28rpx; display: flex; justify-content: space-between; align-items: center; gap: 20rpx; }
+.emotion-selector .label { margin-bottom: 0; }
+.emotion-selector .picker { padding: 12rpx; min-height: 64rpx; background: transparent; display: flex; align-items: center; }
+.actions { gap: 20rpx; }
+.switch-label { color: var(--mood-muted); line-height: 1.8; }
+
+.form-section { background: #FFFFFF; padding: 32rpx; border-radius: 32rpx; }
+.appeal-input { padding: 24rpx; min-height: 320rpx; }
+.submit-btn { margin-top: 32rpx; }
+.submit-btn { width: 100%; }
+

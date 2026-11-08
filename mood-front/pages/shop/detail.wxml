@@ -1,0 +1,51 @@
+<wxs module="media" src="../../utils/media.wxs" />
+<view class="container mood-page mood-shop-detail" wx:if="{{product}}">
+  <swiper class="swiper" indicator-dots autoplay circular>
+    <swiper-item wx:for="{{images}}" wx:key="*this">
+      <image class="swiper-image" src="{{media.src(item)}}" mode="aspectFill"></image>
+    </swiper-item>
+  </swiper>
+
+  <view class="info-section card">
+    <view class="price-row">
+      <view class="price-left">
+        <image class="coin-icon" src="/images/healing/coin.png" mode="aspectFit"></image>
+        <text class="price">{{product.price}}</text>
+      </view>
+      <text class="stock-info" wx:if="{{product.stock !== undefined && product.stock !== null}}">当前库存：{{product.stock}}</text>
+    </view>
+    <text class="name">{{product.name}}</text>
+    <text class="desc">{{product.description}}</text>
+  </view>
+
+  <!-- 规格选择 -->
+  <view class="spec-section card" wx:if="{{specs.length > 0}}">
+    <text class="section-title">规格</text>
+    <view class="spec-tags">
+      <view class="spec-tag {{selectedSpec === item ? 'active' : ''}}" 
+            wx:for="{{specs}}" wx:key="*this" 
+            bindtap="onSpecSelect" data-spec="{{item}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+        <text>{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="detail-section card">
+    <text class="section-title">商品详情</text>
+    <text class="detail-content">{{product.description}}</text>
+  </view>
+
+  <view class="quantity-section card">
+    <text class="section-title">数量</text>
+    <view class="quantity-control">
+      <view class="btn" bindtap="onQuantityChange" data-action="minus" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">-</view>
+      <text class="quantity">{{quantity}}</text>
+      <view class="btn" bindtap="onQuantityChange" data-action="plus" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">+</view>
+    </view>
+  </view>
+
+  <view class="bottom-bar">
+    <button class="btn-cart" bindtap="onAddToCart" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">加入购物车</button>
+    <button class="btn-buy" bindtap="onBuyNow" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">立即购买</button>
+  </view>
+</view>

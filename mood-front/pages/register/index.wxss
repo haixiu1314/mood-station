@@ -1,0 +1,221 @@
+@import "../../styles/healing.wxss";
+.container {
+  padding: 60rpx 32rpx;
+  min-height: 100vh;
+  background: var(--mood-sage-soft);
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: -80rpx;
+  right: -80rpx;
+  width: 280rpx;
+  height: 280rpx;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+}
+
+.container::after {
+  content: '';
+  position: absolute;
+  bottom: 80rpx;
+  left: 60rpx;
+  width: 120rpx;
+  height: 120rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+/* Logo 区域 */
+.logo-section {
+  text-align: center;
+  margin-bottom: 60rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.app-name {
+  font-size: 64rpx;
+  font-weight: 700;
+  color: var(--mood-surface);
+  display: block;
+  margin-bottom: 16rpx;
+  
+}
+
+.app-desc {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.9);
+  display: block;
+}
+
+/* 表单区域 */
+.form-section {
+  padding: 48rpx 32rpx;
+  background-color: var(--mood-surface);
+  border-radius: 32rpx;
+  
+  position: relative;
+  z-index: 1;
+}
+
+.form-title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--mood-ink);
+  display: block;
+  text-align: center;
+  margin-bottom: 48rpx;
+}
+
+.form-group {
+  margin-bottom: 32rpx;
+}
+
+.label {
+  font-size: 28rpx;
+  color: var(--mood-ink);
+  display: block;
+  margin-bottom: 12rpx;
+  font-weight: 600;
+}
+
+.label.required::before {
+  content: '* ';
+  color: var(--mood-rose);
+}
+
+.input {
+  background-color: var(--mood-paper);
+  border-radius: 20rpx;
+  padding: 0 32rpx;
+  font-size: 28rpx;
+  color: var(--mood-ink);
+  border: 2rpx solid var(--mood-line);
+  box-sizing: border-box;
+  transition: transform 0.2s ease;
+  width: 100%;
+  height: 96rpx;
+}
+
+.input:focus {
+  background-color: var(--mood-surface);
+  border-color: var(--mood-sage-soft);
+  
+}
+
+.picker {
+  background-color: var(--mood-paper);
+  border-radius: 20rpx;
+  padding: 0 32rpx;
+  font-size: 28rpx;
+  color: var(--mood-ink);
+  border: 2rpx solid var(--mood-line);
+  box-sizing: border-box;
+  transition: transform 0.2s ease;
+  height: 96rpx;
+  display: flex;
+  align-items: center;
+}
+
+.choose-btn {
+  margin-top: 16rpx;
+  padding: 16rpx 24rpx;
+  background-color: var(--mood-sage-soft);
+  border-radius: 24rpx;
+  text-align: center;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.choose-btn:active {
+  transform: scale(0.96);
+}
+
+.choose-btn text {
+  font-size: 26rpx;
+  color: var(--mood-sage-ink);
+  font-weight: 600;
+}
+
+/* 头像预览 */
+.avatar-preview {
+  text-align: center;
+  margin-bottom: 32rpx;
+}
+
+.avatar-img {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  border: 6rpx solid var(--mood-sage-soft);
+  
+}
+
+/* 注册按钮 */
+.btn-register {
+  background: var(--mood-sage-soft);
+  color: var(--mood-surface);
+  border-radius: 40rpx;
+  padding: 24rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  margin-top: 40rpx;
+  margin-bottom: 24rpx;
+  
+  transition: transform 0.2s ease;
+}
+
+.btn-register::after {
+  border: none;
+}
+
+.btn-register:active {
+  transform: scale(0.96);
+  opacity: 0.9;
+}
+
+/* 登录链接 */
+.go-login {
+  text-align: center;
+  font-size: 26rpx;
+  color: var(--mood-muted);
+  margin-top: 32rpx;
+}
+
+.login-link {
+  color: var(--mood-sage);
+  font-weight: 700;
+  margin-left: 8rpx;
+}
+
+
+
+/* Page composition and touch geometry. */
+
+.container { padding: 48rpx 32rpx calc(60rpx + env(safe-area-inset-bottom)); min-height: 100vh; background: var(--mood-paper); }
+.container::before, .container::after { display: none; }
+.logo-section { padding: 0; margin: 12rpx 0 56rpx; text-align: left; }
+.app-name { font-size: 52rpx; font-weight: 600; color: var(--mood-ink); letter-spacing: 0; }
+.app-desc { color: var(--mood-muted); font-size: 28rpx; margin-top: 16rpx; }
+.form-section { padding: 40rpx 32rpx; border-radius: 36rpx; }
+.form-title { display: block; font-size: 36rpx; font-weight: 600; margin-bottom: 36rpx; color: var(--mood-ink); }
+.form-group { margin-bottom: 28rpx; }
+.label { margin-bottom: 12rpx; }
+.input { height: 96rpx; }
+.btn-login, .btn-register { margin-top: 32rpx; line-height: 1.6; padding: 24rpx 0; }
+.btn-quick { line-height: 1.6; padding: 24rpx 12rpx; }
+.register-link, .login-link { color: var(--mood-sage-ink); font-weight: 600; padding: 16rpx; }
+.form-wrapper { margin-top: 0; }
+.cat-img { width: 104rpx; height: 104rpx; right: 32rpx; top: -72rpx; }
+.password-input { padding-right: 100rpx !important; }
+.eye-icon { width: 72rpx; height: 72rpx; padding: 16rpx; right: 12rpx; }
+.choose-btn { background: var(--mood-sage-soft); min-height: 80rpx; }
+.choose-btn text { color: var(--mood-sage-ink); }
+.mood-register-index .btn-register { width: 100%; }
+.form-title { text-align: left; }
+
