@@ -7,5 +7,5 @@
 /dataSources/
 /dataSources.local.xml
 # 相关文件忽略
-/docs/
+docs/
 
