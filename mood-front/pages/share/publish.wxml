@@ -45,7 +45,6 @@
   </view>
 
   <view class="actions">
-    <button class="btn-cancel" bindtap="onCancel" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">取消</button>
-    <button class="btn-publish" bindtap="onPublish" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">发布</button>
+    <button class="btn-publish" bindtap="onPublish" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">保存</button>
   </view>
 </view>

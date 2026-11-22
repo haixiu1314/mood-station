@@ -3,9 +3,7 @@ package com.moodlater.service;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.moodlater.config.DeepSeekConfig;
 import okhttp3.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -14,9 +12,6 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class DeepSeekService {
-
-    @Autowired
-    private DeepSeekConfig deepSeekConfig;
 
     private final OkHttpClient httpClient;
     private final Gson gson = new Gson();
@@ -46,9 +41,9 @@ public class DeepSeekService {
             "回复风格：温暖、治愈、可爱、简短、有同理心";
 
     /**
-     * 发送聊天消息并获取回复
+     * 发送聊天消息并获取回复（使用用户自定义的配置）
      */
-    public String chat(List<Map<String, String>> messages) throws IOException {
+    public String chat(String baseUrl, String apiKey, String model, List<Map<String, String>> messages) throws IOException {
         // 构建消息数组，在最前面加入系统提示词
         JsonArray messagesArray = new JsonArray();
 
@@ -68,16 +63,16 @@ public class DeepSeekService {
 
         // 构建请求体
         JsonObject requestBody = new JsonObject();
-        requestBody.addProperty("model", deepSeekConfig.getModel());
+        requestBody.addProperty("model", model);
         requestBody.add("messages", messagesArray);
-        requestBody.addProperty("temperature", deepSeekConfig.getTemperature());
-        requestBody.addProperty("max_tokens", deepSeekConfig.getMaxTokens());
+        requestBody.addProperty("temperature", 0.7);
+        requestBody.addProperty("max_tokens", 2000);
         requestBody.addProperty("stream", false);
 
         // 创建请求
         Request request = new Request.Builder()
-                .url(deepSeekConfig.getBaseUrl() + "/v1/chat/completions")
-                .addHeader("Authorization", "Bearer " + deepSeekConfig.getApiKey())
+                .url(buildChatUrl(baseUrl))
+                .addHeader("Authorization", "Bearer " + apiKey)
                 .addHeader("Content-Type", "application/json")
                 .post(RequestBody.create(
                         gson.toJson(requestBody),
@@ -88,7 +83,7 @@ public class DeepSeekService {
         // 发送请求
         try (Response response = httpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
-                throw new IOException("DeepSeek API 调用失败: " + response.code() + " " + response.message());
+                throw new IOException("API 调用失败: " + response.code() + " " + response.message());
             }
 
             String responseBody = response.body().string();
@@ -102,7 +97,27 @@ public class DeepSeekService {
                 return message.get("content").getAsString();
             }
 
-            throw new IOException("DeepSeek API 返回格式异常");
+            throw new IOException("API 返回格式异常");
         }
+    }
+
+    /**
+     * 规范化用户输入的 baseUrl，拼接出 /v1/chat/completions 完整地址
+     */
+    private String buildChatUrl(String baseUrl) {
+        if (baseUrl == null) {
+            return "";
+        }
+        String url = baseUrl.trim();
+        while (url.endsWith("/")) {
+            url = url.substring(0, url.length() - 1);
+        }
+        if (url.endsWith("/chat/completions")) {
+            return url;
+        }
+        if (url.endsWith("/v1")) {
+            return url + "/chat/completions";
+        }
+        return url + "/v1/chat/completions";
     }
 }

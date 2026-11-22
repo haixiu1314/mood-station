@@ -1,6 +1,21 @@
-# 忽略 IDE 配置
+# IDE 配置
 .idea/
+.vscode/
+*.iml
 
-# 忽略文档文件夹和 md 文件
+# 课程 / 个人材料（不公开）
 docs/
-情绪小站-项目文档.md
+
+# 依赖与构建产物
+node_modules/
+dist/
+target/
+.vite/
+
+# 微信开发者工具本地私有配置
+mood-front/project.private.config.json
+
+# 日志与系统文件
+*.log
+.DS_Store
+Thumbs.db

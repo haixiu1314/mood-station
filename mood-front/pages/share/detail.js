@@ -1,4 +1,5 @@
 const { request } = require('../../utils/request')
+const { resolveMediaUrl } = require('../../utils/url')
 const config = require('../../config/api')
 
 Page({
@@ -126,8 +127,10 @@ Page({
   },
 
   onPreviewImage(e) {
-    const images = e.currentTarget.dataset.images
-    const current = e.currentTarget.dataset.current
+    const rawImages = e.currentTarget.dataset.images || []
+    const rawCurrent = e.currentTarget.dataset.current
+    const images = rawImages.map(resolveMediaUrl)
+    const current = resolveMediaUrl(rawCurrent)
     wx.previewImage({
       current,
       urls: images

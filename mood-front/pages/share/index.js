@@ -1,4 +1,5 @@
 const { request } = require('../../utils/request')
+const { resolveMediaUrl } = require('../../utils/url')
 const config = require('../../config/api')
 
 Page({
@@ -15,6 +16,10 @@ Page({
     this.loadPosts()
   },
 
+  onPullDownRefresh() {
+    this.loadPosts().finally(() => wx.stopPullDownRefresh())
+  },
+
   async loadPosts() {
     if (this.data.loading) return
     this.setData({ loading: true })
@@ -25,15 +30,45 @@ Page({
         if (post.images && typeof post.images === 'string') {
           post.images = post.images.split(',').filter(img => img.trim())
         }
+        post.revealed = false
         return post
       })
-      this.setData({
-        posts: posts
-      })
+      this.setData({ posts: posts }, () => this.setupRevealObserver())
     } catch (err) {
       console.error('加载帖子列表失败', err)
     } finally {
       this.setData({ loading: false })
+    }
+  },
+
+  // 帖子滚动虚化→清晰渐显
+  setupRevealObserver() {
+    if (this._observer) {
+      this._observer.disconnect()
+      this._observer = null
+    }
+    if (typeof wx.createIntersectionObserver !== 'function') {
+      const posts = this.data.posts.map(p => ({ ...p, revealed: true }))
+      this.setData({ posts })
+      return
+    }
+    this._observer = wx.createIntersectionObserver(this, { observeAll: true })
+    this._observer.relativeToViewport({ bottom: 0 }).observe('.post-item', (res) => {
+      if (res.intersectionRatio > 0) {
+        const index = res.dataset.index
+        if (index !== undefined && index !== '') {
+          this.setData({
+            ['posts[' + index + '].revealed']: true
+          })
+        }
+      }
+    })
+  },
+
+  onUnload() {
+    if (this._observer) {
+      this._observer.disconnect()
+      this._observer = null
     }
   },
 
@@ -94,8 +129,10 @@ Page({
   },
 
   onPreviewImage(e) {
-    const images = e.currentTarget.dataset.images
-    const current = e.currentTarget.dataset.current
+    const rawImages = e.currentTarget.dataset.images || []
+    const rawCurrent = e.currentTarget.dataset.current
+    const images = rawImages.map(resolveMediaUrl)
+    const current = resolveMediaUrl(rawCurrent)
     wx.previewImage({
       current,
       urls: images

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moodlater.mapper.FeedbackMapper">
+
+    <insert id="insert" parameterType="com.moodlater.entity.Feedback" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO feedback (user_id, nickname, content, create_time)
+        VALUES (#{userId}, #{nickname}, #{content}, NOW())
+    </insert>
+
+</mapper>

@@ -1,6 +1,8 @@
 package com.moodlater.service;
 
+import com.moodlater.common.AiException;
 import com.moodlater.entity.AiChatMessage;
+import com.moodlater.entity.AiConfig;
 import com.moodlater.mapper.AiChatMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +16,10 @@ public class AiChatService {
     private AiChatMapper aiChatMapper;
 
     @Autowired
-    private DeepSeekService deepSeekService;
+    private AiConfigService aiConfigService;
 
-    // 每日聊天次数限制
-    private static final int DAILY_LIMIT = 50;
+    @Autowired
+    private DeepSeekService deepSeekService;
 
     // 每次对话携带的历史消息数量
     private static final int HISTORY_SIZE = 10;
@@ -25,20 +27,12 @@ public class AiChatService {
     /**
      * 发送消息并获取 AI 回复
      */
-    public Map<String, Object> sendMessage(Long userId, String userMessage) throws Exception {
-        // 检查每日次数限制
-        int todayCount = aiChatMapper.countTodayByUserId(userId);
-        if (todayCount >= DAILY_LIMIT) {
-            throw new RuntimeException("今日聊天次数已达上限（" + DAILY_LIMIT + "次），明天再来找小喵吧~");
+    public Map<String, Object> sendMessage(Long userId, String userMessage) throws AiException {
+        // 读取用户自己的 AI 配置
+        AiConfig config = aiConfigService.getConfig(userId);
+        if (config == null || isBlank(config.getBaseUrl()) || isBlank(config.getApiKey()) || isBlank(config.getModel())) {
+            throw new AiException(4001, "当前模型没有配置，请先配置模型");
         }
-
-        // 保存用户消息
-        AiChatMessage userMsg = new AiChatMessage();
-        userMsg.setUserId(userId);
-        userMsg.setRole("user");
-        userMsg.setContent(userMessage);
-        userMsg.setEmotion(null);
-        aiChatMapper.insert(userMsg);
 
         // 获取历史消息用于上下文
         List<AiChatMessage> history = aiChatMapper.selectRecentByUserId(userId, HISTORY_SIZE);
@@ -52,14 +46,26 @@ public class AiChatService {
             message.put("content", msg.getContent());
             messages.add(message);
         }
+        Map<String, String> current = new HashMap<>();
+        current.put("role", "user");
+        current.put("content", userMessage);
+        messages.add(current);
 
-        // 调用 DeepSeek API
+        // 调用 AI（使用用户自定义配置）
         String aiReply;
         try {
-            aiReply = deepSeekService.chat(messages);
+            aiReply = deepSeekService.chat(config.getBaseUrl(), config.getApiKey(), config.getModel(), messages);
         } catch (Exception e) {
-            throw new RuntimeException("小喵暂时走神了，请稍后再试~ （" + e.getMessage() + "）");
+            throw new AiException(4002, "当前模型不可用，请检查一下" + config.getModel());
         }
+
+        // 保存用户消息
+        AiChatMessage userMsg = new AiChatMessage();
+        userMsg.setUserId(userId);
+        userMsg.setRole("user");
+        userMsg.setContent(userMessage);
+        userMsg.setEmotion(null);
+        aiChatMapper.insert(userMsg);
 
         // 保存 AI 回复
         AiChatMessage aiMsg = new AiChatMessage();
@@ -72,8 +78,6 @@ public class AiChatService {
         // 构建返回结果
         Map<String, Object> result = new HashMap<>();
         result.put("reply", aiReply);
-        result.put("todayCount", todayCount + 1);
-        result.put("dailyLimit", DAILY_LIMIT);
 
         return result;
     }
@@ -103,14 +107,7 @@ public class AiChatService {
         aiChatMapper.deleteByUserId(userId);
     }
 
-    /**
-     * 获取今日聊天次数
-     */
-    public Map<String, Integer> getTodayCount(Long userId) {
-        int count = aiChatMapper.countTodayByUserId(userId);
-        Map<String, Integer> result = new HashMap<>();
-        result.put("todayCount", count);
-        result.put("dailyLimit", DAILY_LIMIT);
-        return result;
+    private boolean isBlank(String s) {
+        return s == null || s.trim().isEmpty();
     }
 }

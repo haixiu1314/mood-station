@@ -196,7 +196,7 @@
   padding: 16rpx 32rpx;
   background: var(--mood-sage-soft);
   border-radius: 40rpx;
-  border: 2rpx solid #FFD0D0;
+  border: 2rpx solid var(--mood-rose-soft);
   
   transition: transform 0.2s ease;
 }
@@ -313,7 +313,7 @@
 
 /* Explicit geometry avoids the native button line-height shifting its label. */
 .mood-shop-cart .bottom-bar { align-items: center; gap: 20rpx; }
-.mood-shop-cart .btn-clear { min-width: 104rpx; min-height: 88rpx; padding: 0 20rpx; display: flex; align-items: center; justify-content: center; border: 2rpx solid #E4BFC3; background: var(--mood-rose-soft); border-radius: 24rpx; box-sizing: border-box; }
+.mood-shop-cart .btn-clear { min-width: 104rpx; min-height: 88rpx; padding: 0 20rpx; display: flex; align-items: center; justify-content: center; border: 2rpx solid var(--mood-line); background: var(--mood-rose-soft); border-radius: 24rpx; box-sizing: border-box; }
 .mood-shop-cart .btn-clear text { color: var(--mood-rose); font-weight: 600; line-height: 1.4; }
 .mood-shop-cart .action-right { gap: 20rpx; }
 .mood-shop-cart .total-info { flex: 1; min-width: 0; flex-wrap: wrap; justify-content: flex-end; gap: 2rpx 8rpx; }

@@ -4,19 +4,19 @@
     <view class="welcome-left">
       <text class="welcome-name">Hi，{{nickname}}</text>
       <text class="welcome-subtitle">今天，也留一点温柔给自己。</text>
+      <text class="time-tip">{{timeContext.tip}}</text>
     </view>
-    <image class="welcome-mark" src="/images/healing/brand-cat.png" mode="aspectFit"></image>
+    <image class="welcome-mark" src="{{timeContext.icon}}" mode="aspectFit"></image>
   </view>
-  <swiper class="banner-swiper" indicator-dots autoplay circular interval="6000" duration="500" indicator-active-color="#476B55" indicator-color="rgba(71,107,85,0.22)">
+  <swiper class="banner-swiper" indicator-dots autoplay circular interval="6000" duration="500" indicator-active-color="#D9774F" indicator-color="rgba(217,119,79,0.30)">
     <swiper-item wx:for="{{banners}}" wx:key="id">
-      <image class="banner-image" src="{{media.src(item.imageUrl || item.image || '/images/轮播图1.png')}}" mode="aspectFill" bindtap="onBannerTap" data-url="{{item.linkUrl}}" hover-class="mood-pressed"></image>
+      <image class="banner-image" src="{{media.src(item.imageUrl || item.image || '/images/轮播图1.jpg')}}" mode="aspectFill" bindtap="onBannerTap" data-url="{{item.linkUrl}}" hover-class="mood-pressed"></image>
     </swiper-item>
   </swiper>
-  <view class="tip-card {{quoteFlipped ? 'flipped' : ''}}" bindtap="onQuoteTap" aria-role="button" aria-label="翻开今日锦囊">
+  <view class="tip-card {{quoteFlipped ? 'flipped' : ''}}" bindtap="onQuoteTap" aria-role="button" aria-label="翻开每日锦囊">
     <view class="tip-front">
-      <image class="tip-icon" src="/images/healing/leaf.png" mode="aspectFit"></image>
-      <view class="tip-text-group"><text class="tip-title">给今天的一点温柔</text><text class="tip-hint">今日锦囊 · 轻轻点开</text></view>
-      <image class="tip-arrow" src="/images/healing/chevron.png" mode="aspectFit"></image>
+      <image class="tip-icon" src="{{tipIconSrc}}" mode="aspectFit"></image>
+      <text class="tip-title">每日锦囊</text>
     </view>
     <view class="tip-back"><view class="stars-container" aria-hidden="true"><view class="star star-1"></view><view class="star star-2"></view><view class="star star-3"></view><view class="star star-4"></view><view class="star star-5"></view></view><text class="tip-back-label">今日锦囊</text><text class="tip-back-text">{{quote}}</text></view>
   </view>
@@ -36,6 +36,5 @@
     <view class="empty-state" wx:if="{{diaryList.length === 0}}"><image src="/images/healing/journal.png" mode="aspectFit"></image><text class="empty-text">这里还空着，等你写下第一份心情。</text></view>
   </view>
   </scroll-view>
-  <view class="input-card" bindtap="onWriteDiary" hover-class="mood-pressed"><image class="pen-icon" src="/images/healing/edit.png" mode="aspectFit"></image><view><text class="input-main-text">此刻的你，是什么心情？</text><text class="input-sub-text">不必写得漂亮，真实就很好。</text></view><image class="input-arrow" src="/images/healing/chevron.png" mode="aspectFit"></image></view>
 </view>
 <ai-cat-float visible="{{true}}"></ai-cat-float>

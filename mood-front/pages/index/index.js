@@ -7,6 +7,8 @@ Page({
     banners: [],
     quote: '',
     quoteFlipped: false,
+    tipIconSrc: '/images/锦囊.png',
+    timeContext: { icon: '/images/白天.png', tip: '' },
     diaryList: [],
     emotionMap: {
       happy: { label: '开心', bg: '#FFF3CD', color: '#D4A017', icon: '😊' },
@@ -18,11 +20,18 @@ Page({
   },
 
   onLoad() {
+    this.setupTimeContext()
     this.checkLogin()
   },
 
   onShow() {
     this.checkLogin()
+  },
+
+  onPullDownRefresh() {
+    this.setupTimeContext()
+    this.checkLogin()
+    setTimeout(() => wx.stopPullDownRefresh(), 600)
   },
 
   checkLogin() {
@@ -34,8 +43,8 @@ Page({
       this.setData({
         nickname: '游客',
         banners: [
-          { id: 1, image: '/assets/images/banner1.png', url: '' },
-          { id: 2, image: '/assets/images/banner2.png', url: '' }
+          { id: 1, image: '/images/轮播图1.jpg', url: '' },
+          { id: 2, image: '/images/轮播图2.jpg', url: '' }
         ],
         quote: '每一片乌云背后都有阳光'
       })
@@ -135,10 +144,35 @@ Page({
     }
   },
 
-  onQuoteTap() {
+  // 检测当地时间，切换白天/黑夜图标与温馨提示（纯前端本地时间，无需后端与数据库）
+  setupTimeContext() {
+    const now = new Date()
+    const hour = now.getHours()
+    const minute = now.getMinutes()
+    const pad = n => String(n).padStart(2, '0')
+    const timeStr = `${pad(hour)}:${pad(minute)}`
+    const isDay = hour >= 6 && hour < 18
+    let tip = ''
+    if (hour >= 6 && hour < 9) tip = `现在是 ${timeStr}，可以享用早餐或出门晨跑`
+    else if (hour >= 9 && hour < 12) tip = `现在是 ${timeStr}，元气满满，专注做好眼前的事`
+    else if (hour >= 12 && hour < 14) tip = `现在是 ${timeStr}，记得吃午餐，给自己充充电`
+    else if (hour >= 14 && hour < 18) tip = `现在是 ${timeStr}，喝杯热茶，让心情慢慢舒展`
+    else if (hour >= 18 && hour < 22) tip = `现在是 ${timeStr}，好好吃晚餐，陪陪自己`
+    else tip = `现在是 ${timeStr}，夜深了，早点休息哦`
     this.setData({
-      quoteFlipped: !this.data.quoteFlipped
+      timeContext: { icon: isDay ? '/images/白天.png' : '/images/黑夜.png', tip }
     })
+  },
+
+  onQuoteTap() {
+    const flipped = !this.data.quoteFlipped
+    // 先切换图标（未点击→锦囊激活图），再执行翻牌
+    this.setData({ tipIconSrc: flipped ? '/images/锦囊_激活.png' : '/images/锦囊.png' })
+    if (flipped) {
+      setTimeout(() => this.setData({ quoteFlipped: true }), 140)
+    } else {
+      this.setData({ quoteFlipped: false })
+    }
   },
 
   onDiaryTap(e) {

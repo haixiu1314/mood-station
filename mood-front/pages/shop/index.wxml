@@ -24,7 +24,7 @@
   </view>
 
   <view class="cart-float" bindtap="onCartTap" wx:if="{{cartCount > 0}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
-    <image class="cart-img" src="/images/healing/cart.png" mode="aspectFit"></image>
+    <image class="cart-img" src="/images/购物车.png" mode="aspectFit"></image>
     <view class="cart-badge">{{cartCount}}</view>
   </view>
 </view>

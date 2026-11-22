@@ -1,0 +1,79 @@
+@import "../../styles/healing.wxss";
+
+.container {
+  padding: 24rpx 32rpx;
+  background-color: var(--mood-paper);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.form-section {
+  background-color: var(--mood-surface);
+  border-radius: 32rpx;
+  padding: 32rpx;
+  margin: 24rpx 0;
+}
+
+.section-title {
+  font-size: 30rpx;
+  color: var(--mood-ink);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 16rpx;
+  position: relative;
+  padding-left: 20rpx;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8rpx;
+  height: 28rpx;
+  background: var(--mood-sage-soft);
+  border-radius: 4rpx;
+}
+
+.feedback-input {
+  width: 100%;
+  min-height: 320rpx;
+  font-size: 28rpx;
+  color: var(--mood-ink);
+  line-height: 1.6;
+  background-color: var(--mood-well);
+  border-radius: 24rpx;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+
+.char-count {
+  font-size: 24rpx;
+  color: var(--mood-faint);
+  text-align: right;
+  display: block;
+  margin-top: 8rpx;
+}
+
+/* 发送按钮 - 立体规范（珊瑚杏，统一主按钮样式） */
+.send-btn {
+  position: relative;
+  margin-top: 40rpx;
+  height: 88rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(180deg, #F0A184 0%, #E98D6F 100%);
+  box-shadow: 0 6rpx 0 #C96A45, 0 10rpx 20rpx rgba(217,119,79,.28), inset 0 2rpx 0 rgba(255,255,255,.28);
+}
+
+.send-btn-text {
+  color: #FFFFFF;
+  font-size: 30rpx;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}

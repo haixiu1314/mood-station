@@ -84,7 +84,7 @@
 
 .switch-label {
   font-size: 28rpx;
-  color: #718096;
+  color: var(--mood-muted);
   vertical-align: middle;
 }
 
@@ -132,7 +132,7 @@
 .form-group { margin-bottom: 32rpx; }
 .form-group .label { display: block; margin-bottom: 14rpx; }
 .textarea { min-height: 360rpx; padding: 28rpx; height: 420rpx; }
-.emotion-selector { padding: 24rpx; background: #FFFFFF; border-radius: 28rpx; margin-bottom: 28rpx; display: flex; justify-content: space-between; align-items: center; gap: 20rpx; }
+.emotion-selector { padding: 24rpx; background: var(--mood-surface); border-radius: 28rpx; margin-bottom: 28rpx; display: flex; justify-content: space-between; align-items: center; gap: 20rpx; }
 .emotion-selector .label { margin-bottom: 0; }
 .emotion-selector .picker { padding: 12rpx; min-height: 64rpx; background: transparent; display: flex; align-items: center; }
 .actions { gap: 20rpx; }

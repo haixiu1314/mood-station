@@ -52,7 +52,7 @@ import { useRouter, useRoute } from 'vue-router'
 import {
   Fold, Expand, SwitchButton,
   DataAnalysis, User, Goods, ShoppingCart,
-  ChatDotRound, Picture, Van, Headset
+  ChatDotRound, Picture, Van, Headset, Comment
 } from '@element-plus/icons-vue'
 
 const router = useRouter()
@@ -79,7 +79,8 @@ const menuItems = [
   { path: '/express', title: '快递状态管理', icon: 'Van' },
   { path: '/posts', title: '帖子管理', icon: 'ChatDotRound' },
   { path: '/music', title: '音乐管理', icon: 'Headset' },
-  { path: '/banners', title: '轮播图管理', icon: 'Picture' }
+  { path: '/banners', title: '轮播图管理', icon: 'Picture' },
+  { path: '/feedback', title: '用户反馈', icon: 'Comment' }
 ]
 
 const handleLogout = () => {

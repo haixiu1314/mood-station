@@ -1,6 +1,21 @@
 const config = require('../config/api')
 
+let loadingCount = 0
+function beginLoading() {
+  if (loadingCount === 0) {
+    wx.showLoading({ title: '加载中', mask: false })
+  }
+  loadingCount++
+}
+function endLoading() {
+  loadingCount = Math.max(0, loadingCount - 1)
+  if (loadingCount === 0) {
+    wx.hideLoading()
+  }
+}
+
 function request(options) {
+  beginLoading()
   return new Promise((resolve, reject) => {
     const app = getApp()
     const token = app.globalData.token || wx.getStorageSync('token')
@@ -14,6 +29,7 @@ function request(options) {
         'Authorization': token ? `Bearer ${token}` : ''
       },
       success(res) {
+        endLoading()
         const newToken = res.header['Authorization'] || res.header['authorization']
         if (newToken) {
           const cleanToken = newToken.replace('Bearer ', '')
@@ -53,14 +69,17 @@ function request(options) {
           })
           reject(res.data)
         } else {
-          wx.showToast({
-            title: res.data.message || '请求失败',
-            icon: 'none'
-          })
+          if (!options.silent) {
+            wx.showToast({
+              title: res.data.message || '请求失败',
+              icon: 'none'
+            })
+          }
           reject(res.data)
         }
       },
       fail(err) {
+        endLoading()
         wx.showToast({
           title: '网络异常',
           icon: 'none'

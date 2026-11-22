@@ -3,7 +3,7 @@
   <view class="banner"><text class="screen-title">情绪分享</text><text class="screen-subtitle">在彼此的故事里，找到一点共鸣。</text></view>
 
   <view class="post-list">
-    <view class="post-item card" wx:for="{{posts}}" wx:key="id" bindtap="onPostTap" data-id="{{item.id}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+    <view class="post-item card {{item.revealed ? 'revealed' : ''}}" wx:for="{{posts}}" wx:key="id" bindtap="onPostTap" data-id="{{item.id}}" data-index="{{index}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
       <view class="post-header">
         <image class="avatar" src="{{media.avatar(item.author.avatar, item.author.avatarUrl)}}" mode="aspectFill" catchtap="onAvatarTap" data-userid="{{item.author.id}}" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90"></image>
         <view class="user-info">
@@ -29,6 +29,7 @@
           class="image {{item.images.length === 1 ? 'single' : 'grid'}}" 
           src="{{media.src(img)}}" 
           mode="aspectFill"
+          lazy-load="{{true}}"
           bindtap="onPreviewImage"
           data-current="{{img}}"
           data-images="{{item.images}}"

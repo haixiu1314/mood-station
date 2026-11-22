@@ -296,3 +296,6 @@
 .express-info { background: var(--mood-well); border-radius: 20rpx; padding: 24rpx; }
 .express-status, .express-detail { color: var(--mood-muted); line-height: 1.8; }
 
+/* 标题对齐：与其他“我的”子页面统一 32rpx 左边距 */
+.screen-heading { padding: 0 32rpx; }
+

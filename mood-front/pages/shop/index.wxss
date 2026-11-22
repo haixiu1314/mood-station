@@ -22,7 +22,7 @@
 
 .banner-text {
   font-size: 28rpx;
-  color: #5D4E37;
+  color: var(--mood-honey);
   font-weight: 500;
   position: relative;
   z-index: 1;
@@ -129,7 +129,7 @@
 
 .tag.hot {
   background: var(--mood-rose-soft);
-  color: #8B0000;
+  color: var(--mood-rose);
 }
 
 /* 售罄标签 */
@@ -226,7 +226,7 @@
 .price { color: var(--mood-sage-ink); font-size: 34rpx; font-weight: 600; }
 .tags { display: flex; flex-wrap: wrap; gap: 6rpx; }
 .tag { margin: 0; font-size: 22rpx; }
-.cart-float { width: 96rpx; height: 96rpx; bottom: calc(32rpx + env(safe-area-inset-bottom)); left: 32rpx; right: auto; background: #FFFFFF; border: 1rpx solid var(--mood-control); box-shadow: 0 6rpx 20rpx rgba(41,60,51,.1); }
+.cart-float { width: 96rpx; height: 96rpx; bottom: calc(32rpx + env(safe-area-inset-bottom)); right: 32rpx; left: auto; background: var(--mood-surface); border: 1rpx solid var(--mood-control); box-shadow: 0 6rpx 20rpx rgba(41,60,51,.1); }
 .cart-img { width: 44rpx; height: 44rpx; }
 .sold-out { color: var(--mood-muted); background: var(--mood-well); }
 .banner { text-align: left; }
