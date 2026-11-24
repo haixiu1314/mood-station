@@ -51,7 +51,7 @@ function src(value) {
     return value;
   }
   path = path.split('?')[0].split('#')[0];
-  return localImages[path] || value;
+  return localImages[path] || localAvatars[path] || value;
 }
 var localAvatars = {
   "/uploads/0ab2dbad-0ad1-4508-985a-e9c2953a69d6.png": "/images/avatars/16bc4ce1d20071b2.jpg",
