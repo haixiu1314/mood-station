@@ -1,13 +1,13 @@
 /* Keep the original drag/tap handlers and edge position; motion only acknowledges input. */
 .ai-cat-float { position: fixed; z-index: 900; width: 100rpx; height: 100rpx; transition: right 200ms ease; }
 .ai-cat-float.dragging { transition: none; }
-.ai-cat-ball { position: relative; width: 100rpx; height: 100rpx; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #F5EEDC; border: 2rpx solid #D8D3BF; box-sizing: border-box; box-shadow: 0 6rpx 20rpx rgba(41,60,51,.1); }
+.ai-cat-ball { position: relative; width: 100rpx; height: 100rpx; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #FFFDF8; border: 1rpx solid #EFE3D2; box-sizing: border-box; box-shadow: 0 6rpx 20rpx rgba(120, 90, 60, .18); }
 .ai-cat-icon { width: 76rpx; height: 76rpx; }
-.ai-cat-hint { position: absolute; right: 62rpx; top: 32rpx; white-space: nowrap; background: #FFFFFF; color: #476B55; border: 1rpx solid #E3E8DE; border-radius: 999rpx; padding: 8rpx 16rpx; font-size: 24rpx; line-height: 1.5; }
-.ai-cat-expanded-content { position: absolute; right: 116rpx; top: 50%; transform: translateY(-50%); width: 360rpx; padding: 32rpx 24rpx 24rpx; background: #FFFFFF; border: 1rpx solid #E3E8DE; border-radius: 32rpx; box-shadow: 0 8rpx 32rpx rgba(41,60,51,.12); box-sizing: border-box; animation: cat-panel-in 180ms ease; }
-.ai-cat-expanded-text { display: block; font-size: 26rpx; line-height: 1.8; color: #293C33; padding-right: 24rpx; margin: 12rpx 0 20rpx; }
-.ai-cat-close { position: absolute; top: 0; right: 4rpx; width: 64rpx; height: 64rpx; display: flex; align-items: center; justify-content: center; color: #5D6D63; font-size: 24rpx; }
-.ai-cat-enter-btn { min-height: 80rpx; padding: 18rpx; border-radius: 999rpx; background: #476B55; color: #FFFFFF; font-size: 26rpx; text-align: center; line-height: 1.6; transition: opacity 160ms ease; }
+.ai-cat-hint { position: absolute; right: 62rpx; top: 32rpx; white-space: nowrap; background: #FFFFFF; color: #D9774F; border: 1rpx solid #EFE3D2; border-radius: 999rpx; padding: 8rpx 16rpx; font-size: 24rpx; line-height: 1.5; }
+.ai-cat-expanded-content { position: absolute; right: 116rpx; top: 50%; transform: translateY(-50%); width: 360rpx; padding: 32rpx 24rpx 24rpx; background: #FFFFFF; border: 1rpx solid #EFE3D2; border-radius: 16rpx; box-shadow: 0 8rpx 32rpx rgba(120, 90, 60, .16); box-sizing: border-box; animation: cat-panel-in 180ms ease; }
+.ai-cat-expanded-text { display: block; font-size: 26rpx; line-height: 1.8; color: #8A7A68; padding-right: 24rpx; margin: 12rpx 0 20rpx; }
+.ai-cat-close { position: absolute; top: 0; right: 4rpx; width: 64rpx; height: 64rpx; display: flex; align-items: center; justify-content: center; color: #B4A793; font-size: 24rpx; }
+.ai-cat-enter-btn { min-height: 80rpx; padding: 18rpx; border-radius: 12rpx; background: #E98D6F; color: #FFFFFF; font-size: 26rpx; text-align: center; line-height: 1.6; transition: opacity 160ms ease; }
 .pressed { opacity: .75; }
 @keyframes cat-panel-in { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .ai-cat-float, .ai-cat-enter-btn { transition: none; } .ai-cat-expanded-content { animation: none; } }

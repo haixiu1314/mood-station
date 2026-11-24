@@ -1,65 +1,72 @@
-/* 情绪小站：暖白纸面、鼠尾草绿、清晰的文字层级。 */
+/* 情绪小站：治愈暖心主题。
+   暖奶油画布 + 珊瑚杏主色 + 柔米边框，暖调文字，柔和治愈，避开纯黑与暗绿。 */
 page {
-  --mood-paper: #F7F8F2;
-  --mood-surface: #FFFFFF;
-  --mood-well: #F0F3EC;
-  --mood-sage-soft: #E5EEE4;
-  --mood-sage: #476B55;
-  --mood-sage-ink: #355440;
-  --mood-ink: #293C33;
-  --mood-muted: #5D6D63;
-  --mood-faint: #68756A;
-  --mood-line: #E3E8DE;
-  --mood-control: #BCC9B9;
-  --mood-rose: #934C56;
-  --mood-rose-soft: #F8EBEB;
-  --mood-honey: #795D26;
-  --mood-honey-soft: #F5EEDC;
-  --mood-blue: #4B6784;
-  --mood-blue-soft: #EAF0F6;
-  --mood-radius: 32rpx;
+  /* 背景表面 */
+  --mood-paper: #FBF6EF;            /* 页面背景（暖奶油米白） */
+  --mood-surface: #FFFFFF;          /* 卡片 / 面板背景 */
+  --mood-well: #F5ECE0;             /* 凹陷输入框 / 内嵌表面 */
+  --mood-sage-soft: #FCEFE5;        /* 轻微填充表面（头部、徽章、次按钮） */
+  /* 文字与内容 */
+  --mood-ink: #3E332A;              /* 主文字（暖深棕，非纯黑） */
+  --mood-muted: #8A7A68;            /* 次级文字 */
+  --mood-faint: #B4A793;            /* 三级文字 */
+  --mood-control: #C8BCAC;          /* 最弱文字 / 禁用 */
+  /* 品牌与强调（珊瑚杏，替代暗绿） */
+  --mood-sage: #E98D6F;             /* 品牌珊瑚：主 CTA */
+  --mood-sage-ink: #D9774F;         /* 强调珊瑚：链接 / 激活 / 价格 */
+  /* 边框 */
+  --mood-line: #EFE3D2;             /* 暖米边框 */
+  /* 情绪语义色（治愈柔和） */
+  --mood-rose: #E4706B;             /* 生气 / 删除 */
+  --mood-rose-soft: #FBE6E2;
+  --mood-honey: #E3A857;            /* 开心 / 金色 */
+  --mood-honey-soft: #FAECD4;
+  --mood-blue: #7FA7C9;             /* 难过 */
+  --mood-blue-soft: #E6EFF7;
+  /* 圆角与缓动 */
+  --mood-radius: 16rpx;
   --mood-ease: cubic-bezier(0.22, 0.68, 0, 1);
   background: var(--mood-paper);
   color: var(--mood-ink);
-  font-family: 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: Inter, -apple-system, 'SF Pro Display', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
   font-size: 28rpx;
   line-height: 1.6;
   -webkit-text-size-adjust: 100%;
 }
 view, scroll-view, swiper, input, textarea, button { box-sizing: border-box; }
-button { font-family: inherit; font-size: 28rpx; font-weight: 600; }
+button { font-family: inherit; font-size: 28rpx; font-weight: 510; }
 button::after { border: 0; }
-button[disabled] { opacity: 1; color: var(--mood-muted); background: var(--mood-well); }
+button[disabled] { opacity: 1; color: var(--mood-control); background: var(--mood-well); }
 .container { padding: 32rpx; }
-.card { background: var(--mood-surface); border-radius: var(--mood-radius); padding: 32rpx; margin-bottom: 24rpx; }
+.card { background: var(--mood-surface); border-radius: var(--mood-radius); padding: 32rpx; margin-bottom: 24rpx; border: 1rpx solid var(--mood-line); }
 .ui-icon { width: 40rpx; height: 40rpx; flex-shrink: 0; vertical-align: middle; }
-.btn-primary { background: var(--mood-sage); color: #FFFFFF; border-radius: 999rpx; padding: 22rpx 40rpx; }
-.btn-secondary, .btn-outline { background: var(--mood-sage-soft); color: var(--mood-sage-ink); border-radius: 999rpx; padding: 22rpx 40rpx; }
-.btn-danger { background: var(--mood-rose-soft); color: var(--mood-rose); border-radius: 999rpx; padding: 22rpx 40rpx; }
+.btn-primary { background: var(--mood-sage); color: #FFFFFF; border-radius: 12rpx; padding: 22rpx 40rpx; }
+.btn-secondary, .btn-outline { background: var(--mood-sage-soft); color: var(--mood-sage-ink); border-radius: 12rpx; padding: 22rpx 40rpx; }
+.btn-danger { background: var(--mood-rose-soft); color: var(--mood-rose); border-radius: 12rpx; padding: 22rpx 40rpx; }
 .text-muted { color: var(--mood-muted); font-size: 24rpx; }
-.text-primary { color: var(--mood-sage); }
+.text-primary { color: var(--mood-sage-ink); }
 .text-warm { color: var(--mood-honey); }
 .text-danger { color: var(--mood-rose); }
-.tag { display: inline-block; font-size: 22rpx; line-height: 1.5; padding: 6rpx 14rpx; border-radius: 12rpx; background: var(--mood-well); color: var(--mood-muted); }
+.tag { display: inline-block; font-size: 22rpx; line-height: 1.5; padding: 6rpx 14rpx; border-radius: 999rpx; background: var(--mood-well); color: var(--mood-muted); }
 .tag-healing { background: var(--mood-sage-soft); color: var(--mood-sage-ink); }
 .tag-hot { background: var(--mood-rose-soft); color: var(--mood-rose); }
 .tag-warm { background: var(--mood-honey-soft); color: var(--mood-honey); }
-.input { background: var(--mood-well); color: var(--mood-ink); border: 2rpx solid transparent; border-radius: 20rpx; padding: 24rpx; font-size: 28rpx; }
+.input { background: var(--mood-well); color: var(--mood-ink); border: 1rpx solid var(--mood-line); border-radius: 12rpx; padding: 24rpx; font-size: 28rpx; }
 .input:focus { border-color: var(--mood-sage); background: var(--mood-surface); }
-.section-title { display: block; color: var(--mood-ink); font-size: 30rpx; font-weight: 600; margin-bottom: 24rpx; }
-.empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 88rpx 32rpx; color: var(--mood-muted); text-align: center; line-height: 1.8; }
-.empty-state text { color: var(--mood-muted); font-size: 26rpx; }
+.section-title { display: block; color: var(--mood-ink); font-size: 30rpx; font-weight: 510; margin-bottom: 24rpx; }
+.empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 88rpx 32rpx; color: var(--mood-faint); text-align: center; line-height: 1.8; }
+.empty-state text { color: var(--mood-faint); font-size: 26rpx; }
 .empty-state image { width: 112rpx; height: 112rpx; margin-bottom: 24rpx; }
-.loading { display: flex; justify-content: center; padding: 40rpx; color: var(--mood-muted); }
+.loading { display: flex; justify-content: center; padding: 40rpx; color: var(--mood-faint); }
 .loading-spinner { width: 40rpx; height: 40rpx; border: 3rpx solid var(--mood-line); border-top-color: var(--mood-sage); border-radius: 50%; animation: mood-spin 900ms linear infinite; }
 .divider { height: 1rpx; background: var(--mood-line); margin: 24rpx 0; }
-.modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; background: rgba(25, 43, 33, .36); }
-.modal-content { width: 86%; background: var(--mood-surface); border-radius: 36rpx; overflow: hidden; }
+.modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; background: rgba(62, 51, 42, .5); }
+.modal-content { width: 86%; background: var(--mood-surface); border-radius: 16rpx; overflow: hidden; border: 1rpx solid var(--mood-line); }
 .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 32rpx; }
-.modal-title { color: var(--mood-ink); font-size: 32rpx; font-weight: 600; }
+.modal-title { color: var(--mood-ink); font-size: 32rpx; font-weight: 510; }
 .modal-body { padding: 0 32rpx 32rpx; color: var(--mood-muted); line-height: 1.8; }
 .modal-footer { display: flex; gap: 20rpx; padding: 24rpx 32rpx 32rpx; }
-.modal-btn { flex: 1; text-align: center; padding: 20rpx 0; border-radius: 999rpx; }
+.modal-btn { flex: 1; text-align: center; padding: 20rpx 0; border-radius: 12rpx; }
 .modal-btn-cancel { color: var(--mood-muted); background: var(--mood-well); }
 .modal-btn-confirm { color: #FFFFFF; background: var(--mood-sage); }
 @keyframes mood-spin { to { transform: rotate(360deg); } }

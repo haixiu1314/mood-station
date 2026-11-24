@@ -24,20 +24,22 @@
 .mood-page .emotion-sad { color: var(--mood-blue) !important; background: var(--mood-blue-soft) !important; }
 .mood-page .emotion-angry { color: var(--mood-rose) !important; background: var(--mood-rose-soft) !important; }
 .mood-page .emotion-calm { color: var(--mood-sage-ink) !important; background: var(--mood-sage-soft) !important; }
-.mood-page .emotion-anxious { color: #745B45 !important; background: #EFE9E1 !important; }
+.mood-page .emotion-anxious { color: var(--mood-honey) !important; background: var(--mood-well) !important; }
 .mood-page .action-icon { width: 38rpx; height: 38rpx; margin-right: 6rpx; }
 .mood-page .time, .mood-page .diary-time, .mood-page .post-time, .mood-page .message-time, .mood-page .comment-time, .mood-page .trash-time { color: var(--mood-faint); font-size: 24rpx; }
 .mood-page .price, .mood-page .amount, .mood-page .quantity, .mood-page .balance-text { font-variant-numeric: tabular-nums; }
 .mood-page .btn-save, .mood-page .btn-publish, .mood-page .btn-login, .mood-page .btn-register, .mood-page .save-btn,
 .mood-page .submit-btn, .mood-page .btn-buy, .mood-page .btn-submit, .mood-page .btn-checkout,
 .mood-page .btn-confirm, .mood-page .btn-send, .mood-page .btn-comment-popup-submit {
-  background: var(--mood-sage); color: #FFFFFF; border: 0; border-radius: 999rpx; box-shadow: none; text-shadow: none;
-  min-height: 88rpx; font-size: 28rpx; font-weight: 600;
+  background: linear-gradient(180deg, #F0A184 0%, #E98D6F 100%); color: #FFFFFF; border: 0; border-radius: 16rpx;
+  box-shadow: 0 6rpx 0 #C96A45, 0 10rpx 20rpx rgba(217,119,79,.28), inset 0 2rpx 0 rgba(255,255,255,.28);
+  text-shadow: none; min-height: 88rpx; font-size: 28rpx; font-weight: 510;
 }
 .mood-page .btn-cancel, .mood-page .btn-cart, .mood-page .btn-quick, .mood-page .btn-edit, .mood-page .btn-share {
-  background: var(--mood-sage-soft); color: var(--mood-sage-ink); border: 0 !important; border-radius: 999rpx; box-shadow: none; min-height: 88rpx;
+  background: var(--mood-sage-soft); color: var(--mood-sage-ink); border: 0 !important; border-radius: 16rpx;
+  box-shadow: 0 4rpx 0 #EADBC8, inset 0 2rpx 0 rgba(255,255,255,.7); min-height: 88rpx;
 }
-.mood-page .btn-delete, .mood-page .btn-refund { color: var(--mood-rose); background: var(--mood-rose-soft); border: 0; box-shadow: none; border-radius: 999rpx; }
+.mood-page .btn-delete, .mood-page .btn-refund { color: var(--mood-rose); background: var(--mood-rose-soft); border: 0; box-shadow: 0 4rpx 0 #F0C9C4, inset 0 2rpx 0 rgba(255,255,255,.7); border-radius: 16rpx; }
 .mood-page .delete-btn { color: var(--mood-rose); background: var(--mood-rose-soft); box-shadow: none; }
 .mood-page .bottom-bar { height: auto; min-height: 124rpx; padding: 18rpx 32rpx; padding-bottom: calc(18rpx + env(safe-area-inset-bottom)); box-shadow: none; border-top: 1rpx solid var(--mood-line); background: var(--mood-surface); }
 .mood-page button, .mood-page .tap-effect, .mood-page .action-item, .mood-page .menu-item, .mood-page .spec-tag {
@@ -47,7 +49,7 @@
 .mood-page button:active { transform: scale(.98); }
 .mood-page .empty-state, .mood-page .empty-comment { color: var(--mood-muted); }
 .mood-page .empty-icon { width: 96rpx; height: 96rpx; margin-bottom: 24rpx; }
-.mood-page .modal-mask, .mood-page .coin-help-modal, .mood-page .music-menu-modal, .mood-page .comment-popup-mask, .mood-page .action-mask, .mood-page .action-modal { background: rgba(25,43,33,.36); backdrop-filter: none; }
+.mood-page .modal-mask, .mood-page .coin-help-modal, .mood-page .music-menu-modal, .mood-page .comment-popup-mask, .mood-page .action-mask, .mood-page .action-modal { background: rgba(62,51,42,.5); backdrop-filter: none; }
 .mood-page .modal-content, .mood-page .coin-help-content, .mood-page .music-menu-content, .mood-page .action-content { animation: mood-sheet 220ms var(--mood-ease); }
 .mood-page .comment-popup-content { padding-bottom: calc(28rpx + env(safe-area-inset-bottom)); }
 .mood-page .action-popup, .mood-page .comment-popup { transition: bottom 220ms var(--mood-ease); }
