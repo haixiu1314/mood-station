@@ -87,7 +87,7 @@
 
 .trash-content {
   font-size: 28rpx;
-  color: #718096;
+  color: var(--mood-muted);
   line-height: 1.6;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -101,7 +101,7 @@
   justify-content: space-between;
   margin-top: 20rpx;
   padding-top: 20rpx;
-  border-top: 2rpx solid #F7FAF9;
+  border-top: 2rpx solid var(--mood-line);
 }
 
 .expire-text {
@@ -148,7 +148,7 @@
 }
 
 .action-item.restore {
-  color: #4A7C59;
+  color: var(--mood-sage-ink);
 }
 
 .action-item.delete {
@@ -157,7 +157,7 @@
 
 .divider {
   height: 2rpx;
-  background-color: #F7FAF9;
+  background-color: var(--mood-well);
 }
 
 .action-cancel {
@@ -165,7 +165,7 @@
   text-align: center;
   font-size: 28rpx;
   color: var(--mood-faint);
-  border-top: 2rpx solid #F7FAF9;
+  border-top: 2rpx solid var(--mood-line);
 }
 
 /* 空状态 */
@@ -181,7 +181,7 @@
   width: 120rpx;
   height: 120rpx;
   margin-bottom: 24rpx;
-  color: #E8F5E9;
+  color: var(--mood-sage-ink);
 }
 
 .empty-text {
@@ -196,7 +196,7 @@
 
 .container { min-height: 100vh; }
 .header-bar { gap: 16rpx; margin-bottom: 24rpx; }
-.search-bar { min-height: 88rpx; background: #FFFFFF; border: 0; border-radius: 999rpx; }
+.search-bar { min-height: 88rpx; background: var(--mood-surface); border: 0; border-radius: 999rpx; }
 .search-input { color: var(--mood-ink); min-width: 0; }
 .trash-btn { width: 88rpx; height: 88rpx; border-radius: 50%; background: var(--mood-well); }
 .filter-btn { min-height: 80rpx; border: 0; border-radius: 999rpx; background: var(--mood-well); }

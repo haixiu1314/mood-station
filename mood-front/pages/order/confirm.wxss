@@ -77,7 +77,7 @@
 
 .arrow {
   font-size: 36rpx;
-  color: #D0C8C0;
+  color: var(--mood-faint);
   flex-shrink: 0;
   margin-left: 16rpx;
 }

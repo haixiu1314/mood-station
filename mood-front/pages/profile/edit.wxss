@@ -67,7 +67,7 @@
 
 .arrow {
   font-size: 36rpx;
-  color: #D0C8C0;
+  color: var(--mood-faint);
   margin-left: auto;
   flex-shrink: 0;
 }
@@ -109,7 +109,7 @@
   flex: 1;
   font-size: 28rpx;
   color: var(--mood-ink);
-  text-align: right;
+  text-align: left;
 }
 
 .form-textarea {

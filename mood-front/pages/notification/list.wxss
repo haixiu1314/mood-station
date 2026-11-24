@@ -8,7 +8,7 @@
 .tab-bar {
   display: flex;
   background: var(--mood-surface);
-  border-bottom: 1rpx solid #F0F0F0;
+  border-bottom: 1rpx solid var(--mood-line);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -59,7 +59,7 @@
   margin-right: -60rpx;
   min-width: 28rpx;
   height: 28rpx;
-  background: #FF6B6B;
+  background: var(--mood-rose);
   color: var(--mood-surface);
   font-size: 24rpx;
   border-radius: 14rpx;
@@ -166,7 +166,7 @@
 .tab-item.active, .tab.active, .tab-item.active .tab-text { color: var(--mood-sage-ink); font-weight: 600; }
 .tab-item.active::after, .tab.active::after { height: 4rpx; background: var(--mood-sage); border-radius: 2rpx; }
 
-.message-item, .notification-item { padding: 28rpx; background: #FFFFFF; border-radius: 28rpx; margin-bottom: 20rpx; }
+.message-item, .notification-item { padding: 28rpx; background: var(--mood-surface); border-radius: 28rpx; margin-bottom: 20rpx; }
 .message-item::before { display: none; }
 .message-content, .notification-text { font-size: 28rpx; color: var(--mood-muted); line-height: 1.85; white-space: pre-wrap; }
 .message-header, .notification-header { gap: 16rpx; }

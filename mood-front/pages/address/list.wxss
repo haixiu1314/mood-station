@@ -22,7 +22,7 @@
   position: relative;
   overflow: hidden;
   animation: none;
-  border: 2rpx solid #FFF5E6;
+  border: 2rpx solid var(--mood-line);
 }
 
 @keyframes fadeInUp {
@@ -104,7 +104,7 @@
 
 .action-btn.delete {
   color: var(--mood-rose);
-  border-color: #FFD0D0;
+  border-color: var(--mood-rose-soft);
   background-color: var(--mood-rose-soft);
 }
 
@@ -157,5 +157,5 @@
 .default-tag { color: var(--mood-sage-ink); background: var(--mood-sage-soft); }
 .address-actions { gap: 12rpx; flex-wrap: wrap; border-top: 1rpx solid var(--mood-line); }
 .action-btn { min-height: 80rpx; display: flex; align-items: center; padding: 12rpx 20rpx; }
-.add-btn { left: 32rpx; right: 32rpx; bottom: calc(24rpx + env(safe-area-inset-bottom)); background: var(--mood-sage); color: #FFFFFF; border-radius: 999rpx; min-height: 96rpx; box-shadow: 0 6rpx 20rpx rgba(41,60,51,.12); }
+.add-btn { left: 32rpx; right: 32rpx; bottom: calc(24rpx + env(safe-area-inset-bottom)); background: linear-gradient(180deg, #F0A184 0%, #E98D6F 100%); color: #FFFFFF; border-radius: 16rpx; min-height: 96rpx; box-shadow: 0 6rpx 0 #C96A45, 0 10rpx 20rpx rgba(217,119,79,.28), inset 0 2rpx 0 rgba(255,255,255,.28); }
 
