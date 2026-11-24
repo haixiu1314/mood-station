@@ -1,4 +1,5 @@
 const { request } = require('../../utils/request')
+const { resolveMediaUrl } = require('../../utils/url')
 const config = require('../../config/api')
 
 Page({
@@ -14,7 +15,9 @@ Page({
     showPopSingers: false,
     singers: [],
     isPlaying: false,
-    currentMusic: null
+    isPaused: false,
+    currentMusic: null,
+    barDragY: 0
   },
   audioContext: null,
 
@@ -24,9 +27,10 @@ Page({
 
   onShow() {
     this.checkLogin()
-    if (this.audioContext && this.data.isPlaying) {
-      this.audioContext.play()
-    }
+  },
+
+  onPullDownRefresh() {
+    this.loadUserInfo().finally(() => wx.stopPullDownRefresh())
   },
 
   checkLogin() {
@@ -126,6 +130,12 @@ Page({
     })
   },
 
+  onFeedback() {
+    wx.navigateTo({
+      url: '/pages/feedback/index'
+    })
+  },
+
   onNotification() {
     wx.navigateTo({
       url: '/pages/notification/list'
@@ -205,20 +215,21 @@ Page({
         const music = res.data
         this.setData({
           isPlaying: true,
+          isPaused: false,
           currentMusic: music
         })
         if (!this.audioContext) {
           this.audioContext = wx.createInnerAudioContext()
           this.audioContext.onEnded(() => {
-            this.setData({ isPlaying: false, currentMusic: null })
+            this.setData({ isPlaying: false, isPaused: false, currentMusic: null })
           })
           this.audioContext.onError((err) => {
             console.error('播放失败', err)
-            this.setData({ isPlaying: false, currentMusic: null })
+            this.setData({ isPlaying: false, isPaused: false, currentMusic: null })
             wx.showToast({ title: '播放失败', icon: 'none' })
           })
         }
-        this.audioContext.src = music.fileUrl.startsWith('http') ? music.fileUrl : `${config.baseUrl}${music.fileUrl}`
+        this.audioContext.src = resolveMediaUrl(music.fileUrl)
         this.audioContext.play()
       } else {
         wx.showToast({ title: '暂无可用音乐', icon: 'none' })
@@ -229,23 +240,41 @@ Page({
     }
   },
 
+  onTogglePlayPause() {
+    if (!this.audioContext) return
+    if (this.data.isPaused) {
+      this.audioContext.play()
+      this.setData({ isPaused: false })
+    } else {
+      this.audioContext.pause()
+      this.setData({ isPaused: true })
+    }
+  },
+
   onStopMusic() {
     if (this.audioContext) {
       this.audioContext.stop()
     }
-    this.setData({ isPlaying: false, currentMusic: null })
+    this.setData({ isPlaying: false, isPaused: false, currentMusic: null })
+  },
+
+  onBarTouchStart(e) {
+    this._dragStartY = e.touches[0].clientY
+    this._dragStartDragY = this.data.barDragY
+  },
+
+  onBarTouchMove(e) {
+    const deltaY = this._dragStartY - e.touches[0].clientY
+    let newDragY = this._dragStartDragY + deltaY
+    // 只允许向上拖动，最大 400px，避免拖到 TabBar 下
+    newDragY = Math.max(0, Math.min(400, newDragY))
+    this.setData({ barDragY: newDragY })
   },
 
   onUnload() {
     if (this.audioContext) {
       this.audioContext.destroy()
       this.audioContext = null
-    }
-  },
-
-  onHide() {
-    if (this.audioContext && this.data.isPlaying) {
-      this.audioContext.pause()
     }
   }
 })

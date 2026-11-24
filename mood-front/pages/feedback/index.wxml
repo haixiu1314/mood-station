@@ -1,0 +1,12 @@
+<view class="container mood-page mood-feedback">
+  <view class="screen-heading"><text class="screen-title">用户反馈</text><text class="screen-subtitle">你的建议对我们很重要，欢迎告诉我们你的想法。</text></view>
+  <view class="form-section">
+    <text class="section-title">反馈内容</text>
+    <textarea class="feedback-input" placeholder="请输入反馈内容（必填）" value="{{content}}" maxlength="1000" bindinput="onInput" placeholder-style="color: #B4A793;" />
+    <text class="char-count">{{content.length}}/1000</text>
+  </view>
+
+  <view class="send-btn" bindtap="onSubmit" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+    <text class="send-btn-text">发送反馈</text>
+  </view>
+</view>
