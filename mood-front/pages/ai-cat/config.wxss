@@ -1,0 +1,76 @@
+@import "../../styles/healing.wxss";
+
+.config-container {
+  padding: 32rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.config-card {
+  background: var(--mood-surface);
+  border-radius: 24rpx;
+  padding: 40rpx 32rpx;
+}
+
+.config-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: var(--mood-ink);
+}
+
+.config-desc {
+  font-size: 24rpx;
+  color: var(--mood-muted);
+  line-height: 1.7;
+  margin: 12rpx 0 32rpx;
+}
+
+.form-item {
+  margin-bottom: 28rpx;
+}
+
+.form-label {
+  display: block;
+  font-size: 26rpx;
+  color: var(--mood-ink);
+  font-weight: 500;
+  margin-bottom: 12rpx;
+}
+
+.form-input {
+  width: 100%;
+  height: 88rpx;
+  background: var(--mood-well);
+  border: 1rpx solid var(--mood-line);
+  border-radius: 16rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  color: var(--mood-ink);
+  box-sizing: border-box;
+}
+
+/* 保存按钮 - 立体规范（灰褐色，与情绪小喵发送按钮统一） */
+.save-btn {
+  position: relative;
+  margin-top: 40rpx;
+  height: 88rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(180deg, #A99882 0%, #8A7A68 100%);
+  box-shadow: 0 6rpx 0 #6F6050, 0 10rpx 20rpx rgba(138,122,104,.3), inset 0 2rpx 0 rgba(255,255,255,.25);
+}
+
+.save-btn.disabled {
+  opacity: 0.6;
+}
+
+.save-btn-text {
+  color: #FFFFFF;
+  font-size: 30rpx;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}

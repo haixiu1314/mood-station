@@ -1,5 +1,7 @@
 module.exports = {
-  baseUrl: 'http://localhost:8080',
+  // 真机调试/预览时手机访问不到 localhost，需改为电脑的局域网 IP（同一 WiFi 下）
+  // 若换网络后连不上，改成当前电脑的 IPv4 地址即可（如 ipconfig 查看）
+  baseUrl: 'http://192.168.0.100:8080',
   api: {
     login: '/api/user/login',
     loginAccount: '/api/user/login/account',
@@ -89,6 +91,10 @@ module.exports = {
     aiChatSend: '/api/ai/chat',
     aiChatHistory: '/api/ai/history',
     aiChatClear: '/api/ai/history',
-    aiChatTodayCount: '/api/ai/today-count'
+    aiConfigGet: '/api/ai/config',
+    aiConfigSave: '/api/ai/config',
+
+    // 用户反馈
+    feedbackSubmit: '/api/feedback/submit'
   }
 }

@@ -1,7 +1,10 @@
 package com.moodlater.controller;
 
+import com.moodlater.common.AiException;
 import com.moodlater.common.Result;
+import com.moodlater.entity.AiConfig;
 import com.moodlater.service.AiChatService;
+import com.moodlater.service.AiConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +20,9 @@ public class AiChatController {
 
     @Autowired
     private AiChatService aiChatService;
+
+    @Autowired
+    private AiConfigService aiConfigService;
 
     /**
      * 发送消息
@@ -35,8 +41,8 @@ public class AiChatController {
         try {
             Map<String, Object> result = aiChatService.sendMessage(userId, message.trim());
             return Result.success(result);
-        } catch (RuntimeException e) {
-            return Result.error(e.getMessage());
+        } catch (AiException e) {
+            return Result.error(e.getCode(), e.getMessage());
         } catch (Exception e) {
             return Result.error("服务异常，请稍后再试");
         }
@@ -61,11 +67,29 @@ public class AiChatController {
     }
 
     /**
-     * 获取今日聊天次数
+     * 获取当前用户的 AI 配置
      */
-    @GetMapping("/today-count")
-    public Result<Map<String, Integer>> getTodayCount(@RequestAttribute("userId") Long userId) {
-        Map<String, Integer> count = aiChatService.getTodayCount(userId);
-        return Result.success(count);
+    @GetMapping("/config")
+    public Result<AiConfig> getConfig(@RequestAttribute("userId") Long userId) {
+        AiConfig config = aiConfigService.getConfig(userId);
+        return Result.success(config);
+    }
+
+    /**
+     * 保存当前用户的 AI 配置
+     */
+    @PostMapping("/config")
+    public Result<Void> saveConfig(@RequestAttribute("userId") Long userId,
+                                   @RequestBody Map<String, String> request) {
+        String baseUrl = request.get("baseUrl");
+        String apiKey = request.get("apiKey");
+        String model = request.get("model");
+        if (baseUrl == null || baseUrl.trim().isEmpty()
+                || apiKey == null || apiKey.trim().isEmpty()
+                || model == null || model.trim().isEmpty()) {
+            return Result.error("url、key 和 model 都不能为空");
+        }
+        aiConfigService.saveConfig(userId, baseUrl.trim(), apiKey.trim(), model.trim());
+        return Result.success();
     }
 }

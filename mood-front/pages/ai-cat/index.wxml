@@ -8,9 +8,9 @@
         <text class="ai-name">情绪小喵</text>
         <text class="ai-desc">你的专属情绪陪伴助手</text>
       </view>
-    </view>
-    <view class="count-info">
-      <text class="count-text">{{todayCount}}/{{dailyLimit}}</text>
+      <view class="model-info">
+        <text class="model-info-text">当前模型：{{currentModel || '未配置'}}</text>
+      </view>
     </view>
   </view>
 
@@ -18,7 +18,7 @@
   <scroll-view class="chat-messages" scroll-y scroll-into-view="{{scrollToId}}" scroll-with-animation>
     <!-- 欢迎消息 -->
     <view class="message-row welcome-row">
-      <image class="message-avatar" src="/images/猫猫.png" mode="aspectFit"></image>
+      <image class="message-avatar" src="/images/猫猫.png" mode="aspectFit" bindtap="goConfig"></image>
       <view class="message-bubble ai-bubble">
         <text class="message-text">嗨，你好呀~ 我是情绪小喵
 
@@ -30,7 +30,7 @@
     <view wx:for="{{messages}}" wx:key="index" class="message-row {{item.role === 'user' ? 'user-row' : 'ai-row'}}" id="msg-{{index}}">
       <!-- AI 消息 -->
       <block wx:if="{{item.role === 'assistant'}}">
-        <image class="message-avatar" src="/images/猫猫.png" mode="aspectFit"></image>
+        <image class="message-avatar" src="/images/猫猫.png" mode="aspectFit" bindtap="goConfig"></image>
         <view class="message-bubble ai-bubble">
           <text class="message-text">{{item.content}}</text>
         </view>
@@ -60,6 +60,13 @@
     </view>
   </scroll-view>
 
+  <!-- 快捷选项 -->
+  <view class="quick-options" wx:if="{{showQuickOptions}}">
+    <view class="quick-option" wx:for="{{quickOptions}}" wx:key="*this" data-text="{{item}}" bindtap="onQuickTap" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <text class="quick-option-text">{{item}}</text>
+    </view>
+  </view>
+
   <!-- 底部输入区域 -->
   <view class="chat-input-area">
     <view class="input-wrapper">
@@ -74,6 +81,22 @@
              disabled="{{isLoading}}"  placeholder-style="color: #68756A;" />
       <view class="send-btn {{inputValue.trim() ? 'active' : ''}} {{isLoading ? 'disabled' : ''}}" bindtap="sendMessage" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
         <image class="send-icon" src="/images/healing/send.png" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- AI 配置提示弹窗 -->
+  <view class="config-modal-mask" wx:if="{{showConfigModal}}" bindtap="onCloseConfigModal"></view>
+  <view class="config-modal" wx:if="{{showConfigModal}}">
+    <view class="config-modal-header">
+      <text class="config-modal-close" bindtap="onCloseConfigModal">×</text>
+    </view>
+    <view class="config-modal-body">
+      <text class="config-modal-text">{{configModalText}}</text>
+    </view>
+    <view class="config-modal-footer" wx:if="{{configModalShowGoBtn}}">
+      <view class="config-go-btn" bindtap="onGoConfig" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+        <text class="config-go-btn-text">前往配置</text>
       </view>
     </view>
   </view>

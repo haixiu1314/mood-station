@@ -1,0 +1,25 @@
+<view class="config-container mood-page">
+  <view class="config-card">
+    <view class="config-title">配置你的 AI 模型</view>
+    <view class="config-desc">填写 AI 服务的 url、key 和模型名称，情绪小喵将使用你的配置进行对话。</view>
+
+    <view class="form-item">
+      <text class="form-label">URL</text>
+      <input class="form-input" value="{{baseUrl}}" placeholder="如 https://api.deepseek.com" placeholder-style="color:#B4A793;" bindinput="onBaseUrlInput" />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">Key</text>
+      <input class="form-input" value="{{apiKey}}" placeholder="请输入 API Key" placeholder-style="color:#B4A793;" password="{{true}}" bindinput="onApiKeyInput" />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">Model</text>
+      <input class="form-input" value="{{model}}" placeholder="如 deepseek-chat" placeholder-style="color:#B4A793;" bindinput="onModelInput" />
+    </view>
+
+    <view class="save-btn {{saving ? 'disabled' : ''}}" bindtap="onSave" hover-class="mood-pressed" hover-start-time="20" hover-stay-time="90">
+      <text class="save-btn-text">{{saving ? '保存中...' : '保存'}}</text>
+    </view>
+  </view>
+</view>
