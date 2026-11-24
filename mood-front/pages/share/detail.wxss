@@ -280,10 +280,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--mood-sage-soft);
-  border-radius: 40rpx;
+  background: linear-gradient(180deg, #F0A184 0%, #E98D6F 100%);
+  border-radius: 16rpx;
   padding: 24rpx 48rpx;
-  
+  box-shadow: 0 6rpx 0 #C96A45, 0 10rpx 20rpx rgba(217,119,79,.28), inset 0 2rpx 0 rgba(255,255,255,.28);
   transition: transform 0.2s ease;
 }
 
@@ -300,7 +300,7 @@
 
 .comment-trigger-text {
   font-size: 28rpx;
-  color: var(--mood-surface);
+  color: #FFFFFF;
   font-weight: 600;
 }
 

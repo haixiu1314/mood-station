@@ -39,11 +39,19 @@
   border-radius: 20rpx;
   padding: 28rpx;
   
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.6s ease, filter 0.6s ease;
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
   animation: none;
+  
+  opacity: 0;
+  filter: blur(12rpx);
+}
+
+.post-item.revealed {
+  opacity: 1;
+  filter: blur(0);
 }
 
 @keyframes fadeInUp {
@@ -297,7 +305,9 @@
 .post-actions { border-top: 1rpx solid var(--mood-line); margin-top: 24rpx; padding: 14rpx 0 0; }
 .action-item { min-width: 88rpx; min-height: 72rpx; }
 .post-images .image.single { height: 380rpx; max-height: none; }
-.publish-btn { width: 100rpx; height: 100rpx; right: 32rpx; bottom: calc(32rpx + env(safe-area-inset-bottom)); background: var(--mood-sage); border-radius: 50%; box-shadow: 0 8rpx 24rpx rgba(41,60,51,.16); }
-.plus { color: #FFFFFF; font-size: 52rpx; font-weight: 400; }
+.publish-btn { width: 112rpx; height: 112rpx; right: 32rpx; bottom: calc(32rpx + env(safe-area-inset-bottom)); background: linear-gradient(180deg, #F0A184 0%, #E98D6F 100%); border-radius: 50%; box-shadow: 0 8rpx 0 #C96A45, 0 14rpx 28rpx rgba(217,119,79,.35), inset 0 3rpx 0 rgba(255,255,255,.35); overflow: hidden; }
+.publish-btn::after { content: ''; position: absolute; top: -60%; left: -90%; width: 45%; height: 220%; background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,.6) 50%, transparent 100%); transform: skewX(-20deg); pointer-events: none; animation: btn-shine 2.6s ease-in-out infinite; }
+@keyframes btn-shine { 0% { left: -90%; } 55%, 100% { left: 130%; } }
+.plus { color: #FFFFFF; font-size: 52rpx; font-weight: 400; position: relative; z-index: 1; }
 .banner { text-align: left; }
 
