@@ -60,6 +60,12 @@ const routes = [
         name: 'Banners',
         component: () => import('@/views/BannerManage.vue'),
         meta: { title: '轮播图管理' }
+      },
+      {
+        path: 'feedback',
+        name: 'Feedback',
+        component: () => import('@/views/FeedbackManage.vue'),
+        meta: { title: '用户反馈' }
       }
     ]
   }
