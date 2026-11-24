@@ -22,6 +22,10 @@ Page({
     this.loadOrders()
   },
 
+  onPullDownRefresh() {
+    this.loadOrders(this.data.activeTab).finally(() => wx.stopPullDownRefresh())
+  },
+
   onTabChange(e) {
     const tab = e.currentTarget.dataset.tab
     this.setData({ activeTab: tab })

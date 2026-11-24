@@ -19,6 +19,10 @@ Page({
     this.loadNotifications()
   },
 
+  onPullDownRefresh() {
+    Promise.all([this.loadUnreadCount(), this.loadNotifications()]).finally(() => wx.stopPullDownRefresh())
+  },
+
   async loadUnreadCount() {
     try {
       const res = await request({ url: config.api.notificationUnreadCountByType })
