@@ -25,6 +25,102 @@ mood-project/
 
 ---
 
+## 界面展示
+
+主页是这种奶黄治愈风格，并且在不同时间段有做实时温馨提醒、白天与夜晚会切换不同插画，此时是半夜12点，插画以月亮形式显示
+
+<img src="./assets/screenshots/image-20261125000348473.png" alt="image-20261125000348473" style="zoom:50%;" />
+
+轮播图下面的每日锦囊，藏着暖评语，当你情绪失落时打开这个锦囊时，可以收到暖评鼓励，这是小站情绪价值的体现。暖评语每日一次，在暖评库中随机抽取发送给用户
+
+这里做了个图标切换效果，点击时，锦囊会充能，随后出现快速翻转动画，增加互动效果
+
+<img src="./assets/screenshots/image-20261125000747205.png" alt="image-20261125000747205" style="zoom:50%;" />
+
+翻转后，就能看到暖评，并且背景也有做星星闪烁动画效果
+
+<img src="./assets/screenshots/image-20261125000638513.png" alt="image-20261125000638513" style="zoom:50%;" />
+
+侧边栏藏着一只情绪小喵助手，点击展开后可以进入聊天界面，可以诉说你的情绪。ai助手是基于deepseek开发的，需要自己配置模型，点击小喵头像就可以配置了
+
+<img src="./assets/screenshots/image-20261125003922302.png" alt="image-20261125003922302" style="zoom:50%;" />
+
+写日记，记录你的每日情绪，可以选择情绪、也可以公开给其他用户分享自己情绪
+
+<img src="./assets/screenshots/image-20261125001241242.png" alt="image-20261125001241242" style="zoom:50%;" />
+
+情绪分享页，一个简单的论坛界面，是情绪宣泄与分享的地方，可以点赞，也可以进行评论
+
+<img src="./assets/screenshots/image-20261125001458520.png" alt="image-20261125001458520" style="zoom:50%;" />
+
+在这里，点击用户头像，可以看到用户发布的日记（前面公开日记则会显示，不公开则看不到）
+
+<img src="./assets/screenshots/image-20261125001743943.png" alt="image-20261125001743943" style="zoom:50%;" />
+
+也可以进行留言
+
+<img src="./assets/screenshots/image-20261125001805198.png" alt="image-20261125001805198" style="zoom:50%;" />
+
+点击抱抱会随机送一条暖评给对方，对方会在通知中看到来自xx用户的暖评及内容
+
+<img src="./assets/screenshots/image-20261125001903562.png" alt="image-20261125001903562" style="zoom:50%;" />
+
+情绪周边，一个简单的情绪商城，售卖的都是解压、治愈等情绪商品，有完整的电商流程闭环。以心动币作为货币购买商品，比起直接赤裸裸的明码标价，以心动币兑换更凸显情绪，因为它可以通过登录、点赞用户帖子、发布日记帖子来获取，新用户注册时，系统会直接赠送心动币，让每个用户第一次使用时都可以换一件让自己心情舒畅的商品
+
+<img src="./assets/screenshots/image-20261125001954395.png" alt="image-20261125001954395" style="zoom:50%;" />
+
+商品详情页，可以选款式，有实时库存显示
+
+<img src="./assets/screenshots/image-20261125002518506.png" alt="image-20261125002518506" style="zoom:50%;" />
+
+提交订单界面
+
+<img src="./assets/screenshots/image-20261125002607742.png" alt="image-20261125002607742" style="zoom:50%;" />
+
+订单提交后，会显示待发货，等待管理端确认订单发货，我的订单这里会变更订单信息，直到已完成为止
+
+<img src="./assets/screenshots/image-20261125002711863.png" alt="image-20261125002711863" style="zoom:50%;" />
+
+个人界面
+
+<img src="./assets/screenshots/image-20261125003311349.png" alt="image-20261125003311349" style="zoom:50%;" />
+
+这里能看到心动币余额，旁边的问号点击后会有心动币具体的说明
+
+<img src="./assets/screenshots/image-20261125003345955.png" alt="image-20261125003345955" style="zoom:50%;" />
+
+右上角的两个功能，一个是音乐功能，一个是通知功能
+
+<img src="./assets/screenshots/image-20261125003422349.png" alt="image-20261125003422349" style="zoom:50%;" />
+
+点击音乐可以选择纯音乐和流行音乐
+
+<img src="./assets/screenshots/image-20261125003457356.png" alt="image-20261125003457356" style="zoom:50%;" />
+
+音乐播放时显示，播放时，切换其他界面会隐藏播放条
+
+<img src="./assets/screenshots/image-20261125003539088.png" alt="image-20261125003539088" style="zoom:50%;" />
+
+通知功能
+
+<img src="./assets/screenshots/image-20261125003651719.png" alt="image-20261125003651719" style="zoom:50%;" />
+
+<img src="./assets/screenshots/image-20261125003706980.png" alt="image-20261125003706980" style="zoom:50%;" />
+
+
+
+管理端（**管理端账号为：admin，密码为：admin123**）
+
+![image-20261125004325329](./assets/screenshots/image-20261125004325329.png)
+
+![image-20261125004455355](./assets/screenshots/image-20261125004455355.png)
+
+![image-20261125004508774](./assets/screenshots/image-20261125004508774.png)
+
+![image-20261125004521388](./assets/screenshots/image-20261125004521388.png)
+
+![image-20261125004533263](./assets/screenshots/image-20261125004533263.png)
+
 ## 二、技术栈
 
 | 端 | 技术栈 |
